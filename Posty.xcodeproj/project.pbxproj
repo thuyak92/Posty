@@ -139,6 +139,7 @@
 		4786F9731C70638100CABA8B /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4786F8FD1C70638000CABA8B /* PostCell.xib */; };
 		4786F9741C70638100CABA8B /* PostMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F8FF1C70638000CABA8B /* PostMapCell.m */; };
 		4786F9751C70638100CABA8B /* PostMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4786F9001C70638000CABA8B /* PostMapCell.xib */; };
+		4786F9771C70681A00CABA8B /* slashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 4786F9761C70681A00CABA8B /* slashscreen.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +332,7 @@
 		4786F8FE1C70638000CABA8B /* PostMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostMapCell.h; sourceTree = "<group>"; };
 		4786F8FF1C70638000CABA8B /* PostMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostMapCell.m; sourceTree = "<group>"; };
 		4786F9001C70638000CABA8B /* PostMapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostMapCell.xib; sourceTree = "<group>"; };
+		4786F9761C70681A00CABA8B /* slashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slashscreen.png; sourceTree = "<group>"; };
 		B38D3F114905F5C7C1BE4E62 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952E0CF22966B594A0B9AE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -463,6 +465,7 @@
 		4786F8501C70638000CABA8B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4786F9761C70681A00CABA8B /* slashscreen.png */,
 				4786F8511C70638000CABA8B /* Background */,
 				4786F8531C70638000CABA8B /* Button */,
 				4786F86E1C70638000CABA8B /* DefaultIcon */,
@@ -992,6 +995,7 @@
 				4786F94E1C70638100CABA8B /* Detail.storyboard in Resources */,
 				4786F9281C70638100CABA8B /* iconInstagram.png in Resources */,
 				4786F90F1C70638100CABA8B /* btnNext.png in Resources */,
+				4786F9771C70681A00CABA8B /* slashscreen.png in Resources */,
 				4786F9321C70638100CABA8B /* iconTwitter.png in Resources */,
 				4786F9241C70638100CABA8B /* iconNewGrOn.png in Resources */,
 				4786F9201C70638100CABA8B /* iconNewFrOff.png in Resources */,
