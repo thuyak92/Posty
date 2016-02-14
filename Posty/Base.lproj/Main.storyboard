@@ -977,38 +977,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ポストする写真/動画を選択してください" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4e-hC-XDu">
-                                <rect key="frame" x="0.0" y="85" width="320" height="36"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQ2-iw-9KA">
-                                <rect key="frame" x="20" y="161" width="130" height="130"/>
+                                <rect key="frame" x="20" y="100" width="130" height="130"/>
                                 <state key="normal" backgroundImage="selectPhoto.png"/>
                                 <connections>
                                     <action selector="onButonClicked:" destination="iIB-tR-lDc" eventType="touchUpInside" id="1rV-JD-dOB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f09-P5-NLe">
-                                <rect key="frame" x="170" y="161" width="130" height="130"/>
+                                <rect key="frame" x="170" y="100" width="130" height="130"/>
                                 <state key="normal" backgroundImage="takePhoto.png"/>
                                 <connections>
                                     <action selector="onButonClicked:" destination="iIB-tR-lDc" eventType="touchUpInside" id="Ky4-df-o1n"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1k-cH-zoU">
-                                <rect key="frame" x="20" y="316" width="130" height="130"/>
-                                <state key="normal" backgroundImage="instagram.png"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nas-TR-LoA">
+                                <rect key="frame" x="0.0" y="257" width="320" height="262"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <sections/>
                                 <connections>
-                                    <action selector="onButonClicked:" destination="iIB-tR-lDc" eventType="touchUpInside" id="ure-01-SXL"/>
+                                    <outlet property="dataSource" destination="iIB-tR-lDc" id="NgP-tE-4PD"/>
+                                    <outlet property="delegate" destination="iIB-tR-lDc" id="0Ue-lO-1l6"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5gp-bn-g50">
-                                <rect key="frame" x="170" y="316" width="130" height="130"/>
-                                <state key="normal" backgroundImage="editKeep.png"/>
-                                <connections>
-                                    <action selector="onButonClicked:" destination="iIB-tR-lDc" eventType="touchUpInside" id="SP7-5T-orh"/>
-                                </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1016,16 +1011,15 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
-                        <outlet property="btnEditKeep" destination="5gp-bn-g50" id="tCz-Pf-hkK"/>
-                        <outlet property="btnInstagram" destination="R1k-cH-zoU" id="Hcj-3v-FQb"/>
                         <outlet property="btnSelectPhoto" destination="PQ2-iw-9KA" id="f6R-hj-LaJ"/>
                         <outlet property="btnTakePhoto" destination="f09-P5-NLe" id="ttp-Ds-vEh"/>
+                        <outlet property="tableView" destination="nas-TR-LoA" id="tSU-rP-jYg"/>
                         <segue destination="p4W-cq-ham" kind="modal" identifier="SeguePostToPostSetting" id="7VZ-W9-u2h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgg-VM-7a1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="237.86666666666667" y="0.0"/>
+            <point key="canvasLocation" x="237" y="0.0"/>
         </scene>
         <!--メッセージ-->
         <scene sceneID="kaN-Bc-oI3">
@@ -1168,45 +1162,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4A-zr-UZj">
-                                <rect key="frame" x="0.0" y="20" width="320" height="140"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="120"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="想いを届けよう、思い出を記そう" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPE-ou-Kvm">
-                                        <rect key="frame" x="0.0" y="110" width="320" height="26"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.50588235294117645" green="0.023529411764705882" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconMyDear.png" translatesAutoresizingMaskIntoConstraints="NO" id="P1P-Y7-sch">
-                                        <rect key="frame" x="110" y="8" width="100" height="100"/>
+                                        <rect key="frame" x="110" y="10" width="100" height="100"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHF-S5-PKI">
-                                        <rect key="frame" x="8" y="8" width="61" height="33"/>
-                                        <state key="normal" title="Cancel"/>
-                                        <connections>
-                                            <action selector="onCancelButtonClicked:" destination="1pa-Ra-OxR" eventType="touchUpInside" id="sIl-HP-jDl"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cbc-gR-klY">
-                                <rect key="frame" x="0.0" y="162" width="320" height="170"/>
+                                <rect key="frame" x="0.0" y="142" width="320" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="お持ちのSNSアカウントでログイン" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kW-XX-sDF">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xr8-jh-jkU" userLabel="Btn Login Twt" customClass="TWTRLogInButton">
-                                        <rect key="frame" x="20" y="40" width="280" height="40"/>
+                                        <rect key="frame" x="30" y="25" width="260" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="onLoginTwitterButtonClicked:" destination="1pa-Ra-OxR" eventType="valueChanged" id="1St-Lo-Mu8"/>
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pc0-zG-PC3" customClass="FBSDKLoginButton">
-                                        <rect key="frame" x="20" y="100" width="280" height="40"/>
+                                        <rect key="frame" x="30" y="70" width="260" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="onLoginFacebookButtonClicked:" destination="1pa-Ra-OxR" eventType="valueChanged" id="xRZ-4e-rcC"/>
@@ -1216,34 +1197,22 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xyf-hI-G2y">
-                                <rect key="frame" x="0.0" y="334" width="320" height="234"/>
+                                <rect key="frame" x="0.0" y="264" width="320" height="195"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MyDearアカウントでログイン" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ3-Kp-hKa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Postyアカウントでログイン" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ3-Kp-hKa">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="パスワードを忘れた場合" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iay-EQ-363">
-                                        <rect key="frame" x="0.0" y="162" width="320" height="33"/>
+                                        <rect key="frame" x="0.0" y="160" width="320" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.50588235290000005" green="0.023529411760000001" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="アカウントを作成することにより" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hl-KW-mjl">
-                                        <rect key="frame" x="0.0" y="191" width="320" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MyDear の利用規約に同意するものとみなします。" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZG-Fb-SDU">
-                                        <rect key="frame" x="0.0" y="211" width="320" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレスまたはユーザーID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zf7-Cr-SIk">
-                                        <rect key="frame" x="29" y="41" width="263" height="30"/>
+                                        <rect key="frame" x="30" y="40" width="260" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                         <connections>
@@ -1251,7 +1220,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BLu-r0-DBp">
-                                        <rect key="frame" x="29" y="84" width="263" height="30"/>
+                                        <rect key="frame" x="30" y="80" width="260" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
@@ -1259,7 +1228,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s7X-Lz-OLH">
-                                        <rect key="frame" x="29" y="122" width="127" height="35"/>
+                                        <rect key="frame" x="29" y="120" width="127" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="新規アカウント作成" backgroundImage="btnGreyBgr.png">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1269,7 +1238,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoH-v3-l3M">
-                                        <rect key="frame" x="165" y="122" width="127" height="35"/>
+                                        <rect key="frame" x="165" y="120" width="127" height="35"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="ログイン" backgroundImage="btnGreyBgr.png">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1278,6 +1247,38 @@
                                             <action selector="onLoginButtonClicked:" destination="1pa-Ra-OxR" eventType="touchUpInside" id="nG4-68-JPf"/>
                                         </connections>
                                     </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VJd-B6-Pjy">
+                                <rect key="frame" x="0.0" y="461" width="320" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHF-S5-PKI">
+                                        <rect key="frame" x="30" y="10" width="260" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="ログインせずにPostyの利用を開始する" backgroundImage="btnGreyBgr.png"/>
+                                        <connections>
+                                            <action selector="onCancelButtonClicked:" destination="1pa-Ra-OxR" eventType="touchUpInside" id="sIl-HP-jDl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aZQ-OO-wf5">
+                                <rect key="frame" x="0.0" y="518" width="320" height="234"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="アカウントを作成することにより" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKr-10-AuJ">
+                                        <rect key="frame" x="0.0" y="5" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MyDear の利用規約に同意するものとみなします。" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k46-4P-KQJ">
+                                        <rect key="frame" x="0.0" y="25" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1304,7 +1305,7 @@
             <objects>
                 <tableViewController id="SJm-1U-MV4" userLabel="User Info" customClass="AccountInfoVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZOJ-Aa-Pud">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -1336,15 +1337,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ba-iH-RWc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSg-SH-Qoc">
+                                                    <rect key="frame" x="30" y="2" width="260" height="44"/>
+                                                    <color key="backgroundColor" red="1" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <string key="text">アカウント詳細設定をスキップして
 MyDearの利用を開始する</string>
-                                                    <color key="textColor" red="0.50588235290000005" green="0.023529411760000001" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9b-2G-oJr">
+                                                    <rect key="frame" x="30" y="2" width="260" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onButtonClicked:" destination="SJm-1U-MV4" eventType="touchUpInside" id="p4c-SE-8tc"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1480,6 +1492,7 @@ MyDearの利用を開始する</string>
                                                         <segment title="許可する"/>
                                                         <segment title="許可しない"/>
                                                     </segments>
+                                                    <color key="tintColor" red="1" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 </segmentedControl>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1507,6 +1520,7 @@ MyDearの利用を開始する</string>
                                                         <segment title="許可する"/>
                                                         <segment title="許可しない"/>
                                                     </segments>
+                                                    <color key="tintColor" red="1" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="onSegmentChangeValue:" destination="SJm-1U-MV4" eventType="valueChanged" id="Yiz-gD-jne"/>
                                                     </connections>
@@ -1524,14 +1538,16 @@ MyDearの利用を開始する</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="アカウント詳細設定" id="h4L-LG-8fF"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="900"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="btnCamera" destination="C2Q-AS-aM3" id="Af9-Uh-yO2"/>
                         <outlet property="btnLibrary" destination="f2y-qs-DYj" id="MgG-bF-KaS"/>
+                        <outlet property="btnSkip" destination="u9b-2G-oJr" id="1m4-dD-WcQ"/>
                         <outlet property="imvAvatar" destination="q8s-RT-6p6" id="2db-Bn-ar1"/>
+                        <outlet property="lblSkip" destination="PSg-SH-Qoc" id="TBC-rY-6eu"/>
                         <outlet property="segIdSearch" destination="BHe-0f-BdB" id="p7u-JU-zbM"/>
                         <outlet property="segLocation" destination="rv7-2r-bHm" id="AOK-LM-bSk"/>
-                        <outlet property="txtfComment" destination="hDc-UE-JIT" id="3cr-hD-e8Y"/>
+                        <outlet property="txtfComment" destination="hDc-UE-JIT" id="yNo-pX-VD2"/>
                         <outlet property="txtfMyspot" destination="mRV-uV-hJW" id="0xe-KX-hF4"/>
                         <outlet property="txtfNickname" destination="HUv-0c-IW8" id="G8o-mk-TbF"/>
                     </connections>
@@ -2284,20 +2300,18 @@ MyDearの利用を開始する</string>
         <image name="btnTintBgr.png" width="251" height="84"/>
         <image name="btnTintBorderSqr.png" width="601" height="103"/>
         <image name="btnUnCheck.png" width="17" height="17"/>
-        <image name="editKeep.png" width="450" height="450"/>
         <image name="iconAvaDefault.png" width="30" height="30"/>
         <image name="iconComment.png" width="41" height="41"/>
         <image name="iconHome.png" width="30" height="25"/>
         <image name="iconLocation.png" width="70" height="70"/>
         <image name="iconMap.png" width="30" height="25"/>
         <image name="iconMessage.png" width="30" height="25"/>
-        <image name="iconMyDear.png" width="167" height="167"/>
+        <image name="iconMyDear.png" width="200" height="200"/>
         <image name="iconMyPage.png" width="30" height="25"/>
         <image name="iconNewFrOn.png" width="30" height="30"/>
         <image name="iconPost.png" width="30" height="25"/>
         <image name="iconStar.png" width="43" height="43"/>
         <image name="iconView.png" width="41" height="41"/>
-        <image name="instagram.png" width="450" height="450"/>
         <image name="selectPhoto.png" width="450" height="450"/>
         <image name="takePhoto.png" width="450" height="450"/>
     </resources>

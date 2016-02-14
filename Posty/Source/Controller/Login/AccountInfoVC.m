@@ -18,13 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [LibRestKit share].delegate = self;
+    [_lblSkip.layer setMasksToBounds:YES];
+    [_lblSkip.layer setCornerRadius:5];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 //     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btnBack.png"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
-    self.navigationItem.leftBarButtonItem = backButton;
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btnBack.png"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
+//    self.navigationItem.leftBarButtonItem = backButton;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onSaveButtonClicked)];
     self.navigationItem.rightBarButtonItem = saveButton;
@@ -62,7 +64,10 @@
 }
 
 - (IBAction)onButtonClicked:(id)sender {
-    if (sender == _btnCamera) {
+    if (sender == _btnSkip) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        //switch to tab home if need
+    } else if (sender == _btnCamera) {
         UIImagePickerController *pickerLibrary = [[UIImagePickerController alloc] init];
         pickerLibrary.sourceType = UIImagePickerControllerSourceTypeCamera;
         pickerLibrary.delegate = self;
