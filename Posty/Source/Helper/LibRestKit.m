@@ -174,4 +174,51 @@ static LibRestKit *share = nil;
     [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation];
 }
 
+#pragma mark - login
+- (void)login:(UserModel *)object success:(void (^)(UserModel *))success
+{
+    RKObjectManager *manager = [RKObjectManager sharedManager];
+    [manager addResponseDescriptor:[self rkDescResponseForClass:CLASS_USER]];
+    [manager postObject:object path:URL_LOGIN parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        UserModel *user = (UserModel *)object;
+        success(user);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSString *err = [error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
+        [Lib handleError:err forController:self];
+    }];
+}
+
+- (void)registerUser:(UserModel *)object success:(void (^)(UserModel *))success
+{
+    RKObjectManager *manager = [RKObjectManager sharedManager];
+    [manager addResponseDescriptor:[self rkDescResponseForClass:CLASS_USER]];
+    [manager postObject:object path:URL_REGISTER parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        UserModel *user = (UserModel *)object;
+        success(user);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSString *err = [error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
+        [Lib handleError:err forController:self];
+    }];
+}
+
+- (void)updateUser:(UserModel *)object success:(void (^)(UserModel *))success
+{
+    RKObjectManager *manager = [RKObjectManager sharedManager];
+    [manager addResponseDescriptor:[self rkDescResponseForClass:CLASS_USER]];
+    NSMutableURLRequest *request = [manager multipartFormRequestWithObject:object method:RKRequestMethodPUT path:URL_UPDATE_USER parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:object.avatar
+                                    name:@"avatar_file"
+                                fileName:@"photo.png"
+                                mimeType:@"image/png"];
+    }];
+    RKObjectRequestOperation *operation = [manager objectRequestOperationWithRequest:request success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        UserModel *user = (UserModel *)object;
+        success(user);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSString *err = [error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
+        [Lib handleError:err forController:self];
+    }];
+    [[RKObjectManager sharedManager] enqueueObjectRequestOperation:operation];
+}
+
 @end

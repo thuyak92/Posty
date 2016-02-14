@@ -56,4 +56,9 @@
 - (void)postObject: (id)object toPath: (NSString *)path forClass: (NSString *)className;
 - (void)postObject: (id)object toPath: (NSString *)path method: (RKRequestMethod)method withData: (NSData *)data fileName: (NSString *)fileName forClass: (NSString *)className;
 
+#pragma mark - login
+- (void)login:(UserModel *)object success:(void (^)(UserModel *user))success;
+- (void)registerUser:(UserModel *)object success:(void (^)(UserModel *user))success;
+- (void)updateUser: (UserModel *)object success: (void (^)(UserModel *user))success;
+
 @end

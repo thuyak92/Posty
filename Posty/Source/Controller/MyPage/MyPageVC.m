@@ -29,8 +29,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    [app checkLogin];
+    if (![Lib checkLogin]) {
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        [app showLogin];
+    }
 }
 
 /*
@@ -57,9 +59,9 @@
 
 - (IBAction)onButtonClicked:(id)sender {
     if (sender == _btnLogout) {
-        [Lib setCurrentUser:nil];
+        [Lib logout];
         AppDelegate *app = [UIApplication sharedApplication].delegate;
-        [app checkLogin];
+        [app showLogin];
     }
 }
 @end

@@ -17,23 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     [LibRestKit share].delegate = self;
     _btnLoginFb.delegate = self;
-    [_btnLoginTwt setLogInCompletion:^(TWTRSession *session, NSError *error) {
-        if (session) {
-            NSLog(@"signed in as %@", [session userName]);
-            url = URL_LOGIN;
-            UserModel *user = [[UserModel alloc] init];
-            user.twiterId = session.userID;
-            [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-            [[LibRestKit share] postObject:user toPath:url forClass:CLASS_USER];
-        } else {
-            NSLog(@"error: %@", [error localizedDescription]);
-        }
-    }];
-    // Do any additional setup after loading the view.
-    
-    
+    [self loginTwitterDidComplete];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +40,61 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Twitter
+
+- (IBAction)onLoginTwitterButtonClicked:(id)sender {
+    
+}
+
+- (void)loginTwitterDidComplete
+{
+    [_btnLoginTwt setLogInCompletion:^(TWTRSession *session, NSError *error) {
+        if (session) {
+            NSLog(@"signed in as %@", [session userName]);
+            UserModel *user = [[UserModel alloc] init];
+            user.twiterId = session.userID;
+            [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+            [[LibRestKit share] login:user success:^(UserModel *user) {
+                [self handleLoginSuccess:user];
+            }];
+        } else {
+            NSLog(@"error: %@", [error localizedDescription]);
+        }
+    }];
+}
+
+#pragma mark - Facebook
+
+- (IBAction)onLoginFacebookButtonClicked:(id)sender {
+    _btnLoginFb.readPermissions =
+    @[@"public_profile", @"email", @"user_friends"];
+}
+
+- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Process error");
+    } else if (result.isCancelled) {
+        NSLog(@"Cancelled");
+    } else {
+        FBSDKAccessToken *token = result.token;
+        NSLog(@"result = %@", token.userID);
+        UserModel *user = [[UserModel alloc] init];
+        user.facebookId = token.userID;
+        [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+        [[LibRestKit share] login:user success:^(UserModel *user) {
+            [self handleLoginSuccess:user];
+        }];
+    }
+}
+
+- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton
+{
+    [Lib logout];
+}
+
+#pragma mark - login Posty account
 
 - (UserModel *)getInfo
 {
@@ -80,65 +125,29 @@
 }
 
 - (IBAction)onLoginButtonClicked:(id)sender {
-    if (sender == _btnLogin) {
-        url = URL_LOGIN;
-    } else {
-        url = URL_REGISTER;
-    }
     UserModel *user = [self getInfo];
     if (![self validate:user]) {
         return;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    [[LibRestKit share] postObject:user toPath:url forClass:CLASS_USER];
-}
-
-- (IBAction)onCancelButtonClicked:(id)sender {
-//    AppDelegate *app = [UIApplication sharedApplication].delegate;
-//    [app switchToTabWithIndex:TAB_HOME];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-    [Lib setGuest:TRUE];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)onLoginTwitterButtonClicked:(id)sender {
-//    [_btnLoginTwt setLogInCompletion:^(TWTRSession *session, NSError *error) {
-//        if (session) {
-//            NSLog(@"signed in as %@", [session userName]);
-//        } else {
-//            NSLog(@"error: %@", [error localizedDescription]);
-//        }
-//    }];
-}
-
-- (IBAction)onLoginFacebookButtonClicked:(id)sender {
-    _btnLoginFb.readPermissions =
-    @[@"public_profile", @"email", @"user_friends"];
-}
-
-#pragma mark - FB login delegate
-
-- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error
-{
-    if (error) {
-        NSLog(@"Process error");
-    } else if (result.isCancelled) {
-        NSLog(@"Cancelled");
+    
+    if (sender == _btnLogin) {
+        [[LibRestKit share] login:user success:^(UserModel *user) {
+            [self handleLoginSuccess:user];
+        }];
     } else {
-        FBSDKAccessToken *token = result.token;
-        NSLog(@"result = %@", token.userID);
-        url = URL_LOGIN;
-        UserModel *user = [[UserModel alloc] init];
-        user.facebookId = token.userID;
-        [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-        [[LibRestKit share] postObject:user toPath:url forClass:CLASS_USER];
+        [[LibRestKit share] registerUser:user success:^(UserModel *user) {
+            [self handleRegisterSuccess:user];
+        }];
     }
 }
 
-- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton
-{
-    //send logout request to server
-    [Lib logout];
+- (IBAction)onCancelButtonClicked:(id)sender {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+    [Lib setGuest:TRUE];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    [app switchToTabWithIndex:TAB_HOME];
 }
 
 #pragma mark - TextField delegate
@@ -190,27 +199,21 @@
 
 #pragma mark - RestKit Delegate                 
 
-- (void)onPostObjectSuccess: (LibRestKit *)controller data: (id)object
+- (void)handleLoginSuccess: (UserModel *)user
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-    UserModel *user = (UserModel *)object;
-    if (user == nil) {
-        AppDelegate *app = [[UIApplication sharedApplication] delegate];
-        [app showAlertTitle:@"エラー" message:nil];
-    } else {
-        if (user.error == nil) {//success
-            [Lib setCurrentUser:user];
-            [Lib setGuest:FALSE];
-#warning T redirect to SEGUE_LOGIN_TO_USER_INFO if register success 
-            //or nickname = nil
-//            AppDelegate *app = [UIApplication sharedApplication].delegate;
-//            [app switchToTabWithIndex:TAB_HOME];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        } else {
-            [Lib handleError:user.error forController:self];
-        }
-    }
+    [Lib setCurrentUser:user];
+    [Lib setGuest:FALSE];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)handleRegisterSuccess: (UserModel *)user
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+    [Lib setCurrentUser:user];
+    [Lib setGuest:FALSE];
+    [self performSegueWithIdentifier:SEGUE_LOGIN_TO_USER_INFO sender:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

@@ -192,8 +192,8 @@
     } else {
         err = error;
     }
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
-    [app showAlertTitle:@"エラー" message:err];
+//    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    [Lib showAlertTitle:@"エラー" message:err];
 }
 
 + (NSString *)sha256:(NSString *)input
@@ -277,6 +277,28 @@
     return urlWithQuerystring;
 }
 
+#pragma mark - controller
+
++ (UIViewController*) topMostController
+{
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    
+    return topController;
+}
+
++ (void)showAlertTitle: (NSString *)title message: (NSString *)message
+{
+    UIViewController *vc = [Lib topMostController];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle: UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"閉じる" style:UIAlertActionStyleCancel handler:nil]];
+    [vc presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - Config Model
 + (NSDictionary *)configModels
 {
@@ -332,6 +354,8 @@
     return nil;
 }
 
+#pragma mark - Login
+
 + (BOOL)isGuest
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:KEY_LOGIN_AS_GUEST];
@@ -342,8 +366,17 @@
     [[NSUserDefaults standardUserDefaults] setBool:guest forKey:KEY_LOGIN_AS_GUEST];
 }
 
++ (BOOL)checkLogin
+{
+    if ([Lib isGuest] || [Lib currentUser]) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
 + (void)logout
 {
+#warning send logout to server
     [Lib setCurrentUser:nil];
     [Lib setGuest:FALSE];
 }

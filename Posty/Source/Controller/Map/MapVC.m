@@ -10,7 +10,7 @@
 #import "LibLocation.h"
 #import "PostMapCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import "AppDelegate.h"
 
 @interface MapVC ()
 
@@ -28,6 +28,10 @@
     [self setCategories];
     [self setLocation];
     _listPosts = [[NSMutableArray alloc] init];
+    if (![Lib checkLogin]) {
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        [app showLogin];
+    }
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     [[LibRestKit share] getObjectsAtPath:URL_POST forClass:CLASS_POST];
 }

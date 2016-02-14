@@ -100,6 +100,7 @@
     user.nickname = _txtfNickname.text;
     user.comment = _txtfComment.text;
     user.mySpot = _txtfMyspot.text;
+    user.avatar = avatar;
 //    user.searchId = idSearch;
 //    user.searchLocation = location;
 
@@ -108,7 +109,12 @@
 
 - (void)postData
 {
-    [[LibRestKit share] postObject:[self getUserData] toPath:URL_UPDATE_USER method:RKRequestMethodPUT withData:avatar fileName:@"avatar_file" forClass:CLASS_USER];
+    [[LibRestKit share] updateUser:[self getUserData] success:^(UserModel *user) {
+        [Lib setCurrentUser:user];
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        [app switchToTabWithIndex:TAB_HOME];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 #pragma mark - TextField delegate
@@ -161,16 +167,6 @@
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     return YES;
-}
-
-#pragma mark - RestKit Delegate
-
-- (void)onPostObjectSuccess: (LibRestKit *)controller data: (id)object
-{
-    [Lib setCurrentUser:(UserModel *)object];
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    [app switchToTabWithIndex:TAB_HOME];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

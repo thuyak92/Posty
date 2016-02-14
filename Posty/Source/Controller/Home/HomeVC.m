@@ -28,7 +28,10 @@
     [self setCategories];
     
     _listPosts = [[NSMutableArray alloc] init];
-    
+    if (![Lib checkLogin]) {
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        [app showLogin];
+    }
     [Lib sha256:@"mYdEaRaPi-DeV2016"];
 }
 
@@ -54,8 +57,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    if ([app checkLogin] && _listPosts.count == 0) {
+    if (_listPosts.count == 0) {
         [LibRestKit share].delegate = self;
         [MBProgressHUD showHUDAddedTo:self.view animated:NO];
         [[LibRestKit share] getObjectsAtPath:URL_POST forClass:CLASS_POST];
