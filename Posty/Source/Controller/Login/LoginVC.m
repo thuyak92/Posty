@@ -21,9 +21,13 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [LibRestKit share].delegate = self;
-    _btnLoginFb.delegate = self;
-    [self loginTwitterDidComplete];
+    if ([Lib checkLogin]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [LibRestKit share].delegate = self;
+        _btnLoginFb.delegate = self;
+        [self loginTwitterDidComplete];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,8 +59,8 @@
             UserModel *user = [[UserModel alloc] init];
             user.twiterId = session.userID;
             [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-            [[LibRestKit share] login:user success:^(UserModel *user) {
-                [self handleLoginSuccess:user];
+            [[LibRestKit share] registerUser:user success:^(UserModel *user) {
+                [self handleRegisterSuccess:user];
             }];
         } else {
             NSLog(@"error: %@", [error localizedDescription]);
@@ -79,15 +83,39 @@
         NSLog(@"Cancelled");
     } else {
         FBSDKAccessToken *token = result.token;
-        NSLog(@"result = %@", token.userID);
-        UserModel *user = [[UserModel alloc] init];
-        user.facebookId = token.userID;
-        [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-        [[LibRestKit share] login:user success:^(UserModel *user) {
-            [self handleLoginSuccess:user];
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{ @"fields" : @"id,name,picture.width(100).height(100)"}]startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                UserModel *user = [[UserModel alloc] init];
+                user.facebookId = token.userID;
+                user.nickname = [result valueForKey:@"name"];
+                user.avatarUrl = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
+                [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+                [[LibRestKit share] registerUser:user success:^(UserModel *user) {
+                    [self handleRegisterSuccess:user];
+                }];
+            }
         }];
     }
 }
+
+
+//- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+//                            user:(id<FBGraphUser>)user {
+//    NSLog(@"user = %@", user);
+//    if (!fbUser) {
+//        if (![GlobalVariable shareInstance].isConnectedServer) {
+//            [[SocketLib shareSocketLib] connectToHost:SERVER_DOMAIN Port:SERVER_PORT];
+//        }else {
+//            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            [self performSelector:@selector(loginToServer) withObject:nil afterDelay:2.0f];
+//        }
+//        fbUser = [[UserModel alloc] init];
+//        fbUser.userId = user.objectID;
+//        fbUser.name = user.name;
+//        fbUser.email = [user objectForKey:@"email"];
+//    }
+//    
+//}
 
 - (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton
 {
@@ -107,18 +135,15 @@
 - (BOOL)validate: (UserModel *)user
 {
     if (!user.email || user.email.length == 0) {
-        AppDelegate *app = [[UIApplication sharedApplication] delegate];
-        [app showAlertTitle:@"エラー" message:@"メールを入力してください。"];
+        [Lib showAlertTitle:@"エラー" message:@"メールを入力してください。"];
         return FALSE;
     }
     if (![Lib checkEmailValid:user.email]) {
-        AppDelegate *app = [[UIApplication sharedApplication] delegate];
-        [app showAlertTitle:@"エラー" message:@"メールは正しくありません。"];
+        [Lib showAlertTitle:@"エラー" message:@"メールは正しくありません。"];
         return FALSE;
     }
     if (!user.password || user.password.length == 0) {
-        AppDelegate *app = [[UIApplication sharedApplication] delegate];
-        [app showAlertTitle:@"エラー" message:@"パスワードを入力してください。"];
+        [Lib showAlertTitle:@"エラー" message:@"パスワードを入力してください。"];
         return FALSE;
     }
     return TRUE;
@@ -212,8 +237,11 @@
     [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
     [Lib setCurrentUser:user];
     [Lib setGuest:FALSE];
-    [self performSegueWithIdentifier:SEGUE_LOGIN_TO_USER_INFO sender:nil];
-//    [self dismissViewControllerAnimated:YES completion:nil];
+    if (user.nickname) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self performSegueWithIdentifier:SEGUE_LOGIN_TO_USER_INFO sender:nil];
+    }
 }
 
 @end

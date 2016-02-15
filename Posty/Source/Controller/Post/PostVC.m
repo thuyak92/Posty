@@ -123,26 +123,5 @@
 }
 
 #pragma mark - RestKit Delegate
-- (void)onPostObjectSuccess:(LibRestKit *)controller data:(id)object
-{
-    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-    UserModel *user = (UserModel *)object;
-    if (user == nil) {
-        AppDelegate *app = [[UIApplication sharedApplication] delegate];
-        [app showAlertTitle:@"エラー" message:nil];
-    } else {
-        if (user.error == nil) {//success
-            [Lib setCurrentUser:user];
-            [Lib setGuest:FALSE];
-#warning T redirect to SEGUE_LOGIN_TO_USER_INFO if register success
-            //or nickname = nil
-            //            AppDelegate *app = [UIApplication sharedApplication].delegate;
-            //            [app switchToTabWithIndex:TAB_HOME];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        } else {
-            [Lib handleError:user.error forController:self];
-        }
-    }
-}
 
 @end

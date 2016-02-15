@@ -56,7 +56,6 @@
 +(NSString*)addQueryStringToUrlString:(NSString *)urlString withDictionary:(NSDictionary *)dictionary;
 
 #pragma mark - controller
-+ (UIViewController*) topMostController;
 + (void)showAlertTitle: (NSString *)title message: (NSString *)message;
 
 #pragma mark - Config Model

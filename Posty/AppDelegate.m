@@ -89,26 +89,4 @@
     }
 }
 
-//+ (UIViewController*) topMostController
-//{
-//    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-//    
-//    while (topController.presentedViewController) {
-//        topController = topController.presentedViewController;
-//    }
-//    
-//    return topController;
-//}
-
-- (void)showAlertTitle: (NSString *)title message: (NSString *)message
-{
-    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
-    UIViewController *vc = [tabController selectedViewController];
-//    NSLog(@"topVC = %@", vc.)
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle: UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"閉じる" style:UIAlertActionStyleCancel handler:nil]];
-    [vc presentViewController:alert animated:YES completion:nil];
-}
-
 @end

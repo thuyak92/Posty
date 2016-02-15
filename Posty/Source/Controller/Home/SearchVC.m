@@ -234,8 +234,8 @@
 {
     if (search.spot == TYPE_OTHER_LOCATION) {
         if (search.name.length == 0) {
-            AppDelegate *app = [[UIApplication sharedApplication] delegate];
-            [app showAlertTitle:nil message:@"住所を入力してください。"];        }
+            [Lib showAlertTitle:nil message:@"住所を入力してください。"];
+        }
     } else {
         search.longitude = [[LibLocation shareLocation] longitude];
         search.latitude = [[LibLocation shareLocation] latitude];

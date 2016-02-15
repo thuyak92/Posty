@@ -185,14 +185,16 @@
 + (void)handleError:(id)error forController:(UIViewController *)ctrl
 {
     NSString *err = @"";
-    if ([error isKindOfClass:[NSArray class]]) {
-        for (NSString *str in error) {
+    NSData* data = [error dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray *values = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    if ([values isKindOfClass:[NSArray class]]) {
+        for (NSString *str in values) {
             err = [NSString stringWithFormat:@"%@\n%@", err, str];
         }
     } else {
         err = error;
     }
-//    AppDelegate *app = [[UIApplication sharedApplication] delegate];
     [Lib showAlertTitle:@"エラー" message:err];
 }
 
@@ -286,17 +288,16 @@
     while (topController.presentedViewController) {
         topController = topController.presentedViewController;
     }
-    
     return topController;
 }
 
-+ (void)showAlertTitle: (NSString *)title message: (NSString *)message
++ (void)showAlertTitle:(NSString *)title message:(NSString *)message
 {
     UIViewController *vc = [Lib topMostController];
-    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle: UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"閉じる" style:UIAlertActionStyleCancel handler:nil]];
     [vc presentViewController:alert animated:YES completion:nil];
+    [MBProgressHUD hideAllHUDsForView:vc.view animated:NO];
 }
 
 #pragma mark - Config Model
