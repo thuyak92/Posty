@@ -8,6 +8,8 @@
 
 #import "MessageVC.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "ListCell.h"
+#import "MessageModel.h"
 
 @interface MessageVC ()
 
@@ -18,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [LibRestKit share].delegate = self;
+    [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+    [[LibRestKit share] getObjectsAtPath:URL_USER forClass:CLASS_USER];
     
 }
 
@@ -47,18 +52,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    ListCell *cell = [ListCell createView];
     UserModel *user = listUsers[indexPath.row];
-    cell.textLabel.text = user.nickname;
-//    cell.detailTextLabel.text = user.desc;
-    [cell.imageView.layer setMasksToBounds:YES];
-    [cell.imageView.layer setCornerRadius:15];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]
+    MessageModel *firstMess = [user.messages objectAtIndex:0];
+    cell.title.text = user.nickname;
+    cell.lblTime.text = [Lib stringFromDate:firstMess.time formatter:DATE_FORMAT];
+    cell.subTitle.text = (NSString *)[firstMess.messages objectAtIndex:0];
+//    [cell.imv.layer setMasksToBounds:YES];
+//    [cell.imv.layer setCornerRadius:15];
+    [cell.imv sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]
                       placeholderImage:[UIImage imageNamed:@"iconAvaDefault.png"]];
-    
-    CALayer * layer = [cell.imageView layer];
-    [layer setMasksToBounds:YES];
-    [layer setCornerRadius:22.0];
     
     return cell;
 }
@@ -71,15 +74,12 @@
 }
 
 #pragma mark - RestKit
+
 - (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
 {
-//    messages = [NSMutableArray arrayWithArray:objects];
-//    JChatViewController *chat = [[UIStoryboard storyboardWithName:@"JChat" bundle:nil] instantiateViewControllerWithIdentifier:@"JChat"];
-//    chat.messagesArray = messages;
-//    [Lib getImageFromUrl:selectedUser.avatarUrl callback:^(NSData *data) {
-//        chat.guestAvatar = [UIImage imageWithData:data];
-//        [self presentViewController:chat animated:YES completion:nil];
-//    }];;
+    listUsers = [NSMutableArray arrayWithArray:objects];
+    [_tableView reloadData];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
 }
 
 @end

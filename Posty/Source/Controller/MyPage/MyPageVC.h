@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface MyPageVC : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *btnLogout;
-- (IBAction)onButtonClicked:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UIImageView *imvAvatar;
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
+@property (weak, nonatomic) IBOutlet UILabel *lblSpot;
+@property (weak, nonatomic) IBOutlet UILabel *lblLocation;
+@property (weak, nonatomic) IBOutlet UILabel *lblStatus;
+@property (weak, nonatomic) IBOutlet UICollectionView *cvPhotos;
 
 @end

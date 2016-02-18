@@ -10,4 +10,9 @@
 
 @interface MessageModel : NSObject
 
+@property (nonatomic, assign) NSInteger messId;
+@property (nonatomic, assign) NSInteger userId;
+@property (nonatomic, strong) NSArray *messages;
+@property (nonatomic, strong) NSDate *time;
+
 @end

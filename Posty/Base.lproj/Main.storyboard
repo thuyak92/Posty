@@ -934,9 +934,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-zY-xWk">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-zY-xWk">
                                 <rect key="frame" x="0.0" y="144" width="320" height="374"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lsd-83-QYs" id="dOp-5x-E70"/>
+                                    <outlet property="delegate" destination="lsd-83-QYs" id="q2i-6d-K31"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -944,6 +948,9 @@
                     <tabBarItem key="tabBarItem" title="トーク" image="iconMessage.png" id="93B-JA-Su7"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
+                    <connections>
+                        <outlet property="tableView" destination="91Q-zY-xWk" id="tKb-cd-xMp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y26-pG-0hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -952,7 +959,7 @@
         <!--マイページ-->
         <scene sceneID="ObY-HM-Wgb">
             <objects>
-                <viewController id="KWY-Uu-reS" userLabel="マイページ" customClass="MyPageVC" sceneMemberID="viewController">
+                <viewController id="KWY-Uu-reS" userLabel="マイページ" customClass="SettingsVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VwG-Wr-47F"/>
                         <viewControllerLayoutGuide type="bottom" id="kW2-dh-cAx"/>
@@ -965,7 +972,7 @@
                                 <rect key="frame" x="115" y="260" width="91" height="48"/>
                                 <state key="normal" title="ログアウト"/>
                                 <connections>
-                                    <action selector="onButtonClicked:" destination="KWY-Uu-reS" eventType="touchUpInside" id="mU5-lh-fr0"/>
+                                    <action selector="btnLogout:" destination="KWY-Uu-reS" eventType="touchUpInside" id="oz0-nT-a3S"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -975,7 +982,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
-                        <outlet property="btnLogout" destination="pUi-gb-zck" id="0Au-Km-lzF"/>
                         <segue destination="1pa-Ra-OxR" kind="modal" identifier="SegueInfoToLogin" id="kz6-NI-ENq"/>
                     </connections>
                 </viewController>
@@ -1133,6 +1139,104 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjo-ab-pUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="873" y="1436"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EHJ-7B-bu0">
+            <objects>
+                <navigationController id="iwU-eE-rWh" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cAB-CD-8iy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Rly-Dx-ydk" kind="relationship" relationship="rootViewController" id="5HR-Hv-6TP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gsh-J0-SsI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="439" y="2155"/>
+        </scene>
+        <!--My PageVC-->
+        <scene sceneID="cZj-2G-g6s">
+            <objects>
+                <viewController id="Rly-Dx-ydk" customClass="MyPageVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VGr-d9-iq4"/>
+                        <viewControllerLayoutGuide type="bottom" id="5xG-bt-njO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JsD-zr-Q1h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ze-s3-hzd" userLabel="Basic Info">
+                                <rect key="frame" x="0.0" y="64" width="320" height="94"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="suc-Df-WY7">
+                                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guK-qY-Ycb">
+                                        <rect key="frame" x="68" y="10" width="140" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QlQ-Gr-GmV">
+                                        <rect key="frame" x="68" y="29" width="140" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byb-UI-fiO">
+                                        <rect key="frame" x="68" y="48" width="244" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2O-D8-Dh0">
+                                        <rect key="frame" x="8" y="68" width="304" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="G4v-lS-Mlf">
+                                <rect key="frame" x="0.0" y="166" width="320" height="402"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gHc-FC-0lJ">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="VWv-CJ-qQg">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="imP-pM-Jve"/>
+                    <connections>
+                        <outlet property="cvPhotos" destination="G4v-lS-Mlf" id="lvJ-wn-bpA"/>
+                        <outlet property="imvAvatar" destination="suc-Df-WY7" id="aWO-jl-KCw"/>
+                        <outlet property="lblLocation" destination="byb-UI-fiO" id="F5o-uX-hs3"/>
+                        <outlet property="lblName" destination="guK-qY-Ycb" id="WYJ-Kd-lkv"/>
+                        <outlet property="lblSpot" destination="QlQ-Gr-GmV" id="vDo-he-aEd"/>
+                        <outlet property="lblStatus" destination="Y2O-D8-Dh0" id="6Dy-S0-buj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="210-T5-JIT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873" y="2155"/>
         </scene>
         <!--User Info-->
         <scene sceneID="JK2-vE-zbJ">

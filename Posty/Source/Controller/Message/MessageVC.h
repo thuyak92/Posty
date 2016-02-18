@@ -14,5 +14,6 @@
     NSMutableArray *listUsers, *messages;
     UserModel *selectedUser;
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

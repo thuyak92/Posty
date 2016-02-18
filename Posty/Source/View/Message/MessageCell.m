@@ -1,8 +1,8 @@
 //
 //  MessageCell.m
-//  MyDear
+//  Posty
 //
-//  Created by phuongthuy on 1/11/16.
+//  Created by phuongthuy on 2/18/16.
 //  Copyright © 2016 PhuongThuy. All rights reserved.
 //
 
@@ -18,11 +18,6 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-}
-
-+ (MessageCell *)createView
-{
-    return [[[NSBundle mainBundle] loadNibNamed:@"MessageCell" owner:self options:nil] objectAtIndex:0];
 }
 
 @end
