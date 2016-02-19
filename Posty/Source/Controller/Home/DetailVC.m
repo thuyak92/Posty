@@ -94,7 +94,7 @@
 //    [cell setSeparatorInset:UIEdgeInsetsZero];
     if (indexPath.section == 0) {
         PostImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostImageCell"];
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:_post.imageUrl]
+        [cell.imvPost sd_setImageWithURL:[NSURL URLWithString:_post.imageUrl]
         placeholderImage:[UIImage imageNamed:@"selectPhoto.png"]];
         return cell;
     } else if (indexPath.section == 1) {
