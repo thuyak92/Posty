@@ -57,7 +57,7 @@
     MessageModel *firstMess = [user.messages objectAtIndex:0];
     cell.title.text = user.nickname;
     cell.lblTime.text = [Lib stringFromDate:firstMess.time formatter:DATE_FORMAT];
-    cell.subTitle.text = (NSString *)[firstMess.messages objectAtIndex:0];
+    cell.subTitle.text = firstMess.message;
 //    [cell.imv.layer setMasksToBounds:YES];
 //    [cell.imv.layer setCornerRadius:15];
     [cell.imv sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]

@@ -16,6 +16,7 @@
     NSString *comment;
     UserModel *user;
     CGRect defaultFrame;
+    float cellWidth;
 }
 
 @property (strong, nonatomic) PostModel *post;

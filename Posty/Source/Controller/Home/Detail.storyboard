@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -51,34 +52,35 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="PostImageCell" focusStyle="custom" rowHeight="320" id="iPW-Xa-1dn" userLabel="Post" customClass="PostImageCell">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="320"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="PostImageCell" focusStyle="custom" rowHeight="321" id="iPW-Xa-1dn" userLabel="Post" customClass="PostImageCell">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="321"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" tableViewCell="iPW-Xa-1dn" id="Q7l-pQ-1HP">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="319" tableViewCell="iPW-Xa-1dn" id="Q7l-pQ-1HP">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="cc7-aI-A6d">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" translatesAutoresizingMaskIntoConstraints="NO" id="cc7-aI-A6d">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="320" id="Crd-Ed-973"/>
-                                                        <constraint firstAttribute="width" constant="320" id="Sna-0u-7r7"/>
+                                                        <constraint firstAttribute="width" constant="320" id="F3B-o2-H4H"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="cc7-aI-A6d" secondAttribute="trailing" id="NUU-8K-BHH"/>
-                                                <constraint firstItem="cc7-aI-A6d" firstAttribute="leading" secondItem="Q7l-pQ-1HP" secondAttribute="leading" id="UvA-Y1-98h"/>
+                                                <constraint firstItem="cc7-aI-A6d" firstAttribute="centerX" secondItem="Q7l-pQ-1HP" secondAttribute="centerX" id="CjA-le-jiu"/>
+                                                <constraint firstItem="cc7-aI-A6d" firstAttribute="width" secondItem="Q7l-pQ-1HP" secondAttribute="height" multiplier="1:1" id="Mcp-WN-IBd"/>
                                                 <constraint firstItem="cc7-aI-A6d" firstAttribute="top" secondItem="Q7l-pQ-1HP" secondAttribute="top" id="xHB-ph-yFn"/>
                                             </constraints>
+                                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                         </tableViewCellContentView>
+                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="imvPost" destination="cc7-aI-A6d" id="2eE-a0-IgT"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostInfoCell" rowHeight="130" id="aZY-vv-NR2" userLabel="Info" customClass="PostInfoCell">
-                                        <rect key="frame" x="0.0" y="348" width="320" height="130"/>
+                                        <rect key="frame" x="0.0" y="349" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aZY-vv-NR2" id="I90-NC-Yfz">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
@@ -168,7 +170,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" rowHeight="130" id="nFx-Lq-nlw" userLabel="Comment" customClass="CommentCell">
-                                        <rect key="frame" x="0.0" y="478" width="320" height="130"/>
+                                        <rect key="frame" x="0.0" y="479" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nFx-Lq-nlw" id="OOf-dC-sM6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
@@ -368,6 +370,6 @@
         <image name="iconStar.png" width="43" height="43"/>
         <image name="iconView.png" width="41" height="41"/>
         <image name="photos-icon.png" width="24" height="21"/>
-        <image name="photos-selected-icon.png" width="24" height="21"/>
+        <image name="photos-selected-icon.png" width="1080" height="1920"/>
     </resources>
 </document>

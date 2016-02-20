@@ -18,8 +18,6 @@
 #import "FriendModel.h"
 #import "GroupMemberModel.h"
 #import "PostModel.h"
-#import "LocationModel.h"
-#import "CategoryModel.h"
 #import "MessageModel.h"
 #import "ActionModel.h"
 #import "SearchModel.h"
