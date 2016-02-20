@@ -147,6 +147,7 @@
 		4786F97F1C70767400CABA8B /* menuSave.png in Resources */ = {isa = PBXBuildFile; fileRef = 4786F97A1C70767400CABA8B /* menuSave.png */; };
 		4786F9801C70767400CABA8B /* menuSend.png in Resources */ = {isa = PBXBuildFile; fileRef = 4786F97B1C70767400CABA8B /* menuSend.png */; };
 		4786F9811C70767400CABA8B /* menuTrash.png in Resources */ = {isa = PBXBuildFile; fileRef = 4786F97C1C70767400CABA8B /* menuTrash.png */; };
+		47B283BE1C787CFC00B5FE90 /* InteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B283BD1C787CFC00B5FE90 /* InteractiveView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,6 +350,8 @@
 		4786F97A1C70767400CABA8B /* menuSave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuSave.png; sourceTree = "<group>"; };
 		4786F97B1C70767400CABA8B /* menuSend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuSend.png; sourceTree = "<group>"; };
 		4786F97C1C70767400CABA8B /* menuTrash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuTrash.png; sourceTree = "<group>"; };
+		47B283BC1C787CFC00B5FE90 /* InteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InteractiveView.h; path = InteractiveView/InteractiveView.h; sourceTree = "<group>"; };
+		47B283BD1C787CFC00B5FE90 /* InteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InteractiveView.m; path = InteractiveView/InteractiveView.m; sourceTree = "<group>"; };
 		B38D3F114905F5C7C1BE4E62 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952E0CF22966B594A0B9AE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -748,6 +751,8 @@
 		4786F8CD1C70638000CABA8B /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				47B283BC1C787CFC00B5FE90 /* InteractiveView.h */,
+				47B283BD1C787CFC00B5FE90 /* InteractiveView.m */,
 				4786F8CE1C70638000CABA8B /* FacebookSDK */,
 				4786F8D21C70638000CABA8B /* MBProgressHUD */,
 				4786F8D71C70638000CABA8B /* UITextView+Placeholder */,
@@ -1148,6 +1153,7 @@
 				4786F9621C70638100CABA8B /* UITextView+Placeholder.m in Sources */,
 				4786F9501C70638100CABA8B /* HomeVC.m in Sources */,
 				4786F9671C70638100CABA8B /* GroupModel.m in Sources */,
+				47B283BE1C787CFC00B5FE90 /* InteractiveView.m in Sources */,
 				4786F80E1C7060C800CABA8B /* AppDelegate.m in Sources */,
 				4786F9511C70638100CABA8B /* SearchVC.m in Sources */,
 				4786F9581C70638100CABA8B /* PostVC.m in Sources */,
