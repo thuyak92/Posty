@@ -13,8 +13,8 @@
 {
     NSMutableArray *listComments;
     NSString *comment;
-    float keyboardY, keyboardHeight, cellHeight;
     UserModel *user;
+    CGRect defaultFrame;
 }
 
 @property (strong, nonatomic) PostModel *post;

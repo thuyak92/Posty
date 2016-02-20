@@ -55,7 +55,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cc7-aI-A6d">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cc7-aI-A6d">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="320" id="SaY-s0-Ep1"/>
@@ -226,10 +226,10 @@
                                     <outlet property="delegate" destination="PWI-4T-pCB" id="1a0-Ud-2Ra"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="SwT-V1-EZO" userLabel="Comment">
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="SwT-V1-EZO" userLabel="Comment">
                                 <rect key="frame" x="0.0" y="520" width="320" height="40"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="コメントを入力する" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PVK-V7-tv6">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="コメントを入力する" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PVK-V7-tv6">
                                         <rect key="frame" x="8" y="5" width="233" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -237,7 +237,7 @@
                                             <outlet property="delegate" destination="PWI-4T-pCB" id="a9Z-OK-W3b"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJg-mo-PBi">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJg-mo-PBi">
                                         <rect key="frame" x="249" y="5" width="63" height="30"/>
                                         <state key="normal" title="送信" backgroundImage="btnGreyBgr.png">
                                             <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -248,9 +248,18 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="XJg-mo-PBi" secondAttribute="trailing" constant="8" id="5i7-Kc-9v3"/>
+                                    <constraint firstItem="XJg-mo-PBi" firstAttribute="top" secondItem="SwT-V1-EZO" secondAttribute="top" constant="5" id="IVZ-bX-tQv"/>
+                                    <constraint firstItem="PVK-V7-tv6" firstAttribute="top" secondItem="SwT-V1-EZO" secondAttribute="top" constant="5" id="OYi-YW-STm"/>
+                                    <constraint firstItem="PVK-V7-tv6" firstAttribute="leading" secondItem="SwT-V1-EZO" secondAttribute="leading" constant="8" id="dgd-ks-82h"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CGi-KF-zaU" firstAttribute="top" secondItem="SwT-V1-EZO" secondAttribute="bottom" constant="5" id="ZNH-G4-JIf"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
