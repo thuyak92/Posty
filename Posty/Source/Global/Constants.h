@@ -11,6 +11,10 @@
 
 #define HOST    @"http://52.69.239.6/"
 
+//App id
+#define APP_STORE_URL @"https://itunes.apple.com/us/app/id"
+#define APP_STORE_ID @"975235037"
+
 #define GOOGLE_MAP_API_KEY      @"AIzaSyBMtizOqE1uJZhnsph34ZCKOM2GeQLJpZs"
 
 //Segue identifier

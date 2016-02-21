@@ -9,6 +9,7 @@
 #import "Lib.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "AppDelegate.h"
+#import <Social/Social.h>
 
 @implementation Lib
 
@@ -387,6 +388,44 @@
 {
     UserModel *user = [Lib currentUser];
     return user.userId == userId;
+}
+
+#pragma mark share
+
++ (UIViewController *)shareFacebookWithImage:(UIImage *)imageToShare status:(NSString *)status
+{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [controller setInitialText:status];
+        [controller addURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", APP_STORE_URL,APP_STORE_ID]]];
+        if (imageToShare != nil)
+            [controller addImage:imageToShare];
+        controller.completionHandler = ^(SLComposeViewControllerResult result){
+            NSLog(@"Completed");
+        };
+        return controller;
+    } else {
+        [Lib showAlertTitle:@"エラー" message:@"Facebookをログインしてください。"];
+    }
+    return nil;
+}
+
++ (UIViewController *)shareTwitterWithImage:(UIImage *)imageToShare status:(NSString *)status
+{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [controller setInitialText:status];
+        [controller addURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", APP_STORE_URL,APP_STORE_ID]]];
+        if (imageToShare != nil)
+            [controller addImage:imageToShare];
+        controller.completionHandler = ^(SLComposeViewControllerResult result){
+            NSLog(@"Completed");
+        };
+        return controller;
+    }else{
+        [Lib showAlertTitle:@"エラー" message:@"Twitterをログインしてください。"];
+    }
+    return nil;
 }
 
 @end

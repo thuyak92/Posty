@@ -33,6 +33,14 @@
     self.navigationItem.leftBarButtonItem = backButton;
     
     [self setDefaultPost];
+    
+    FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
+    photo.image = [UIImage imageWithData:_imageData];
+    photo.caption = _txtvStatus.text;
+    photo.userGenerated = YES;
+    FBSDKSharePhotoContent *content = [[FBSDKSharePhotoContent alloc] init];
+    content.photos = @[photo];
+    _btnShareFb.shareContent = content;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -225,7 +233,11 @@
 }
 
 - (IBAction)onShareButtonClicked:(id)sender {
-    
+    if (sender == _btnFacebook) {
+        [Lib shareFacebookWithImage:[UIImage imageWithData:_imageData] status:_txtvStatus.text];
+    } else if (sender == _btnTwitter) {
+        [Lib shareTwitterWithImage:[UIImage imageWithData:_imageData] status:_txtvStatus.text];
+    }
 }
 
 - (IBAction)onControlButtonClicked:(id)sender {

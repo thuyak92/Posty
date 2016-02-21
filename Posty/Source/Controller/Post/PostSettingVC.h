@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "LibRestKit.h"
 
+#import <TwitterKit/TwitterKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
+
 @interface PostSettingVC : UITableViewController<UITextViewDelegate, RestKitLibDelegate>
 {
     NSInteger userType, spot, setDate, category;
@@ -52,11 +56,10 @@
 - (IBAction)onDatePickerChangeValue:(id)sender;
 
 - (IBAction)onCategoryButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet FBSDKShareButton *btnShareFb;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnFacebook;
-@property (weak, nonatomic) IBOutlet UIButton *btnInstagram;
 @property (weak, nonatomic) IBOutlet UIButton *btnTwitter;
-@property (weak, nonatomic) IBOutlet UIButton *btnLine;
 - (IBAction)onShareButtonClicked:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;

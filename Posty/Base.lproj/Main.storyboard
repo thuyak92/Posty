@@ -1346,7 +1346,7 @@ MyDearの利用を開始する</string>
             <objects>
                 <tableViewController id="zfv-6t-KXC" userLabel="PostSetting" customClass="PostSettingVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tBI-Yy-lt2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1864,36 +1864,20 @@ MyDearの利用を開始する</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgH-ZY-F5s">
-                                                    <rect key="frame" x="8" y="4" width="70" height="35"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgH-ZY-F5s" customClass="FBSDKShareButton">
+                                                    <rect key="frame" x="8" y="4" width="140" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <state key="normal" title="Facebook" backgroundImage="btnGreyBorder.png">
+                                                    <state key="normal" title="Facebook" backgroundImage="btnGreyBorderSqr.png">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <state key="selected" backgroundImage="btnTintBgr.png">
                                                         <color key="titleColor" red="1" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="onShareButtonClicked:" destination="zfv-6t-KXC" eventType="touchUpInside" id="Qd2-5B-3Hr"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avF-Hk-fXj">
-                                                    <rect key="frame" x="86" y="4" width="70" height="35"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <state key="normal" title="Instagram" backgroundImage="btnGreyBorder.png">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <state key="selected" backgroundImage="btnTintBgr.png">
-                                                        <color key="titleColor" red="1" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="onShareButtonClicked:" destination="zfv-6t-KXC" eventType="touchUpInside" id="EeN-Bx-pkj"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcX-ls-xCH">
-                                                    <rect key="frame" x="164" y="4" width="70" height="35"/>
+                                                    <rect key="frame" x="164" y="4" width="140" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <state key="normal" title="Twitter" backgroundImage="btnGreyBorder.png">
+                                                    <state key="normal" title="Twitter" backgroundImage="btnGreyBorderSqr.png">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <state key="selected" backgroundImage="btnTintBgr.png">
@@ -1901,19 +1885,6 @@ MyDearの利用を開始する</string>
                                                     </state>
                                                     <connections>
                                                         <action selector="onShareButtonClicked:" destination="zfv-6t-KXC" eventType="touchUpInside" id="FyS-ur-qJN"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mja-fl-8l4">
-                                                    <rect key="frame" x="242" y="4" width="70" height="35"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <state key="normal" title="Line" backgroundImage="btnGreyBorder.png">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <state key="selected" backgroundImage="btnTintBgr.png">
-                                                        <color key="titleColor" red="1" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="onShareButtonClicked:" destination="zfv-6t-KXC" eventType="touchUpInside" id="tyB-0Y-Wts"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1984,7 +1955,7 @@ MyDearの利用を開始する</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="詳細設定" id="mgM-Zs-Bwd"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
+                    <size key="freeformSize" width="320" height="1000"/>
                     <connections>
                         <outlet property="btnAllOfUsers" destination="ZIu-zS-cfx" id="Uk8-cc-2ib"/>
                         <outlet property="btnCancel" destination="Jgh-V2-mzH" id="ebz-iA-Ohs"/>
@@ -1992,10 +1963,7 @@ MyDearの利用を開始する</string>
                         <outlet property="btnChangePost" destination="SoD-RO-UGd" id="BCa-k1-NKH"/>
                         <outlet property="btnChangeUser" destination="8La-ax-s2O" id="FUj-F7-iel"/>
                         <outlet property="btnCurLoc" destination="SyB-Co-ltF" id="KVY-Sg-ShF"/>
-                        <outlet property="btnFacebook" destination="YgH-ZY-F5s" id="tGf-9a-AQt"/>
-                        <outlet property="btnInstagram" destination="avF-Hk-fXj" id="Jk7-g9-KhU"/>
                         <outlet property="btnLimitPost" destination="was-NB-LI2" id="Ej7-Le-49r"/>
-                        <outlet property="btnLine" destination="mja-fl-8l4" id="lsf-Pu-hnk"/>
                         <outlet property="btnNotPublic" destination="ndT-n5-9eG" id="0sm-F4-aL2"/>
                         <outlet property="btnOtherLoc" destination="bEe-cc-v3a" id="icF-Ky-ppO"/>
                         <outlet property="btnPost" destination="rE9-oR-mX0" id="Cys-7a-l0L"/>
@@ -2004,6 +1972,7 @@ MyDearの利用を開始する</string>
                         <outlet property="btnSelectFromPost" destination="eL9-Iu-AgF" id="r2y-lj-sYk"/>
                         <outlet property="btnSetDate" destination="Thn-rV-PF3" id="Aes-ob-xrp"/>
                         <outlet property="btnSetDateNone" destination="Ptk-qS-6K3" id="dE2-Xv-Ui7"/>
+                        <outlet property="btnShareFb" destination="YgH-ZY-F5s" id="UaX-AC-jJj"/>
                         <outlet property="btnTwitter" destination="jcX-ls-xCH" id="93S-i1-AdF"/>
                         <outlet property="datePicker" destination="ljl-LB-Oc7" id="u6i-hx-94W"/>
                         <outlet property="image" destination="Cf1-bD-r6K" id="kvq-hS-qE3"/>

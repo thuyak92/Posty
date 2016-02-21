@@ -148,6 +148,7 @@
 		47B283CE1C78BC5E00B5FE90 /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47B283CC1C78BC5E00B5FE90 /* ListCell.xib */; };
 		47B283D11C78BEAB00B5FE90 /* PostConfirmVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B283D01C78BEAB00B5FE90 /* PostConfirmVC.m */; };
 		47CA0F6A1C79C79A009D0009 /* SearchSpotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CA0F691C79C79A009D0009 /* SearchSpotVC.m */; };
+		47CA0F6C1C79E6EC009D0009 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47CA0F6B1C79E6EC009D0009 /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -352,6 +353,7 @@
 		47B283D01C78BEAB00B5FE90 /* PostConfirmVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostConfirmVC.m; sourceTree = "<group>"; };
 		47CA0F681C79C79A009D0009 /* SearchSpotVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchSpotVC.h; sourceTree = "<group>"; };
 		47CA0F691C79C79A009D0009 /* SearchSpotVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchSpotVC.m; sourceTree = "<group>"; };
+		47CA0F6B1C79E6EC009D0009 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B38D3F114905F5C7C1BE4E62 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952E0CF22966B594A0B9AE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -361,6 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47CA0F6C1C79E6EC009D0009 /* Social.framework in Frameworks */,
 				4786F84E1C70630900CABA8B /* SystemConfiguration.framework in Frameworks */,
 				4786F84C1C70630000CABA8B /* Security.framework in Frameworks */,
 				4786F84A1C7062F400CABA8B /* MobileCoreServices.framework in Frameworks */,
@@ -396,6 +399,7 @@
 		1B7A2CFBBE83339DDE47CDAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47CA0F6B1C79E6EC009D0009 /* Social.framework */,
 				4786F84D1C70630900CABA8B /* SystemConfiguration.framework */,
 				4786F84B1C70630000CABA8B /* Security.framework */,
 				4786F8491C7062F400CABA8B /* MobileCoreServices.framework */,

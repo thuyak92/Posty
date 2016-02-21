@@ -69,4 +69,10 @@
 #pragma mark - check post
 + (BOOL)isMyPost:(NSInteger)userId;
 
+#pragma mark share
+
++ (UIViewController *)shareFacebookWithImage:(UIImage *)imageToShare status:(NSString *)status;
+
++ (UIViewController *)shareTwitterWithImage:(UIImage *)imageToShare status:(NSString *)status;
+
 @end
