@@ -12,6 +12,7 @@
 #import "PostInfoCell.h"
 #import "PostImageCell.h"
 #import "CommentCell.h"
+#import "UITextView+Placeholder.h"
 
 
 @interface DetailVC ()
@@ -28,12 +29,30 @@
     self.tableView.estimatedRowHeight = 150;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    _txtvCmt.placeholder = @"Type a message";
+    _txtvCmt.showsVerticalScrollIndicator = NO;
+    _txtvCmt.autocorrectionType = UITextAutocorrectionTypeNo;
+    _btnSend.enabled = NO;
+    [_txtvCmt.layer setBorderWidth:1];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    defaultFrame = self.view.frame;
+- (void)viewWillAppear:(BOOL)animated {
+    //Interactive keyboard and tableview
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    self.interactiveView = [[InteractiveView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.AccessoryLayoutComment.constant)];
+    self.interactiveView.userInteractionEnabled = NO;
+    self.txtvCmt.inputAccessoryView = self.interactiveView;
+    self.txtvCmt.inputAccessoryView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    __weak typeof(self)weakSelf = self;
+    self.interactiveView.inputAcessoryViewFrameChangedBlock = ^(CGRect inputAccessoryViewFrame){
+        CGFloat value = CGRectGetHeight(weakSelf.navigationController.view.frame) - CGRectGetMinY(inputAccessoryViewFrame) - CGRectGetHeight(weakSelf.txtvCmt.inputAccessoryView.frame);
+        if (!weakSelf.btnTypeImage.isSelected) {
+            weakSelf.keyboardControlLayout.constant = MAX(0, value);
+        }
+        [weakSelf.view layoutIfNeeded];
+    };
+    [self.txtvCmt reloadInputViews];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,6 +131,44 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     } else if (sender == _btnSend) {
         
+    } else if (sender == _btnTypeText) {
+//        self.showImageCollectionView.hidden = YES;
+        
+//        if (self.imageOption.isSelected) {
+//            [UIView performWithoutAnimation:^{
+//                [self.typeAMessageTextView becomeFirstResponder];
+//            }];
+//        } else {
+            [self.txtvCmt becomeFirstResponder];
+//        }
+        
+        [_btnTypeText setSelected:YES];
+        [_btnTypeImage setSelected:NO];
+        
+        self.txtvCmt.hidden = NO;
+        self.btnSend.hidden = NO;
+        self.AccessoryLayoutComment.constant = 75;
+        [self accessoryViewDidChange];
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    } else if (sender == _btnTypeImage) {
+//        self.showImageCollectionView.hidden = NO;
+//        
+//        [self.textOption setSelected:NO];
+//        [self.imageOption setSelected:YES];
+//        
+//        self.typeAMessageTextView.hidden = YES;
+//        [self.typeAMessageTextView resignFirstResponder];
+//        self.sendButton.hidden = YES;
+//        
+//        self.keyboardControlLayoutConstraint.constant = 216;
+//        self.accessoryLayoutConstraint.constant = 40;
+//        [UIView animateWithDuration:0.2 animations:^{
+//            [self.view layoutIfNeeded];
+//        } completion:^(BOOL finished) {
+//            
+//        }];
     }
 }
 
@@ -142,42 +199,76 @@
 //    
 //}
 
-#pragma mark - TextField delegate
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [textField becomeFirstResponder];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if ([textField canResignFirstResponder]) {
-        [textField resignFirstResponder];
+#pragma mark - TextViewDelegate
+- (void)textViewDidChange:(UITextView *)textView {
+    if (_txtvCmt.text.length > 0) {
+        _btnSend.enabled = YES;
+    } else {
+        _btnSend.enabled = NO;
     }
-//    [self sendChatMessage];
-    return YES;
+    
+    [self accessoryViewDidChange];
 }
 
-- (void)keyboardWillShow:(NSNotification*)aNotification {
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+//    [self.textOption setSelected:YES];
+//    [self.imageOption setSelected:NO];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+//    [self.textOption setSelected:NO];
+}
+
+#pragma mark - Other
+- (void)accessoryViewDidChange {
+    float rawLineNumber = (_txtvCmt.contentSize.height - _txtvCmt.textContainerInset.top - _txtvCmt.textContainerInset.bottom) / _txtvCmt.font.lineHeight;
+    int finalLineNumber = round(rawLineNumber);
+    if (finalLineNumber <= 5) {
+        self.AccessoryLayoutComment.constant = finalLineNumber*16.707031 + 58.292969;
+    } else {
+        self.AccessoryLayoutComment.constant = 5*16.707031 + 58.292969;
+    }
+    
+    //Update interactive frame
+    self.interactiveView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.AccessoryLayoutComment.constant);
+    [_txtvCmt reloadInputViews];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+#pragma mark - Notification
+- (void)keyboardWillShow:(NSNotification *)notification {
+    
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    
+}
+
+- (void)keyboardWillChangeFrame:(NSNotification *)notification {
+    
+}
+
+#pragma mark - keyboard event
+
+//- (void)keyboardWillShow:(NSNotification*)aNotification {
+//    NSDictionary* info = [aNotification userInfo];
+//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 //    UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.tableView.contentInset.top, 0.0, kbSize.height, 0.0);
 //    self.tableView.contentInset = contentInsets;
 //    self.tableView.scrollIndicatorInsets = contentInsets;
-    CGRect frame = defaultFrame;
-    frame.origin.y -= kbSize.height;
-    [self.view setFrame:frame];
-}
-
-- (void)keyboardWillHide:(NSNotification*)aNotification {
+////    CGRect frame = defaultFrame;
+////    frame.origin.y -= kbSize.height;
+////    [self.view setFrame:frame];
+//}
+//
+//- (void)keyboardWillHide:(NSNotification*)aNotification {
 //    UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.tableView.contentInset.top, 0.0, 0.0, 0.0);
 //    self.tableView.contentInset = contentInsets;
 //    self.tableView.scrollIndicatorInsets = contentInsets;
-    [_viewComment setFrame:defaultFrame];
-}
+////    [_viewComment setFrame:defaultFrame];
+//}
 
 @end
