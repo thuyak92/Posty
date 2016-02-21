@@ -18,8 +18,6 @@
 #import "FriendModel.h"
 #import "GroupMemberModel.h"
 #import "PostModel.h"
-#import "LocationModel.h"
-#import "CategoryModel.h"
 #import "MessageModel.h"
 #import "ActionModel.h"
 #import "SearchModel.h"
@@ -55,6 +53,9 @@
 +(NSString*)urlEscapeString:(NSString *)unencodedString;
 +(NSString*)addQueryStringToUrlString:(NSString *)urlString withDictionary:(NSDictionary *)dictionary;
 
+#pragma mark - controller
++ (void)showAlertTitle: (NSString *)title message: (NSString *)message;
+
 #pragma mark - Config Model
 + (NSDictionary *)configModels;
 + (NSDictionary *)dictForClass: (NSString *)className request: (BOOL)request;
@@ -62,6 +63,7 @@
 #pragma mark - Login
 + (BOOL)isGuest;
 + (void)setGuest: (BOOL)guest;
++ (BOOL)checkLogin;
 + (void)logout;
 
 @end

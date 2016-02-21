@@ -1,25 +1,24 @@
 //
-//  MyPageVC.m
-//  MyDear
+//  SettingsVC.m
+//  Posty
 //
-//  Created by phuongthuy on 1/9/16.
+//  Created by phuongthuy on 2/18/16.
 //  Copyright © 2016 PhuongThuy. All rights reserved.
 //
 
-#import "MyPageVC.h"
+#import "SettingsVC.h"
 #import "Lib.h"
 #import "AppDelegate.h"
 
-@interface MyPageVC ()
+@interface SettingsVC ()
 
 @end
 
-@implementation MyPageVC
+@implementation SettingsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,7 +26,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (![Lib checkLogin]) {
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        [app showLogin];
+    }
+}
 
 /*
 #pragma mark - Navigation
@@ -39,16 +44,9 @@
 }
 */
 
-- (void)loadData
-{
-//    RKObjectRequestOperation *operation = [ServiceRestKit rkObjRequestUrl:URL_USER forClass:CLASS_USER];
-//    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-//        UserModel *user = [result firstObject];
-//        NSLog(@"Mapped the article: %@\n%@", user.nickname, user.avatarUrl);
-//    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-//        NSLog(@"Failed with error: %@", [error localizedDescription]);
-//    }];
-//    [operation start];
+- (IBAction)btnLogout:(id)sender {
+    [Lib logout];
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    [app showLogin];
 }
-
 @end

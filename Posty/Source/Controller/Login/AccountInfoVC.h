@@ -14,6 +14,10 @@
     NSData *avatar;
     NSInteger idSearch, location;
 }
+
+@property (weak, nonatomic) IBOutlet UIButton *btnSkip;
+@property (weak, nonatomic) IBOutlet UILabel *lblSkip;
+
 @property (weak, nonatomic) IBOutlet UITextField *txtfNickname;
 @property (weak, nonatomic) IBOutlet UITextField *txtfComment;
 @property (weak, nonatomic) IBOutlet UITextField *txtfMyspot;

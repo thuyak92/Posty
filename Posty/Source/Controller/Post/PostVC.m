@@ -9,6 +9,7 @@
 #import "PostVC.h"
 #import "Lib.h"
 #import "PostSettingVC.h"
+#import "AppDelegate.h"
 
 @interface PostVC ()
 
@@ -19,6 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[LibRestKit share] setDelegate:self];
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    [app showLogin];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,5 +76,52 @@
     NSData *image = UIImageJPEGRepresentation(sqr, 0.0);
     [self performSegueWithIdentifier:SEGUE_POST_TO_POST_SETTING sender:image];
 }
+
+#pragma mark - TableView
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    switch (indexPath.row) {
+        case MENU_RECEIVED:
+            [cell.imageView setImage:[UIImage imageNamed:@"menuReceived.png"]];
+            cell.textLabel.text = @"受信ポスト";
+            break;
+        case MENU_DELAY:
+            [cell.imageView setImage:[UIImage imageNamed:@"menuDelay.png"]];
+            cell.textLabel.text = @"送信予定ポスト（日時設定あり）";
+            break;
+        case MENU_SAVE:
+            [cell.imageView setImage:[UIImage imageNamed:@"menuSave.png"]];
+            cell.textLabel.text = @"下書きポスト";
+            break;
+        case MENU_SEND:
+            [cell.imageView setImage:[UIImage imageNamed:@"menuSend.png"]];
+            cell.textLabel.text = @"送信済みポスト";
+            break;
+        case MENU_TRASH:
+            [cell.imageView setImage:[UIImage imageNamed:@"menuTrash.png"]];
+            cell.textLabel.text = @"ゴミ箱";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return cell;
+}
+
+#pragma mark - RestKit Delegate
 
 @end

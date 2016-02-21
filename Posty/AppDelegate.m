@@ -79,26 +79,14 @@
     //reload data with flag
 }
 
-- (BOOL)checkLogin
+- (void)showLogin
 {
     UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
     UIViewController *vc = [tabController selectedViewController];
-    if ([Lib isGuest] || [Lib currentUser]) {
-        return TRUE;
+    if (![Lib currentUser]) {
+        LoginVC * loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:STORY_BOARD_LOGIN];
+        [vc presentViewController:loginVC animated:YES completion:nil];
     }
-    LoginVC * loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:STORY_BOARD_LOGIN];
-    [vc presentViewController:loginVC animated:YES completion:nil];
-    return FALSE;
-}
-
-- (void)showAlertTitle: (NSString *)title message: (NSString *)message
-{
-    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
-    UIViewController *vc = [tabController selectedViewController];
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle: UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"閉じる" style:UIAlertActionStyleCancel handler:nil]];
-    [vc presentViewController:alert animated:YES completion:nil];
 }
 
 @end

@@ -22,6 +22,6 @@
 @property (strong, nonatomic) NSString *mySpot;
 @property (assign, nonatomic) NSInteger searchId;
 @property (assign, nonatomic) NSInteger searchLocation;
-@property (assign, nonatomic) id error;
+@property (strong, nonatomic) NSArray * messages;
 
 @end

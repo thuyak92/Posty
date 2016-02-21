@@ -185,15 +185,17 @@
 + (void)handleError:(id)error forController:(UIViewController *)ctrl
 {
     NSString *err = @"";
-    if ([error isKindOfClass:[NSArray class]]) {
-        for (NSString *str in error) {
+    NSData* data = [error dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray *values = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    if ([values isKindOfClass:[NSArray class]]) {
+        for (NSString *str in values) {
             err = [NSString stringWithFormat:@"%@\n%@", err, str];
         }
     } else {
         err = error;
     }
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
-    [app showAlertTitle:@"エラー" message:err];
+    [Lib showAlertTitle:@"エラー" message:err];
 }
 
 + (NSString *)sha256:(NSString *)input
@@ -277,6 +279,27 @@
     return urlWithQuerystring;
 }
 
+#pragma mark - controller
+
++ (UIViewController*) topMostController
+{
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    return topController;
+}
+
++ (void)showAlertTitle:(NSString *)title message:(NSString *)message
+{
+    UIViewController *vc = [Lib topMostController];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle: UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"閉じる" style:UIAlertActionStyleCancel handler:nil]];
+    [vc presentViewController:alert animated:YES completion:nil];
+    [MBProgressHUD hideAllHUDsForView:vc.view animated:NO];
+}
+
 #pragma mark - Config Model
 + (NSDictionary *)configModels
 {
@@ -299,8 +322,7 @@
                  @"liked_count"     : @"likeNum",
                  @"deliver_time"    : @"deliverTime",
                  @"privacy_setup"   : @"privacySetup",
-                 @"category_id"     : @"categoryId",
-                 @"errors"          : @"error"
+                 @"category_id"     : @"categoryId"
                  };
         if (request) {
             NSArray *keys = [dict allKeys];
@@ -319,8 +341,7 @@
                  @"facebook_id"   : @"facebookId",
                  @"twiter_id"     : @"twiterId",
                  @"desc"          : @"comment",
-                 @"address"       : @"mySpot",
-                 @"errors"        : @"error"
+                 @"address"       : @"mySpot"
                  };
         if (request) {
             NSArray *keys = [dict allKeys];
@@ -332,6 +353,8 @@
     return nil;
 }
 
+#pragma mark - Login
+
 + (BOOL)isGuest
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:KEY_LOGIN_AS_GUEST];
@@ -342,8 +365,17 @@
     [[NSUserDefaults standardUserDefaults] setBool:guest forKey:KEY_LOGIN_AS_GUEST];
 }
 
++ (BOOL)checkLogin
+{
+    if ([Lib isGuest] || [Lib currentUser]) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
 + (void)logout
 {
+#warning send logout to server
     [Lib setCurrentUser:nil];
     [Lib setGuest:FALSE];
 }

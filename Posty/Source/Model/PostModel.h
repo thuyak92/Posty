@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UserModel *user;
 @property (nonatomic, strong) NSString *textContent;
 @property (nonatomic, strong) NSString *imageUrl;
+@property (nonatomic, strong) NSData *image;
 @property (nonatomic, strong) NSString *thumbnailUrl;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, assign) double latitude;
@@ -30,6 +31,5 @@
 @property (nonatomic, strong) NSDate *deliverTime;
 @property (nonatomic, assign) NSInteger privacySetup;
 @property (nonatomic, assign) NSInteger categoryId;
-@property (assign, nonatomic) id error;
 
 @end
