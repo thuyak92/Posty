@@ -22,6 +22,7 @@
     [aCoder encodeObject:self.category forKey:@"category"];
     [aCoder encodeObject:self.orderKey forKey:@"orderKey"];
     [aCoder encodeObject:self.orderValue forKey:@"orderValue"];
+    [aCoder encodeObject:self.keyword forKey:@"keyword"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -37,6 +38,7 @@
         self.category = [aDecoder decodeObjectForKey:@"category"];
         self.orderKey = [aDecoder decodeObjectForKey:@"orderKey"];
         self.orderValue = [aDecoder decodeObjectForKey:@"orderValue"];
+        self.keyword = [aDecoder decodeObjectForKey:@"keyword"];
     }
     return self;
 }

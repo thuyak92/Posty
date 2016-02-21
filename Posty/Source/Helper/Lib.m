@@ -31,6 +31,7 @@
 + (SearchModel *)setSearchDefault
 {
     SearchModel *search = [[SearchModel alloc] init];
+    search.keyword = @"";
     search.name = @"";
     search.distance = 10;
     search.category = [[NSMutableArray alloc] initWithCapacity:12];

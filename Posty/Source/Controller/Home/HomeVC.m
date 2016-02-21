@@ -40,19 +40,6 @@
     if (search == nil) {
         search = [Lib setSearchDefault];
     }
-    [self setLocation];
-}
-
-- (void)setLocation
-{
-    search.name = [[LibLocation shareLocation] locationName];
-    [_lblLocation setText:search.name];
-    [_lblDistance setText:[NSString stringWithFormat:@"%.0fkm", search.distance]];
-    if (search.name.length == 0) {
-        [self performSelector:@selector(setLocation) withObject:nil afterDelay:1];
-    } else {
-        [Lib saveData:search forKey:KEY_SEARCH];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -111,19 +98,15 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailVC *chat = [[UIStoryboard storyboardWithName:@"Detail" bundle:nil] instantiateViewControllerWithIdentifier:@"Detail"];
-    chat.post = _listPosts[indexPath.row];
-    [self presentViewController:chat animated:YES completion:nil];
-//    [self performSegueWithIdentifier:SEGUE_HOME_TO_DETAIL sender:_listPosts[indexPath.row]];
+    DetailVC *vc = [[UIStoryboard storyboardWithName:@"Detail" bundle:nil] instantiateViewControllerWithIdentifier:@"Detail"];
+    vc.post = _listPosts[indexPath.row];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (IBAction)onButtonClicked:(id)sender{
     if (sender == _btnSearchDetail) {
-        search.parentTab = TAB_HOME;
         [Lib saveData:search forKey:KEY_SEARCH];
         [self performSegueWithIdentifier:SEGUE_HOME_TO_SEARCH sender:nil];
-    } else if (sender == _btnSpot) {
-//        [self postData];
     }
 }
 
@@ -167,43 +150,30 @@
     }
 }
 
-#pragma mark - RestKit
-
-
-//- (void)postData
-//{
-//    RKObjectManager *manager = [RKObjectManager sharedManager];
-//    [manager addResponseDescriptor:[ServiceRestKit rkDescResponseForClass:CLASS_POST]];
-//    [manager addRequestDescriptor:[ServiceRestKit rkDescRequestForClass:CLASS_POST]];
-//    
-//    PostModel *post = listPosts[0];
-//    [manager postObject:post path:URL_POST parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-//        PostModel *p = [mappingResult firstObject];
-//        NSLog(@"%@", p.textContent);
-//    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@", error);
-//    }];
-//}
-
 #pragma mark - SearchBar delegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [self sendSearch:_searchPost.text];
     [_searchPost resignFirstResponder];
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    search.keyword = _searchPost.text;
+    [Lib saveData:search forKey:KEY_SEARCH];
+    [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+    [[LibRestKit share] getObjectsAtPath:[self createSearchRequest] forClass:CLASS_POST];
 }
 
-- (void)sendSearch:(NSString *)searchText
-{
-    
-}
-
-#pragma mark - RestKit Delegate
+#pragma mark - RestKit
 - (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
 {
     _listPosts = [NSMutableArray arrayWithArray:objects];
     [_cvPost reloadData];
     [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+}
+
+- (NSString *)createSearchRequest
+{
+    NSDictionary *params = [NSDictionary dictionaryWithObject:search.keyword forKey:@"keyword"];
+    NSString *searchUrl = [Lib addQueryStringToUrlString: URL_SEARCH withDictionary:params];
+    NSLog(@"search = %@", searchUrl);
+    return searchUrl;
 }
 
 @end

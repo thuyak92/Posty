@@ -20,5 +20,6 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *orderKey;
 @property (strong, nonatomic) NSString *orderValue;
+@property (strong, nonatomic) NSString *keyword;
 
 @end

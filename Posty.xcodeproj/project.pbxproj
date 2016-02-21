@@ -147,6 +147,7 @@
 		47B283CD1C78BC5E00B5FE90 /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B283CB1C78BC5E00B5FE90 /* ListCell.m */; };
 		47B283CE1C78BC5E00B5FE90 /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47B283CC1C78BC5E00B5FE90 /* ListCell.xib */; };
 		47B283D11C78BEAB00B5FE90 /* PostConfirmVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B283D01C78BEAB00B5FE90 /* PostConfirmVC.m */; };
+		47CA0F6A1C79C79A009D0009 /* SearchSpotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CA0F691C79C79A009D0009 /* SearchSpotVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,6 +350,8 @@
 		47B283CC1C78BC5E00B5FE90 /* ListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
 		47B283CF1C78BEAB00B5FE90 /* PostConfirmVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostConfirmVC.h; sourceTree = "<group>"; };
 		47B283D01C78BEAB00B5FE90 /* PostConfirmVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostConfirmVC.m; sourceTree = "<group>"; };
+		47CA0F681C79C79A009D0009 /* SearchSpotVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchSpotVC.h; sourceTree = "<group>"; };
+		47CA0F691C79C79A009D0009 /* SearchSpotVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchSpotVC.m; sourceTree = "<group>"; };
 		B38D3F114905F5C7C1BE4E62 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952E0CF22966B594A0B9AE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -687,6 +690,8 @@
 			children = (
 				4786F8B51C70638000CABA8B /* MapVC.h */,
 				4786F8B61C70638000CABA8B /* MapVC.m */,
+				47CA0F681C79C79A009D0009 /* SearchSpotVC.h */,
+				47CA0F691C79C79A009D0009 /* SearchSpotVC.m */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1160,6 +1165,7 @@
 				4786F96F1C70638100CABA8B /* PostInfoCell.m in Sources */,
 				4786F9551C70638100CABA8B /* MessageVC.m in Sources */,
 				4786F9611C70638100CABA8B /* Reachability.m in Sources */,
+				47CA0F6A1C79C79A009D0009 /* SearchSpotVC.m in Sources */,
 				474F6F621C7546400086A100 /* SettingsVC.m in Sources */,
 				4786F9741C70638100CABA8B /* PostMapCell.m in Sources */,
 				4786F9561C70638100CABA8B /* MyPageVC.m in Sources */,

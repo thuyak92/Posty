@@ -24,8 +24,6 @@
     // Do any additional setup after loading the view.
     [_cvPost registerNib:[UINib nibWithNibName:@"PostMapCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     
-    listCategories = [NSArray arrayWithObjects:@"NEW", @"人気", @"お気に入り", @"ファッション", @"グルメ", @"観光", @"スポーツ", @"芸術", @"美容", @"記念", @"趣味", nil];
-    [self setCategories];
     [self setLocation];
     _listPosts = [[NSMutableArray alloc] init];
     if (![Lib checkLogin]) {
@@ -74,46 +72,9 @@
 #pragma mark - action
 
 - (IBAction)onButtonClicked:(id)sender {
-    if (sender == _btnSearchDetail) {
-        search.parentTab = TAB_HOME;
+    if (sender == _btnSeachSpot) {
         [Lib saveData:search forKey:KEY_SEARCH];
         [self performSegueWithIdentifier:SEGUE_MAP_TO_SEARCH sender:nil];
-    }
-}
-
-- (void)onCategoriesButtonClicked: (UIButton *)button
-{
-    for (UIView *vi in [_scrCategories subviews]) {
-        if ([vi isKindOfClass:[UIButton class]]) {
-            [(UIButton *)vi setTitleColor:[Lib colorFromHexString:COLOR_DEFAULT] forState:0];
-            [vi setBackgroundColor:[UIColor whiteColor]];
-        }
-    }
-    [button setTitleColor:[UIColor whiteColor] forState:0];
-    [button setBackgroundColor:[Lib colorFromHexString:COLOR_TINT]];
-    [button.layer setMasksToBounds:YES];
-    [button.layer setCornerRadius:15];
-}
-
-- (void)setCategories
-{
-    float width = 70;
-    float height = _scrCategories.frame.size.height;
-    [_scrCategories setContentSize:CGSizeMake(width*listCategories.count, height)];
-    for (int i = 0; i < listCategories.count; i++) {
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(i*width, 5, width, height-10)];
-        [btn setTitle:listCategories[i] forState:0];
-        [btn setTitleColor:[Lib colorFromHexString:COLOR_DEFAULT] forState:0];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
-        [btn setTag:i];
-        [btn addTarget:self action:@selector(onCategoriesButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [_scrCategories addSubview:btn];
-        if (i == 0) {
-            [btn setTitleColor:[UIColor whiteColor] forState:0];
-            [btn setBackgroundColor:[Lib colorFromHexString:COLOR_TINT]];
-            [btn.layer setMasksToBounds:YES];
-            [btn.layer setCornerRadius:15];
-        }
     }
 }
 
@@ -187,22 +148,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:SEGUE_MAP_TO_DETAIL sender:_listPosts[indexPath.row]];
-}
-
-- (IBAction)onSegmentChangeValue:(id)sender {
-}
-
-#pragma mark - SearchBar delegate
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [self sendSearch:_searchPost.text];
-    [_searchPost resignFirstResponder];
-    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-}
-
-- (void)sendSearch:(NSString *)searchText
-{
-    
 }
 
 #pragma mark - RestKit Delegate

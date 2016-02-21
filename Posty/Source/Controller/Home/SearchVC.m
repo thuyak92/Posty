@@ -10,7 +10,6 @@
 #import "AppDelegate.h"
 #import "LibLocation.h"
 #import "HomeVC.h"
-#import "MapVC.h"
 
 @interface SearchVC ()
 
@@ -28,20 +27,16 @@
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btnBack.png"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
     self.navigationItem.leftBarButtonItem = backButton;
-    
-    [self initSliderLabel];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     search = [Lib loadDataWithKey:KEY_SEARCH];
-    [_txtfLocation setText:search.name];
     [self setDefaultSearch];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self getSearchData];
     [Lib saveData:search forKey:KEY_SEARCH];
 }
 
@@ -51,23 +46,13 @@
 }
 
 #pragma mark - init data
-- (void)initSliderLabel
-{
-    [_sliderDistance setThumbImage:[UIImage imageNamed:@"iconSlider.png"] forState:0];
-    lblSlider = [[UILabel alloc] initWithFrame:CGRectMake(40, 30, 45, 14)];
-    [lblSlider setText:[NSString stringWithFormat:@"%.0fkm", _sliderDistance.value]];
-    [lblSlider setFont:[UIFont systemFontOfSize:13]];
-    [lblSlider setTextAlignment:NSTextAlignmentCenter];
-    [_sliderDistance addSubview:lblSlider];
-}
 
 - (void)setDefaultSearch
 {
     [self setPrivacy];
-    [self setLocation];
-    [self setDistance];
     [self setOrderBy];
     [self setCategories];
+    _searchPost.text = search.keyword;
 }
 
 #pragma mark - config
@@ -87,36 +72,6 @@
             [_btnAllOfUser setSelected:YES];
             break;
     }
-}
-
-- (void)setLocation
-{
-    [_btnCurLoc setSelected:NO];
-    [_btnOtherLoc setSelected:NO];
-    [_btnReload setHidden:YES];
-    [_txtfLocation setEnabled:NO];
-    [_txtfLocation setBackground:[UIImage imageNamed:@""]];
-    if (search.spot == TYPE_CURRENT_LOCATION) {
-        [_btnCurLoc setSelected:YES];
-        [_btnReload setHidden:NO];
-    } else if (search.spot == TYPE_OTHER_LOCATION) {
-        [_btnOtherLoc setSelected:YES];
-        [_txtfLocation setEnabled:YES];
-        [_txtfLocation setBackground:[UIImage imageNamed:@"btnGreyBorderSqr.png"]];
-    }
-    [_sliderDistance setValue:search.distance];
-    
-}
-
-- (void)setDistance
-{
-    CGRect trackRect = [_sliderDistance trackRectForBounds:_sliderDistance.bounds];
-    CGRect thumbRect = [_sliderDistance thumbRectForBounds:_sliderDistance.bounds
-                                                 trackRect:trackRect
-                                                     value:_sliderDistance.value];
-    
-    lblSlider.center = CGPointMake(thumbRect.origin.x + _sliderDistance.frame.origin.x + 20,  _sliderDistance.frame.origin.y + 37);
-    [lblSlider setText:[NSString stringWithFormat:@"%.0fkm", _sliderDistance.value]];
 }
 
 - (void)setOrderBy
@@ -146,7 +101,7 @@
 
 - (void)setCategories
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
     for (UIView *vi in [cell.contentView subviews]) {
         if ([vi isKindOfClass:[UIButton class]]) {
             UIButton *btn = (UIButton *)vi;
@@ -165,21 +120,6 @@
 - (IBAction)onUserButtonClicked:(id)sender {
     search.privacySetup = ((UIButton *)sender).tag;
     [self setPrivacy];
-}
-
-- (IBAction)onSpotButtonClicked:(id)sender {
-    search.spot = ((UIButton *)sender).tag;
-    [self setLocation];
-}
-
-- (IBAction)onLocationButtonClicked:(id)sender {
-    if (sender == _btnReload) {
-        [_txtfLocation setText:search.name];
-    }
-}
-
-- (IBAction)onSliderChangedValue:(id)sender {
-    [self setDistance];
 }
 
 - (IBAction)onCategoryButtonClicked:(id)sender {
@@ -228,47 +168,12 @@
     }
 }
 
-#pragma mark - RestKit
-
-- (void)getSearchData
-{
-    if (search.spot == TYPE_OTHER_LOCATION) {
-        if (search.name.length == 0) {
-            [Lib showAlertTitle:nil message:@"住所を入力してください。"];
-        }
-    } else {
-        search.longitude = [[LibLocation shareLocation] longitude];
-        search.latitude = [[LibLocation shareLocation] latitude];
-        search.name = @"";
-    }
-    search.distance = _sliderDistance.value;
-}
-
-- (NSString *)createSearchRequest
-{
-    [self getSearchData];
-    NSString *cat = [[search.category valueForKey:@"description"] componentsJoinedByString:@","];
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                          @(search.privacySetup), @"privacy_setup",
-                          search.orderValue, search.orderKey,
-                          cat, @"category_id",
-                          @(search.distance), @"distance",
-                          @(search.longitude), @"longitude",
-                          @(search.latitude), @"latitude",
-                          search.name, @"name",
-                          nil];
-    NSString *searchUrl = [Lib addQueryStringToUrlString: URL_SEARCH withDictionary:params];
-    NSLog(@"search = %@", searchUrl);
-    return searchUrl;
-}
-
 #pragma mark - SearchBar delegate
-//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-//{
-//    [self sendSearch:_searchLoc.text];
-//    [_searchLoc resignFirstResponder];
-//    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [_searchPost resignFirstResponder];
+    search.keyword = _searchPost.text;
+}
 
 #pragma mark - TextField delegate
 
@@ -285,17 +190,26 @@
 
 #pragma mark - RestKit
 
+- (NSString *)createSearchRequest
+{
+    NSString *cat = [[search.category valueForKey:@"description"] componentsJoinedByString:@","];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @(search.privacySetup), @"privacy_setup",
+                            search.orderValue, search.orderKey,
+                            cat, @"category_id",
+                            search.keyword, @"keyword",
+                            nil];
+    NSString *searchUrl = [Lib addQueryStringToUrlString: URL_SEARCH withDictionary:params];
+    NSLog(@"search = %@", searchUrl);
+    return searchUrl;
+}
+
 - (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-    if (search.parentTab == TAB_HOME) {
-        UINavigationController *nav = (UINavigationController *)self.parentViewController;
-        HomeVC *vc = (HomeVC *)nav.parentViewController;
-        vc.listPosts = [NSMutableArray arrayWithArray: objects];
-    } else if (search.parentTab == TAB_MAP) {
-        MapVC *vc = (MapVC *)self.parentViewController;
-        vc.listPosts = [NSMutableArray arrayWithArray: objects];
-    }
+    UINavigationController *nav = (UINavigationController *)self.parentViewController;
+    HomeVC *vc = (HomeVC *)nav.parentViewController;
+    vc.listPosts = [NSMutableArray arrayWithArray: objects];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

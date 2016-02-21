@@ -18,17 +18,10 @@
 
 @property (nonatomic, strong) NSMutableArray *listPosts;
 
-@property (weak, nonatomic) IBOutlet UISearchBar *searchPost;
-@property (weak, nonatomic) IBOutlet UIButton *btnSearchDetail;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnSpot;
+@property (weak, nonatomic) IBOutlet UIButton *btnSeachSpot;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblDistance;
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segPrivacy;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrCategories;
-- (IBAction)onSegmentChangeValue:(id)sender;
-
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UICollectionView *cvPost;
