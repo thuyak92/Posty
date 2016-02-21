@@ -10,6 +10,7 @@
 #import "LibLocation.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AppDelegate.h"
+#import "PostConfirmVC.h"
 
 @interface PostSettingVC ()
 
@@ -65,15 +66,17 @@
     [self setLocation];
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:SEGUE_POST_SETTING_TO_CONFIRM]) {
+        PostConfirmVC *vc = [segue destinationViewController];
+        vc.post = sender;
+    }
 }
-*/
 
 - (IBAction)onPrivacyButtonClicked:(id)sender {
     [_btnAllOfUsers setSelected:NO];
@@ -229,7 +232,8 @@
     if (sender == _btnCancel) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else if (sender == _btnPost) {
-        [self postData];
+//        [self postData];
+        [self performSegueWithIdentifier:SEGUE_POST_SETTING_TO_CONFIRM sender:[self getPostData]];
     } else {
 #warning save settings
     }
@@ -249,21 +253,9 @@
     post.deliverTime = date;
     post.privacySetup = userType;
     post.categoryId = category;
+    post.image = _imageData;
     return post;
 }
 
-- (void)postData
-{
-    [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    [[LibRestKit share] postObject:[self getPostData] toPath:URL_POST method:RKRequestMethodPOST withData:_imageData fileName:@"image_file" forClass:CLASS_POST];
-}
-
-- (void)onPostObjectSuccess:(LibRestKit *)controller data:(id)object
-{
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    [app switchToTabWithIndex:TAB_HOME];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 @end

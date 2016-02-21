@@ -370,6 +370,6 @@
         <image name="iconStar.png" width="43" height="43"/>
         <image name="iconView.png" width="41" height="41"/>
         <image name="photos-icon.png" width="24" height="21"/>
-        <image name="photos-selected-icon.png" width="1080" height="1920"/>
+        <image name="photos-selected-icon.png" width="281" height="81"/>
     </resources>
 </document>

@@ -21,6 +21,7 @@
 #define SEGUE_POST_TO_POST_SETTING      @"SeguePostToPostSetting"
 #define SEGUE_INFO_TO_LOGIN             @"SegueInfoToLogin"
 #define SEGUE_LOGIN_TO_USER_INFO        @"segueLoginToUserInfo"
+#define SEGUE_POST_SETTING_TO_CONFIRM   @"seguePostSettingToConfrim"
 
 //Storyboard Identifier
 #define STORY_BOARD_LOGIN               @"storyboardLogin"

@@ -322,8 +322,7 @@
                  @"liked_count"     : @"likeNum",
                  @"deliver_time"    : @"deliverTime",
                  @"privacy_setup"   : @"privacySetup",
-                 @"category_id"     : @"categoryId",
-                 @"errors"          : @"error"
+                 @"category_id"     : @"categoryId"
                  };
         if (request) {
             NSArray *keys = [dict allKeys];
@@ -342,8 +341,7 @@
                  @"facebook_id"   : @"facebookId",
                  @"twiter_id"     : @"twiterId",
                  @"desc"          : @"comment",
-                 @"address"       : @"mySpot",
-                 @"errors"        : @"error"
+                 @"address"       : @"mySpot"
                  };
         if (request) {
             NSArray *keys = [dict allKeys];
