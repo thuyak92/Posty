@@ -233,10 +233,21 @@
 }
 
 - (IBAction)onShareButtonClicked:(id)sender {
-    if (sender == _btnFacebook) {
-        [Lib shareFacebookWithImage:[UIImage imageWithData:_imageData] status:_txtvStatus.text];
-    } else if (sender == _btnTwitter) {
-        [Lib shareTwitterWithImage:[UIImage imageWithData:_imageData] status:_txtvStatus.text];
+    if (sender == _btnTwitter) {
+        TWTRComposer *composer = [[TWTRComposer alloc] init];
+        
+        [composer setText:_txtvStatus.text];
+        [composer setImage:[UIImage imageWithData:_imageData]];
+        
+        // Called from a UIViewController
+        [composer showFromViewController:self completion:^(TWTRComposerResult result) {
+            if (result == TWTRComposerResultCancelled) {
+                NSLog(@"Tweet composition cancelled");
+            }
+            else {
+                NSLog(@"Sending Tweet!");
+            }
+        }];
     }
 }
 
