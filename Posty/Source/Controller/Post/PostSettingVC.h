@@ -38,7 +38,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnOtherLoc;
 @property (weak, nonatomic) IBOutlet UIButton *btnNotPublic;
 @property (weak, nonatomic) IBOutlet UIButton *btnReload;
-@property (weak, nonatomic) IBOutlet UIButton *btnMap;
 @property (weak, nonatomic) IBOutlet UITextField *txtfLocation;
 - (IBAction)onSpotButtonClicked:(id)sender;
 - (IBAction)onLocationButtonClicked:(id)sender;

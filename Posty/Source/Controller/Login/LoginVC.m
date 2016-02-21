@@ -98,25 +98,6 @@
     }
 }
 
-
-//- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-//                            user:(id<FBGraphUser>)user {
-//    NSLog(@"user = %@", user);
-//    if (!fbUser) {
-//        if (![GlobalVariable shareInstance].isConnectedServer) {
-//            [[SocketLib shareSocketLib] connectToHost:SERVER_DOMAIN Port:SERVER_PORT];
-//        }else {
-//            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//            [self performSelector:@selector(loginToServer) withObject:nil afterDelay:2.0f];
-//        }
-//        fbUser = [[UserModel alloc] init];
-//        fbUser.userId = user.objectID;
-//        fbUser.name = user.name;
-//        fbUser.email = [user objectForKey:@"email"];
-//    }
-//    
-//}
-
 - (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton
 {
     [Lib logout];

@@ -103,6 +103,8 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+#pragma mark - event
+
 - (IBAction)onButtonClicked:(id)sender{
     if (sender == _btnSearchDetail) {
         [Lib saveData:search forKey:KEY_SEARCH];
@@ -127,6 +129,8 @@
     [button.layer setMasksToBounds:YES];
     [button.layer setCornerRadius:15];
 }
+
+#pragma mark - common
 
 - (void)setCategories
 {

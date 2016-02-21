@@ -61,6 +61,7 @@
     [_imvAvatar.layer setCornerRadius:10];
     [_lblName setText:user.nickname];
     [_btnCurLoc setSelected:YES];
+    [_txtfLocation setBackground:[UIImage imageNamed:@""]];
     [_btnSetDateNone setSelected:YES];
     [_btnChangeDate setHidden:YES];
     [self setLocation];
@@ -88,12 +89,13 @@
         [_btnAllOfUsers setSelected:YES];
     } else if (sender == _btnSelectFromPost) {
         [_btnSelectFromPost setSelected:YES];
+#warning show postmo list
         [_lblName setHidden:NO];
         [_imvAvatar setHidden:NO];
     } else if (sender == _btnLimitPost) {
         [_btnLimitPost setSelected:YES];
-    } else {
-#warning change privacy
+    } else if (sender == _btnChangeUser) {
+#warning show postmo list
     }
     userType = ((UIButton *)sender).tag;
 }
@@ -107,29 +109,28 @@
     [_btnOtherLoc setSelected:NO];
     [_btnNotPublic setSelected:NO];
     [_btnReload setHidden:YES];
-    [_btnMap setHidden:YES];
     if (sender == _btnCurLoc) {
         [_btnCurLoc setSelected:YES];
         [_btnReload setHidden:NO];
         [_txtfLocation setUserInteractionEnabled:NO];
+        [_txtfLocation setBackground:[UIImage imageNamed:@""]];
         [self setLocation];
     } else if (sender == _btnOtherLoc) {
         [_btnOtherLoc setSelected:YES];
-        [_btnMap setHidden:NO];
         [_txtfLocation setUserInteractionEnabled:YES];
+        [_txtfLocation setBackground:[UIImage imageNamed:@"btnGreyBorderSqr.png"]];
     } else if (sender == _btnNotPublic) {
+        [_btnNotPublic setSelected:YES];
         location = @"";
-        [_txtfLocation setText:@""];
+        [_txtfLocation setText:@"地位を公開しません"];
+        [_txtfLocation setUserInteractionEnabled:NO];
+        [_txtfLocation setBackground:[UIImage imageNamed:@""]];
     }
     spot = ((UIButton *)sender).tag;
 }
 
 - (IBAction)onLocationButtonClicked:(id)sender {
-    if (sender == _btnMap) {
-    UITabBarController *tabVC = (UITabBarController *)self.presentingViewController;
-    [tabVC setSelectedIndex:1];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    } else if (sender == _btnReload) {
+    if (sender == _btnReload) {
         [self setLocation];
     }
 }
@@ -141,13 +142,12 @@
     [_lblSetDate setText:@""];
     if (sender == _btnSetDateNone) {
         [_btnSetDateNone setSelected:YES];
-        date = [NSDate date];
+        [_btnChangeDate setSelected:NO];
         [self hideDatePicker];
     } else if (sender == _btnSetDate) {
         [_btnSetDate setSelected:YES];
         [_btnChangeDate setHidden:NO];
-        date = [NSDate date];
-        [_lblSetDate setText:[Lib stringFromDate:date formatter:DATE_TIME_FORMAT]];
+        [_lblSetDate setText:[Lib stringFromDate:[NSDate date] formatter:DATE_TIME_FORMAT]];
     }
     setDate = ((UIButton *)sender).tag;
 }
@@ -232,7 +232,6 @@
     if (sender == _btnCancel) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else if (sender == _btnPost) {
-//        [self postData];
         [self performSegueWithIdentifier:SEGUE_POST_SETTING_TO_CONFIRM sender:[self getPostData]];
     } else {
 #warning save settings
@@ -250,6 +249,9 @@
     post.longitude = [[LibLocation shareLocation] longitude];
     post.latitude = [[LibLocation shareLocation] latitude];
     post.locationName = [[LibLocation shareLocation] locationName];
+    if (setDate == 0) {
+        date = [NSDate date];
+    }
     post.deliverTime = date;
     post.privacySetup = userType;
     post.categoryId = category;

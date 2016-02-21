@@ -66,4 +66,7 @@
 + (BOOL)checkLogin;
 + (void)logout;
 
+#pragma mark - check post
++ (BOOL)isMyPost:(NSInteger)userId;
+
 @end

@@ -381,4 +381,12 @@
     [Lib setGuest:FALSE];
 }
 
+#pragma mark - check post
+
++ (BOOL)isMyPost:(NSInteger)userId
+{
+    UserModel *user = [Lib currentUser];
+    return user.userId == userId;
+}
+
 @end
