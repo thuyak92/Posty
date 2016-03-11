@@ -170,7 +170,8 @@
 - (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-    MapVC *vc = (MapVC *)self.parentViewController;
+    UINavigationController *nav = (UINavigationController *)self.parentViewController;
+    MapVC *vc = (MapVC *)nav.parentViewController;
     vc.listPosts = [NSMutableArray arrayWithArray: objects];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

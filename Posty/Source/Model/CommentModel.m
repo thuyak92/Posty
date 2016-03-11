@@ -7,6 +7,7 @@
 //
 
 #import "CommentModel.h"
+#import "UserModel.h"
 
 @implementation CommentModel
 

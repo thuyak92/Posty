@@ -1,28 +1,36 @@
 //
-//  LoginVC.m
-//  MyDear
+//  LoginTVC.m
+//  Posty
 //
-//  Created by phuongthuy on 1/18/16.
+//  Created by phuongthuy on 3/11/16.
 //  Copyright © 2016 PhuongThuy. All rights reserved.
 //
 
-#import "LoginVC.h"
+#import "LoginTVC.h"
 #import "AppDelegate.h"
 
-@interface LoginVC ()
+@interface LoginTVC ()
 
 @end
 
-@implementation LoginVC
+@implementation LoginTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     if ([Lib checkLogin]) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self goToHome];
+        }];
     } else {
         [LibRestKit share].delegate = self;
         _btnLoginFb.delegate = self;
@@ -47,20 +55,19 @@
 
 #pragma mark - Twitter
 
-- (IBAction)onLoginTwitterButtonClicked:(id)sender {
-    
-}
-
 - (void)loginTwitterDidComplete
 {
     [_btnLoginTwt setLogInCompletion:^(TWTRSession *session, NSError *error) {
         if (session) {
-            NSLog(@"signed in as %@", [session userName]);
-            UserModel *user = [[UserModel alloc] init];
-            user.twiterId = session.userID;
-            [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-            [[LibRestKit share] registerUser:user success:^(UserModel *user) {
-                [self handleRegisterSuccess:user];
+            [[Twitter sharedInstance].APIClient loadUserWithID:session.userID completion:^(TWTRUser * _Nullable user, NSError * _Nullable error) {
+                UserModel *userInfo = [[UserModel alloc] init];
+                userInfo.twiterId = user.userID;
+                userInfo.nickname = user.name;
+                userInfo.avatarUrl = user.profileImageURL;
+                [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+                [[LibRestKit share] registerUser:userInfo success:^(UserModel *user) {
+                    [self handleRegisterSuccess:user];
+                }];
             }];
         } else {
             NSLog(@"error: %@", [error localizedDescription]);
@@ -151,7 +158,14 @@
 - (IBAction)onCancelButtonClicked:(id)sender {
     [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
     [Lib setGuest:TRUE];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self goToHome];
+    }];
+    
+}
+
+- (void)goToHome
+{
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     [app switchToTabWithIndex:TAB_HOME];
 }
@@ -203,14 +217,16 @@
     return YES;
 }
 
-#pragma mark - RestKit Delegate                 
+#pragma mark - RestKit Delegate
 
 - (void)handleLoginSuccess: (UserModel *)user
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
     [Lib setCurrentUser:user];
     [Lib setGuest:FALSE];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self goToHome];
+    }];
 }
 
 - (void)handleRegisterSuccess: (UserModel *)user
@@ -219,7 +235,9 @@
     [Lib setCurrentUser:user];
     [Lib setGuest:FALSE];
     if (user.nickname) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self goToHome];
+        }];
     } else {
         [self performSegueWithIdentifier:SEGUE_LOGIN_TO_USER_INFO sender:nil];
     }

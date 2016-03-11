@@ -1,8 +1,8 @@
 //
-//  LoginVC.h
-//  MyDear
+//  LoginTVC.h
+//  Posty
 //
-//  Created by phuongthuy on 1/18/16.
+//  Created by phuongthuy on 3/11/16.
 //  Copyright © 2016 PhuongThuy. All rights reserved.
 //
 
@@ -13,8 +13,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "LibRestKit.h"
 
-
-@interface LoginVC : UIViewController<UITextFieldDelegate, RestKitLibDelegate, FBSDKLoginButtonDelegate>
+@interface LoginTVC : UITableViewController<UITextFieldDelegate, RestKitLibDelegate, FBSDKLoginButtonDelegate>
 {
     NSString *url;
 }
@@ -25,8 +24,6 @@
 - (IBAction)onLoginButtonClicked:(id)sender;
 - (IBAction)onCancelButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet TWTRLogInButton *btnLoginTwt;
-- (IBAction)onLoginTwitterButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet FBSDKLoginButton *btnLoginFb;
 - (IBAction)onLoginFacebookButtonClicked:(id)sender;
-
 @end

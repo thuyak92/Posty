@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		370D9A69A9697393B2DD870A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D3F114905F5C7C1BE4E62 /* libPods.a */; };
 		474F6F621C7546400086A100 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 474F6F611C7546400086A100 /* SettingsVC.m */; };
+		477D1CB21C930AED00D2114A /* LoginTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 477D1CB11C930AED00D2114A /* LoginTVC.m */; };
 		4786F80B1C7060C800CABA8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F80A1C7060C800CABA8B /* main.m */; };
 		4786F80E1C7060C800CABA8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F80D1C7060C800CABA8B /* AppDelegate.m */; };
 		4786F8171C7060C800CABA8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4786F8151C7060C800CABA8B /* Main.storyboard */; };
@@ -106,7 +107,6 @@
 		4786F9501C70638100CABA8B /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F8AC1C70638000CABA8B /* HomeVC.m */; };
 		4786F9511C70638100CABA8B /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F8AE1C70638000CABA8B /* SearchVC.m */; };
 		4786F9521C70638100CABA8B /* AccountInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F8B11C70638000CABA8B /* AccountInfoVC.m */; };
-		4786F9531C70638100CABA8B /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F8B31C70638000CABA8B /* LoginVC.m */; };
 		4786F9541C70638100CABA8B /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F8B61C70638000CABA8B /* MapVC.m */; };
 		4786F9551C70638100CABA8B /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F8B91C70638000CABA8B /* MessageVC.m */; };
 		4786F9561C70638100CABA8B /* MyPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F8BC1C70638000CABA8B /* MyPageVC.m */; };
@@ -172,6 +172,8 @@
 		327C5BB92F48C03FC2486156 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		474F6F601C7546400086A100 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
 		474F6F611C7546400086A100 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
+		477D1CB01C930AED00D2114A /* LoginTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTVC.h; sourceTree = "<group>"; };
+		477D1CB11C930AED00D2114A /* LoginTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTVC.m; sourceTree = "<group>"; };
 		4786F8061C7060C700CABA8B /* Posty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Posty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4786F80A1C7060C800CABA8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4786F80C1C7060C800CABA8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -280,8 +282,6 @@
 		4786F8AE1C70638000CABA8B /* SearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
 		4786F8B01C70638000CABA8B /* AccountInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoVC.h; sourceTree = "<group>"; };
 		4786F8B11C70638000CABA8B /* AccountInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoVC.m; sourceTree = "<group>"; };
-		4786F8B21C70638000CABA8B /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
-		4786F8B31C70638000CABA8B /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		4786F8B51C70638000CABA8B /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		4786F8B61C70638000CABA8B /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		4786F8B81C70638000CABA8B /* MessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
@@ -683,8 +683,8 @@
 			children = (
 				4786F8B01C70638000CABA8B /* AccountInfoVC.h */,
 				4786F8B11C70638000CABA8B /* AccountInfoVC.m */,
-				4786F8B21C70638000CABA8B /* LoginVC.h */,
-				4786F8B31C70638000CABA8B /* LoginVC.m */,
+				477D1CB01C930AED00D2114A /* LoginTVC.h */,
+				477D1CB11C930AED00D2114A /* LoginTVC.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1146,6 +1146,7 @@
 				47B283C41C78ADDF00B5FE90 /* CommentModel.m in Sources */,
 				4786F95B1C70638100CABA8B /* LibRestKit.m in Sources */,
 				47B283CD1C78BC5E00B5FE90 /* ListCell.m in Sources */,
+				477D1CB21C930AED00D2114A /* LoginTVC.m in Sources */,
 				4786F94F1C70638100CABA8B /* DetailVC.m in Sources */,
 				4786F9721C70638100CABA8B /* PostCell.m in Sources */,
 				4786F9631C70638100CABA8B /* ActionModel.m in Sources */,
@@ -1161,7 +1162,6 @@
 				4786F80E1C7060C800CABA8B /* AppDelegate.m in Sources */,
 				4786F9511C70638100CABA8B /* SearchVC.m in Sources */,
 				4786F9581C70638100CABA8B /* PostVC.m in Sources */,
-				4786F9531C70638100CABA8B /* LoginVC.m in Sources */,
 				4786F80B1C7060C800CABA8B /* main.m in Sources */,
 				4786F9571C70638100CABA8B /* PostSettingVC.m in Sources */,
 				4786F9691C70638100CABA8B /* MessageModel.m in Sources */,

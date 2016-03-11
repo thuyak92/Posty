@@ -35,6 +35,7 @@
     _txtvCmt.autocorrectionType = UITextAutocorrectionTypeNo;
     _btnSend.enabled = NO;
     [_txtvCmt.layer setBorderWidth:1];
+    [[LibRestKit share] getObjectsAtPath:[NSString stringWithFormat:URL_GET_COMMENT, _post.postId] forClass:CLASS_COMMENT];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -270,5 +271,13 @@
 //    self.tableView.scrollIndicatorInsets = contentInsets;
 ////    [_viewComment setFrame:defaultFrame];
 //}
+
+#pragma mark - RestKit
+
+- (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
+{
+    listComments = [NSMutableArray arrayWithArray:objects];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+}
 
 @end

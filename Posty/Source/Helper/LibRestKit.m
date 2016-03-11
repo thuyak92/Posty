@@ -120,8 +120,8 @@ static LibRestKit *share = nil;
 {
     RKObjectManager *manager = [RKObjectManager sharedManager];
     [manager addResponseDescriptor:[self rkDescResponseForClass:className]];
-    if ([className isEqualToString:CLASS_POST]) {
-        [manager addResponseDescriptor:[self rkDescResponseForClass:CLASS_POST relationshipClass:CLASS_USER fromKey:@"user" toKey:@"user"]];
+    if (![className isEqualToString:CLASS_USER]) {
+        [manager addResponseDescriptor:[self rkDescResponseForClass:className relationshipClass:CLASS_USER fromKey:@"user" toKey:@"user"]];
     }
     [manager getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if ([self.delegate respondsToSelector:@selector(onGetObjectsSuccess:data:)]) {

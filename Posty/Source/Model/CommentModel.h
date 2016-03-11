@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class UserModel;
+
 @interface CommentModel : NSObject
 
 @property (nonatomic, assign) NSInteger commentId;
 @property (nonatomic, assign) NSInteger postId;
-@property (nonatomic, assign) NSInteger userId;
+@property (nonatomic, assign) UserModel *user;
 @property (nonatomic, strong) NSString *comment;
-@property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) NSDate *time;
 
 @end

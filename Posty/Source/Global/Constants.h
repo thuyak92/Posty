@@ -38,9 +38,9 @@
 #define TAB_INFO        4
 
 //Class Name
-#define CLASS_ERROR     @"error"
 #define CLASS_POST      @"post"
 #define CLASS_USER      @"user"
+#define CLASS_COMMENT   @"comment"
 
 //URL
 #define URL_USER        @"api/v1/users"
@@ -50,6 +50,7 @@
 #define URL_LOGIN       @"api/v1/login"
 #define URL_REGISTER    @"api/v1/register"
 #define URL_UPDATE_USER @"api/v1/users/%ld"
+#define URL_GET_COMMENT @"api/v1/posts/%ld/comments"
 
 //Dictionary key
 #define KEY_STATUS          @"status"

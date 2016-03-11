@@ -10,7 +10,7 @@
 #import "LibRestKit.h"
 #import "InteractiveView.h"
 
-@interface DetailVC : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
+@interface DetailVC : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, RestKitLibDelegate>
 {
     NSMutableArray *listComments;
     NSString *comment;

@@ -333,6 +333,7 @@
         }
         return dict;
     }
+    
     if ([className isEqualToString:CLASS_USER]) {
         dict = @{
                  @"id"            : @"userId",
@@ -352,6 +353,23 @@
         }
         return dict;
     }
+    
+    if ([className isEqualToString:CLASS_COMMENT]) {
+        dict = @{
+                 @"id"              : @"commentId",
+                 @"post_id"         : @"postId",
+                 @"user_id"         : @"userId",
+                 @"content"         : @"comment",
+                 @"updated_at"      : @"time"
+                 };
+        if (request) {
+            NSArray *keys = [dict allKeys];
+            NSArray *values = [dict allValues];
+            dict = [NSDictionary dictionaryWithObjects:keys forKeys:values];
+        }
+        return dict;
+    }
+    
     return nil;
 }
 
