@@ -53,7 +53,8 @@
     self.txtvCmt.inputAccessoryView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     __weak typeof(self)weakSelf = self;
     self.interactiveView.inputAcessoryViewFrameChangedBlock = ^(CGRect inputAccessoryViewFrame){
-        CGFloat value = CGRectGetHeight(weakSelf.navigationController.view.frame) - CGRectGetMinY(inputAccessoryViewFrame) - CGRectGetHeight(weakSelf.txtvCmt.inputAccessoryView.frame);
+        CGFloat value = CGRectGetHeight(weakSelf.view.frame) - CGRectGetMinY(inputAccessoryViewFrame) - CGRectGetHeight(weakSelf.txtvCmt.inputAccessoryView.frame);
+        NSLog(@"value = %f, weakself = %f, input = %f, cmt = %f", value, weakSelf.view.frame.size.height, inputAccessoryViewFrame.size.height, weakSelf.txtvCmt.inputAccessoryView.frame.size.height);
         if (!weakSelf.btnTypeImage.isSelected) {
             weakSelf.keyboardControlLayout.constant = MAX(0, value);
         }
@@ -131,7 +132,9 @@
     if (sender == _btnBack) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else if (sender == _btnSend) {
-        
+#warning T send message
+        self.txtvCmt.text = @"";
+        [self.txtvCmt resignFirstResponder];
     } else if (sender == _btnTypeText) {
 //        self.showImageCollectionView.hidden = YES;
         

@@ -407,7 +407,6 @@
 + (BOOL)isMyPost:(NSInteger)userId
 {
     UserModel *user = [Lib currentUser];
-    NSLog(@"current user = %ld, postId = %ld", user.userId, userId);
     if (!user) {
         return FALSE;
     }
