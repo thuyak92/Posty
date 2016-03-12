@@ -53,6 +53,7 @@
 
 #pragma mark - service
 - (void)getObjectsAtPath: (NSString *)path forClass: (NSString *)className;
+- (void)getObjectsAtPath: (NSString *)path forClass: (NSString *)className success:(void (^)(id obj))success;
 - (void)postObject: (id)object toPath: (NSString *)path forClass: (NSString *)className;
 - (void)postObject: (id)object toPath: (NSString *)path method: (RKRequestMethod)method withData: (NSData *)data fileName: (NSString *)fileName forClass: (NSString *)className;
 

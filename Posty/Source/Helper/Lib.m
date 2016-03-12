@@ -305,7 +305,7 @@
 #pragma mark - Config Model
 + (NSDictionary *)configModels
 {
-    return [NSDictionary dictionaryWithObjectsAndKeys:[PostModel class], CLASS_POST, [UserModel class], CLASS_USER, nil];
+    return [NSDictionary dictionaryWithObjectsAndKeys:[PostModel class], CLASS_POST, [UserModel class], CLASS_USER, [CommentModel class], CLASS_COMMENT, nil];
 }
 
 + (NSDictionary *)dictForClass:(NSString *)className request:(BOOL)request
@@ -322,6 +322,8 @@
                  @"latitude"        : @"latitude",
                  @"location_name"   : @"locationName",
                  @"liked_count"     : @"likeNum",
+                 @"commented_count" : @"commentNum",
+                 @"favorited_count" : @"starNum",
                  @"deliver_time"    : @"deliverTime",
                  @"privacy_setup"   : @"privacySetup",
                  @"category_id"     : @"categoryId"
@@ -405,6 +407,10 @@
 + (BOOL)isMyPost:(NSInteger)userId
 {
     UserModel *user = [Lib currentUser];
+    NSLog(@"current user = %ld, postId = %ld", user.userId, userId);
+    if (!user) {
+        return FALSE;
+    }
     return user.userId == userId;
 }
 

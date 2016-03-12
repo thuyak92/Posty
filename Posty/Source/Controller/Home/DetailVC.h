@@ -13,7 +13,6 @@
 @interface DetailVC : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, RestKitLibDelegate>
 {
     NSMutableArray *listComments;
-    NSString *comment;
     UserModel *user;
     CGRect defaultFrame;
     float cellWidth;

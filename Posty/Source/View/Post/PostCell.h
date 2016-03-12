@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PostModel;
+@class UserModel;
 
 @interface PostCell : UICollectionViewCell
 
@@ -25,6 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 
-+ (PostCell *)createView;
+- (void)initWithPost:(PostModel *)post;
 
 @end

@@ -14,6 +14,7 @@
 #import "Constants.h"
 
 #import "UserModel.h"
+#import "CommentModel.h"
 #import "GroupModel.h"
 #import "FriendModel.h"
 #import "GroupMemberModel.h"

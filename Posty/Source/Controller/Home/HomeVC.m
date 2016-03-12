@@ -78,21 +78,7 @@
 {
     PostCell *cell = (PostCell*)[_cvPost dequeueReusableCellWithReuseIdentifier:@"postCell" forIndexPath:indexPath];
     PostModel *post = _listPosts[indexPath.row];
-    [cell.imvPost sd_setImageWithURL:[NSURL URLWithString:post.imageUrl]
-                      placeholderImage:[UIImage imageNamed:@"selectPhoto.png"]];
-    [cell.imvAvatar.layer setMasksToBounds:YES];
-    [cell.imvAvatar.layer setCornerRadius:15];
-    [cell.imvAvatar sd_setImageWithURL:[NSURL URLWithString:post.user.avatarUrl]
-                    placeholderImage:[UIImage imageNamed:@"iconAvaDefault.png"]];
-//    [imageView sd_setImageWithURL:[NSURL URLWithString:@"https://graph.facebook.com/olivier.poitrey/picture"]
-//                 placeholderImage:[UIImage imageNamed:@"avatar-placeholder.png"]
-//                          options:SDWebImageRefreshCached];
-    [cell.imvFriendAva setImage:[UIImage imageNamed:[NSString stringWithFormat:@"iconPrivacy%ld.png", post.privacySetup]]];
-    [cell.lblName setText:post.user.nickname];
-    [cell.lblViewNum setText:[NSString stringWithFormat:@"%ld", post.likeNum]];
-    [cell.lblLocation setText:[NSString stringWithFormat:@"%@", post.locationName]];
-    [cell.lblStatus setText:post.textContent];
-    [cell.lblTime setText:[Lib stringFromDate:post.deliverTime formatter:TIME_FORMAT]];
+    [cell initWithPost:post];
     return cell;
 }
 

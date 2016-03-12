@@ -24,6 +24,8 @@
     [aCoder encodeDouble:self.latitude forKey:@"latitude"];
     [aCoder encodeObject:self.locationName forKey:@"locationName"];
     [aCoder encodeInteger:self.likeNum forKey:@"likeNum"];
+    [aCoder encodeInteger:self.commentNum forKey:@"commentNum"];
+    [aCoder encodeInteger:self.starNum forKey:@"starNum"];
     [aCoder encodeObject:self.deliverTime forKey:@"deliverTime"];
     [aCoder encodeInteger:self.privacySetup forKey:@"privacySetup"];
     [aCoder encodeInteger:self.categoryId forKey:@"categoryId"];
@@ -42,6 +44,8 @@
         self.latitude = [aDecoder decodeDoubleForKey:@"latitude"];
         self.locationName = [aDecoder decodeObjectForKey:@"locationName"];
         self.likeNum = [aDecoder decodeIntegerForKey:@"likeNum"];
+        self.commentNum = [aDecoder decodeIntegerForKey:@"commentNum"];
+        self.starNum = [aDecoder decodeIntegerForKey:@"starNum"];
         self.deliverTime = [aDecoder decodeObjectForKey:@"deliverTime"];
         self.privacySetup = [aDecoder decodeIntegerForKey:@"privacySetup"];
         self.categoryId = [aDecoder decodeIntegerForKey:@"categoryId"];

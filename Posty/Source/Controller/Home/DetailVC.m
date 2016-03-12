@@ -27,15 +27,21 @@
     // Do any additional setup after loading the view.
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 150;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
     _txtvCmt.placeholder = @"Type a message";
     _txtvCmt.showsVerticalScrollIndicator = NO;
     _txtvCmt.autocorrectionType = UITextAutocorrectionTypeNo;
     _btnSend.enabled = NO;
     [_txtvCmt.layer setBorderWidth:1];
-    [[LibRestKit share] getObjectsAtPath:[NSString stringWithFormat:URL_GET_COMMENT, _post.postId] forClass:CLASS_COMMENT];
+    
+    [[LibRestKit share] getObjectsAtPath:[NSString stringWithFormat:URL_GET_COMMENT, _post.postId] forClass:CLASS_COMMENT success:^(id obj) {
+        listComments = [NSMutableArray arrayWithArray:obj];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,7 +87,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 2) {
-        return 3;// listComments.count;
+        return listComments.count;
     }
     return 1;
 }
@@ -106,22 +112,16 @@
         PostImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostImageCell"];
         [cell.imvPost sd_setImageWithURL:[NSURL URLWithString:_post.imageUrl]
         placeholderImage:[UIImage imageNamed:@"selectPhoto.png"]];
+        NSLog(@"width = %f, height = %f", cell.imvPost.frame.size.width, cell.imvPost.frame.size.height);
         return cell;
     } else if (indexPath.section == 1) {
         PostInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostInfoCell"];
-        [cell.lblViewNum setText:[NSString stringWithFormat:@"%ld", _post.likeNum]];
-        [cell.lblCommentNum setText:[NSString stringWithFormat:@"12345%ld", _post.likeNum]];
-        [cell.lblStarNum setText:[NSString stringWithFormat:@"4%ld", _post.likeNum]];
-        [cell.lblTime setText:[Lib stringFromDate:_post.deliverTime formatter:DATE_TIME_FORMAT]];
-        [cell.txtvStatus setText:_post.textContent];
+        [cell initWithPost:_post];
         return cell;
     } else if (indexPath.section == 2) {
         CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
-//        [cell.imvAva sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]
-//    placeholderImage:[UIImage imageNamed:@"iconAvaDefault.png"]];
-//        cell.lblName.text = user.nickname;
-        cell.lblTime.text = [Lib stringFromDate:_post.deliverTime formatter:DATE_TIME_FORMAT];
-        cell.txtvComment.text = _post.textContent;
+        CommentModel *comment = listComments[indexPath.row];
+        [cell initWithComment:comment];
         return cell;
     }
     return [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -271,13 +271,5 @@
 //    self.tableView.scrollIndicatorInsets = contentInsets;
 ////    [_viewComment setFrame:defaultFrame];
 //}
-
-#pragma mark - RestKit
-
-- (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
-{
-    listComments = [NSMutableArray arrayWithArray:objects];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
-}
 
 @end

@@ -86,7 +86,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" image="iconView.png" translatesAutoresizingMaskIntoConstraints="NO" id="csb-qd-gSL">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" image="iconView.png" highlightedImage="iconViewRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="csb-qd-gSL">
                                                     <rect key="frame" x="10" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="ldX-0E-KZV"/>
@@ -99,7 +99,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" image="iconComment.png" translatesAutoresizingMaskIntoConstraints="NO" id="OMh-fV-Fv2">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" image="iconComment.png" highlightedImage="iconCommentRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="OMh-fV-Fv2">
                                                     <rect key="frame" x="70" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="J6u-A3-id6"/>
@@ -112,7 +112,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" image="iconStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="SNX-Kk-oIo">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" image="iconStar.png" highlightedImage="iconStarRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="SNX-Kk-oIo">
                                                     <rect key="frame" x="130" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="hOH-ih-fEb"/>
@@ -162,6 +162,9 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="imvComment" destination="OMh-fV-Fv2" id="bet-Rh-Hur"/>
+                                            <outlet property="imvStar" destination="SNX-Kk-oIo" id="819-9z-BVt"/>
+                                            <outlet property="imvView" destination="csb-qd-gSL" id="qDj-Wa-78z"/>
                                             <outlet property="lblCommentNum" destination="NaH-aE-n9B" id="POn-l0-2nb"/>
                                             <outlet property="lblStarNum" destination="edq-vc-jlc" id="0v5-du-cas"/>
                                             <outlet property="lblTime" destination="zSt-tk-D3c" id="xPG-hc-vtM"/>
@@ -367,8 +370,11 @@
     <resources>
         <image name="btnBack.png" width="14" height="22"/>
         <image name="iconComment.png" width="41" height="41"/>
+        <image name="iconCommentRed.png" width="41" height="40"/>
         <image name="iconStar.png" width="43" height="43"/>
+        <image name="iconStarRed.png" width="43" height="40"/>
         <image name="iconView.png" width="41" height="41"/>
+        <image name="iconViewRed.png" width="40" height="40"/>
         <image name="photos-icon.png" width="24" height="21"/>
         <image name="photos-selected-icon.png" width="281" height="81"/>
     </resources>

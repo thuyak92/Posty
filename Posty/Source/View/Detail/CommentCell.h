@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CommentModel;
+@class UserModel;
 
 @interface CommentCell : UITableViewCell
 
@@ -15,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTime;
 @property (weak, nonatomic) IBOutlet UITextView *txtvComment;
 
+- (void)initWithComment:(CommentModel *)comment;
 
 @end
