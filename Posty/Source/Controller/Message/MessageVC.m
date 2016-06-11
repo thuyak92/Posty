@@ -22,8 +22,11 @@
     // Do any additional setup after loading the view.
     [LibRestKit share].delegate = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    [[LibRestKit share] getObjectsAtPath:URL_USER forClass:CLASS_USER];
-    
+    [[LibRestKit share] getObjectsAtPath:URL_USER forClass:CLASS_USER success:^(id objects) {
+        listUsers = [NSMutableArray arrayWithArray:objects];
+        [_tableView reloadData];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,14 +57,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ListCell *cell = [ListCell createView];
     UserModel *user = listUsers[indexPath.row];
-    MessageModel *firstMess = [user.messages objectAtIndex:0];
-    cell.title.text = user.nickname;
-    cell.lblTime.text = [Lib stringFromDate:firstMess.time formatter:DATE_FORMAT];
-    cell.subTitle.text = firstMess.message;
-//    [cell.imv.layer setMasksToBounds:YES];
-//    [cell.imv.layer setCornerRadius:15];
-    [cell.imv sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]
-                      placeholderImage:[UIImage imageNamed:@"iconAvaDefault.png"]];
+    [cell initWithUser:user];
+//    MessageModel *firstMess = [user.messages objectAtIndex:0];
+//    cell.title.text = user.nickname;
+//    cell.lblTime.text = [Lib stringFromDate:firstMess.time formatter:DATE_FORMAT];
+//    cell.subTitle.text = firstMess.message;
+////    [cell.imv.layer setMasksToBounds:YES];
+////    [cell.imv.layer setCornerRadius:15];
+//    [cell.imv sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]
+//                      placeholderImage:[UIImage imageNamed:@"iconAvaDefault.png"]];
     
     return cell;
 }
@@ -71,15 +75,6 @@
     selectedUser = listUsers[indexPath.row];
 #warning send request to get list message at pass
     
-}
-
-#pragma mark - RestKit
-
-- (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
-{
-    listUsers = [NSMutableArray arrayWithArray:objects];
-    [_tableView reloadData];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
 }
 
 @end

@@ -10,6 +10,8 @@
 #import "Lib.h"
 #import "PostSettingVC.h"
 #import "AppDelegate.h"
+#import "SearchModel.h"
+#import "PostMenuVC.h"
 
 @interface PostVC ()
 
@@ -45,6 +47,10 @@
         UINavigationController *nav = [segue destinationViewController];
         PostSettingVC *vc = (PostSettingVC *)[nav topViewController];
         vc.imageData = sender;
+    } else if ([[segue identifier] isEqualToString:SEGUE_POST_TO_MENU_POST]) {
+        UINavigationController *nav = [segue destinationViewController];
+        PostMenuVC *vc = (PostMenuVC *)[nav topViewController];
+        vc.status = ((NSIndexPath *)sender).row;
     }
 }
 
@@ -93,26 +99,27 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = MENU_TITLE[indexPath.row];
     switch (indexPath.row) {
         case MENU_RECEIVED:
             [cell.imageView setImage:[UIImage imageNamed:@"menuReceived.png"]];
-            cell.textLabel.text = @"受信ポスト";
+//            cell.textLabel.text = @"受信ポスト";
             break;
         case MENU_DELAY:
             [cell.imageView setImage:[UIImage imageNamed:@"menuDelay.png"]];
-            cell.textLabel.text = @"送信予定ポスト（日時設定あり）";
+//            cell.textLabel.text = @"送信予定ポスト（日時設定あり）";
             break;
         case MENU_SAVE:
             [cell.imageView setImage:[UIImage imageNamed:@"menuSave.png"]];
-            cell.textLabel.text = @"下書きポスト";
+//            cell.textLabel.text = @"下書きポスト";
             break;
         case MENU_SEND:
             [cell.imageView setImage:[UIImage imageNamed:@"menuSend.png"]];
-            cell.textLabel.text = @"送信済みポスト";
+//            cell.textLabel.text = @"送信済みポスト";
             break;
         case MENU_TRASH:
             [cell.imageView setImage:[UIImage imageNamed:@"menuTrash.png"]];
-            cell.textLabel.text = @"ゴミ箱";
+//            cell.textLabel.text = @"ゴミ箱";
             break;
             
         default:
@@ -120,6 +127,12 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:SEGUE_POST_TO_MENU_POST sender:indexPath];
 }
 
 #pragma mark - RestKit Delegate

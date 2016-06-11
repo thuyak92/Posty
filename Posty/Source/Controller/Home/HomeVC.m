@@ -47,7 +47,11 @@
     if (_listPosts.count == 0) {
         [LibRestKit share].delegate = self;
         [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-        [[LibRestKit share] getObjectsAtPath:URL_POST forClass:CLASS_POST];
+        [[LibRestKit share] getObjectsAtPath:URL_POST forClass:CLASS_POST success:^(id objects) {
+            _listPosts = [NSMutableArray arrayWithArray:objects];
+            [_cvPost reloadData];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+        }];
     }
 }
 
@@ -147,16 +151,14 @@
     search.keyword = _searchPost.text;
     [Lib saveData:search forKey:KEY_SEARCH];
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    [[LibRestKit share] getObjectsAtPath:[self createSearchRequest] forClass:CLASS_POST];
+    [[LibRestKit share] getObjectsAtPath:[self createSearchRequest] forClass:CLASS_POST success:^(id objects) {
+        _listPosts = [NSMutableArray arrayWithArray:objects];
+        [_cvPost reloadData];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+    }];
 }
 
 #pragma mark - RestKit
-- (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
-{
-    _listPosts = [NSMutableArray arrayWithArray:objects];
-    [_cvPost reloadData];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-}
 
 - (NSString *)createSearchRequest
 {

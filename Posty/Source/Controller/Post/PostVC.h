@@ -9,13 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "LibRestKit.h"
 
-#define MENU_RECEIVED   0
-#define MENU_DELAY      1
-#define MENU_SAVE       2
-#define MENU_SEND       3
-#define MENU_TRASH      4
-
-
 @interface PostVC : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, RestKitLibDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnSelectPhoto;
 @property (weak, nonatomic) IBOutlet UIButton *btnTakePhoto;

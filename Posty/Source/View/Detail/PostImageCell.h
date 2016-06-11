@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PostModel;
 
 @interface PostImageCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imvPost;
-
+- (void)initWithPost:(PostModel *)post;
 @end

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		370D9A69A9697393B2DD870A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D3F114905F5C7C1BE4E62 /* libPods.a */; };
 		474F6F621C7546400086A100 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 474F6F611C7546400086A100 /* SettingsVC.m */; };
+		475D4A611C963605006F3DE7 /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475D4A5F1C963605006F3DE7 /* ListCell.m */; };
+		475D4A621C963605006F3DE7 /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 475D4A601C963605006F3DE7 /* ListCell.xib */; };
+		475D4A661C963657006F3DE7 /* ListPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 475D4A641C963657006F3DE7 /* ListPopup.m */; };
+		475D4A671C963657006F3DE7 /* ListPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 475D4A651C963657006F3DE7 /* ListPopup.xib */; };
 		477D1CB21C930AED00D2114A /* LoginTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 477D1CB11C930AED00D2114A /* LoginTVC.m */; };
 		4786F80B1C7060C800CABA8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F80A1C7060C800CABA8B /* main.m */; };
 		4786F80E1C7060C800CABA8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786F80D1C7060C800CABA8B /* AppDelegate.m */; };
@@ -144,8 +148,6 @@
 		4786F9811C70767400CABA8B /* menuTrash.png in Resources */ = {isa = PBXBuildFile; fileRef = 4786F97C1C70767400CABA8B /* menuTrash.png */; };
 		47B283BE1C787CFC00B5FE90 /* InteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B283BD1C787CFC00B5FE90 /* InteractiveView.m */; };
 		47B283C41C78ADDF00B5FE90 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B283C31C78ADDF00B5FE90 /* CommentModel.m */; };
-		47B283CD1C78BC5E00B5FE90 /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B283CB1C78BC5E00B5FE90 /* ListCell.m */; };
-		47B283CE1C78BC5E00B5FE90 /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47B283CC1C78BC5E00B5FE90 /* ListCell.xib */; };
 		47B283D11C78BEAB00B5FE90 /* PostConfirmVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B283D01C78BEAB00B5FE90 /* PostConfirmVC.m */; };
 		47C31B0B1C93B88300027802 /* iconCommentRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 47C31B071C93B88300027802 /* iconCommentRed.png */; };
 		47C31B0C1C93B88300027802 /* iconPrivacy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 47C31B081C93B88300027802 /* iconPrivacy1.png */; };
@@ -153,6 +155,7 @@
 		47C31B0E1C93B88300027802 /* iconViewRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 47C31B0A1C93B88300027802 /* iconViewRed.png */; };
 		47CA0F6A1C79C79A009D0009 /* SearchSpotVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CA0F691C79C79A009D0009 /* SearchSpotVC.m */; };
 		47CA0F6C1C79E6EC009D0009 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47CA0F6B1C79E6EC009D0009 /* Social.framework */; };
+		47DEBD261D0BF18C00A3B42E /* PostMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 47DEBD251D0BF18C00A3B42E /* PostMenuVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +179,12 @@
 		327C5BB92F48C03FC2486156 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		474F6F601C7546400086A100 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
 		474F6F611C7546400086A100 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
+		475D4A5E1C963605006F3DE7 /* ListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCell.h; sourceTree = "<group>"; };
+		475D4A5F1C963605006F3DE7 /* ListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCell.m; sourceTree = "<group>"; };
+		475D4A601C963605006F3DE7 /* ListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
+		475D4A631C963657006F3DE7 /* ListPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPopup.h; sourceTree = "<group>"; };
+		475D4A641C963657006F3DE7 /* ListPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPopup.m; sourceTree = "<group>"; };
+		475D4A651C963657006F3DE7 /* ListPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListPopup.xib; sourceTree = "<group>"; };
 		477D1CB01C930AED00D2114A /* LoginTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTVC.h; sourceTree = "<group>"; };
 		477D1CB11C930AED00D2114A /* LoginTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTVC.m; sourceTree = "<group>"; };
 		4786F8061C7060C700CABA8B /* Posty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Posty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -350,9 +359,6 @@
 		47B283BD1C787CFC00B5FE90 /* InteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InteractiveView.m; path = InteractiveView/InteractiveView.m; sourceTree = "<group>"; };
 		47B283C21C78ADDF00B5FE90 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		47B283C31C78ADDF00B5FE90 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
-		47B283CA1C78BC5E00B5FE90 /* ListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCell.h; sourceTree = "<group>"; };
-		47B283CB1C78BC5E00B5FE90 /* ListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCell.m; sourceTree = "<group>"; };
-		47B283CC1C78BC5E00B5FE90 /* ListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
 		47B283CF1C78BEAB00B5FE90 /* PostConfirmVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostConfirmVC.h; sourceTree = "<group>"; };
 		47B283D01C78BEAB00B5FE90 /* PostConfirmVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostConfirmVC.m; sourceTree = "<group>"; };
 		47C31B071C93B88300027802 /* iconCommentRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconCommentRed.png; sourceTree = "<group>"; };
@@ -362,6 +368,8 @@
 		47CA0F681C79C79A009D0009 /* SearchSpotVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchSpotVC.h; sourceTree = "<group>"; };
 		47CA0F691C79C79A009D0009 /* SearchSpotVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchSpotVC.m; sourceTree = "<group>"; };
 		47CA0F6B1C79E6EC009D0009 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		47DEBD241D0BF18C00A3B42E /* PostMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostMenuVC.h; sourceTree = "<group>"; };
+		47DEBD251D0BF18C00A3B42E /* PostMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostMenuVC.m; sourceTree = "<group>"; };
 		B38D3F114905F5C7C1BE4E62 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C952E0CF22966B594A0B9AE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -426,6 +434,19 @@
 			children = (
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		475D4A5D1C963605006F3DE7 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				475D4A5E1C963605006F3DE7 /* ListCell.h */,
+				475D4A5F1C963605006F3DE7 /* ListCell.m */,
+				475D4A601C963605006F3DE7 /* ListCell.xib */,
+				475D4A631C963657006F3DE7 /* ListPopup.h */,
+				475D4A641C963657006F3DE7 /* ListPopup.m */,
+				475D4A651C963657006F3DE7 /* ListPopup.xib */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		4786F7FD1C7060C700CABA8B = {
@@ -735,6 +756,8 @@
 		4786F8BD1C70638000CABA8B /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				47DEBD241D0BF18C00A3B42E /* PostMenuVC.h */,
+				47DEBD251D0BF18C00A3B42E /* PostMenuVC.m */,
 				4786F8BE1C70638000CABA8B /* PostSettingVC.h */,
 				4786F8BF1C70638000CABA8B /* PostSettingVC.m */,
 				4786F8C01C70638000CABA8B /* PostVC.h */,
@@ -836,9 +859,7 @@
 		4786F8EF1C70638000CABA8B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				47B283CA1C78BC5E00B5FE90 /* ListCell.h */,
-				47B283CB1C78BC5E00B5FE90 /* ListCell.m */,
-				47B283CC1C78BC5E00B5FE90 /* ListCell.xib */,
+				475D4A5D1C963605006F3DE7 /* List */,
 				474F6F5C1C7541B10086A100 /* Message */,
 				4786F8F01C70638000CABA8B /* Detail */,
 				4786F8FA1C70638000CABA8B /* Post */,
@@ -1007,7 +1028,6 @@
 				47C31B0D1C93B88300027802 /* iconStarRed.png in Resources */,
 				4786F9081C70638100CABA8B /* btnExpand.png in Resources */,
 				4786F9061C70638100CABA8B /* btnClose.png in Resources */,
-				47B283CE1C78BC5E00B5FE90 /* ListCell.xib in Resources */,
 				47C31B0C1C93B88300027802 /* iconPrivacy1.png in Resources */,
 				4786F9401C70638100CABA8B /* userTypePublic.png in Resources */,
 				4786F9071C70638100CABA8B /* btnClose@2x.png in Resources */,
@@ -1032,6 +1052,7 @@
 				4786F91C1C70638100CABA8B /* iconAvaDefault.png in Resources */,
 				4786F92B1C70638100CABA8B /* iconMyDear.png in Resources */,
 				4786F9191C70638100CABA8B /* btnTintBorderSqr.png in Resources */,
+				475D4A671C963657006F3DE7 /* ListPopup.xib in Resources */,
 				4786F8191C7060C900CABA8B /* Assets.xcassets in Resources */,
 				4786F9311C70638100CABA8B /* iconStar.png in Resources */,
 				4786F97F1C70767400CABA8B /* menuSave.png in Resources */,
@@ -1071,6 +1092,7 @@
 				4786F90D1C70638100CABA8B /* btnLocationGrey.png in Resources */,
 				4786F9251C70638100CABA8B /* iconNewGrOn@2x.png in Resources */,
 				4786F9481C70638100CABA8B /* iconMessage.png in Resources */,
+				475D4A621C963605006F3DE7 /* ListCell.xib in Resources */,
 				4786F9271C70638100CABA8B /* iconFacebook.png in Resources */,
 				4786F9441C70638100CABA8B /* iconHome.png in Resources */,
 				4786F93C1C70638100CABA8B /* userTypePostmo.png in Resources */,
@@ -1161,14 +1183,15 @@
 				4786F96A1C70638100CABA8B /* PostModel.m in Sources */,
 				47B283C41C78ADDF00B5FE90 /* CommentModel.m in Sources */,
 				4786F95B1C70638100CABA8B /* LibRestKit.m in Sources */,
-				47B283CD1C78BC5E00B5FE90 /* ListCell.m in Sources */,
 				477D1CB21C930AED00D2114A /* LoginTVC.m in Sources */,
 				4786F94F1C70638100CABA8B /* DetailVC.m in Sources */,
 				4786F9721C70638100CABA8B /* PostCell.m in Sources */,
 				4786F9631C70638100CABA8B /* ActionModel.m in Sources */,
+				475D4A661C963657006F3DE7 /* ListPopup.m in Sources */,
 				4786F9661C70638100CABA8B /* GroupMemberModel.m in Sources */,
 				4786F96D1C70638100CABA8B /* CommentCell.m in Sources */,
 				4786F9601C70638100CABA8B /* MBProgressHUD.m in Sources */,
+				475D4A611C963605006F3DE7 /* ListCell.m in Sources */,
 				47B283D11C78BEAB00B5FE90 /* PostConfirmVC.m in Sources */,
 				4786F96C1C70638100CABA8B /* UserModel.m in Sources */,
 				4786F9621C70638100CABA8B /* UITextView+Placeholder.m in Sources */,
@@ -1182,6 +1205,7 @@
 				4786F9571C70638100CABA8B /* PostSettingVC.m in Sources */,
 				4786F9691C70638100CABA8B /* MessageModel.m in Sources */,
 				4786F96E1C70638100CABA8B /* PostImageCell.m in Sources */,
+				47DEBD261D0BF18C00A3B42E /* PostMenuVC.m in Sources */,
 				4786F96F1C70638100CABA8B /* PostInfoCell.m in Sources */,
 				4786F9551C70638100CABA8B /* MessageVC.m in Sources */,
 				4786F9611C70638100CABA8B /* Reachability.m in Sources */,

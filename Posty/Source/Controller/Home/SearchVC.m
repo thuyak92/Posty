@@ -164,7 +164,13 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-        [[LibRestKit share] getObjectsAtPath:[self createSearchRequest] forClass:CLASS_POST];
+        [[LibRestKit share] getObjectsAtPath:[self createSearchRequest] forClass:CLASS_POST success:^(id objects) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+            UINavigationController *nav = (UINavigationController *)self.parentViewController;
+            HomeVC *vc = (HomeVC *)nav.parentViewController;
+            vc.listPosts = [NSMutableArray arrayWithArray: objects];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
     }
 }
 
@@ -202,15 +208,6 @@
     NSString *searchUrl = [Lib addQueryStringToUrlString: URL_SEARCH withDictionary:params];
     NSLog(@"search = %@", searchUrl);
     return searchUrl;
-}
-
-- (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
-{
-    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-    UINavigationController *nav = (UINavigationController *)self.parentViewController;
-    HomeVC *vc = (HomeVC *)nav.parentViewController;
-    vc.listPosts = [NSMutableArray arrayWithArray: objects];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -36,10 +36,10 @@
     _txtvCmt.showsVerticalScrollIndicator = NO;
     _txtvCmt.autocorrectionType = UITextAutocorrectionTypeNo;
     _btnSend.enabled = NO;
-    [_txtvCmt.layer setBorderWidth:1];
+//    [_txtvCmt.layer setBorderWidth:1];
     
-    [[LibRestKit share] getObjectsAtPath:[NSString stringWithFormat:URL_GET_COMMENT, _post.postId] forClass:CLASS_COMMENT success:^(id obj) {
-        listComments = [NSMutableArray arrayWithArray:obj];
+    [[LibRestKit share] getObjectsAtPath:[NSString stringWithFormat:URL_GET_COMMENT, _post.postId] forClass:CLASS_COMMENT success:^(id objects) {
+        listComments = [NSMutableArray arrayWithArray:objects];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
@@ -111,9 +111,7 @@
 {
     if (indexPath.section == 0) {
         PostImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostImageCell"];
-        [cell.imvPost sd_setImageWithURL:[NSURL URLWithString:_post.imageUrl]
-        placeholderImage:[UIImage imageNamed:@"selectPhoto.png"]];
-        NSLog(@"width = %f, height = %f", cell.imvPost.frame.size.width, cell.imvPost.frame.size.height);
+        [cell initWithPost:_post];
         return cell;
     } else if (indexPath.section == 1) {
         PostInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostInfoCell"];
@@ -133,7 +131,16 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     } else if (sender == _btnSend) {
 #warning T send message
+        [[LibRestKit share] postObject:nil toPath:[self createActionRequest:ACTION_COMMENT content:self.txtvCmt.text] forClass:CLASS_POST success:^(id objects) {
+            PostModel *p = (PostModel *)objects;
+            [[LibRestKit share] getObjectsAtPath:[NSString stringWithFormat:URL_GET_COMMENT, p.postId] forClass:CLASS_COMMENT success:^(id objects) {
+                listComments = [NSMutableArray arrayWithArray:objects];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:listComments.count-1 inSection:2] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            }];
+        }];
         self.txtvCmt.text = @"";
+        [self accessoryViewDidChange];
         [self.txtvCmt resignFirstResponder];
     } else if (sender == _btnTypeText) {
 //        self.showImageCollectionView.hidden = YES;
@@ -178,30 +185,18 @@
 
 #pragma mark - Comment
 
-- (void)sendChatMessage
+- (NSString *)createActionRequest: (NSInteger)action content:(NSString *)content
 {
-//    if (txtfChat.text && txtfChat.text.length != 0) {
-//        [[SocketLib shareSocketLib] sendChatMessage:txtfChat.text TableID:[Libs getTableID]];
-//        txtfChat.text = @"";
-//    }
-//    [self performSelector:@selector(hideChatView) withObject:nil afterDelay:3];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @(_post.postId), @"id",
+                            @(_post.userId), @"user_id",
+                            @(action), @"action",
+                            content, @"content",
+                            nil];
+    NSString *searchUrl = [Lib addQueryStringToUrlString: URL_ACTION withDictionary:params];
+    NSLog(@"search = %@", searchUrl);
+    return searchUrl;
 }
-
-//- (void)onChatReceived:(SocketLib *)controller message:(NSString *)mess username:(NSString *)name
-//{
-//    [self showChatView];
-//    NSString *curText = txtvChat.text;
-//    curText = [curText stringByAppendingString:@"\n"];
-//    curText = [curText stringByAppendingString:[NSString stringWithFormat:@"%@: %@", name, mess]];
-//    [txtvChat setText:curText];
-//    
-//    NSRange range = NSMakeRange(txtvChat.text.length - 1, 1);
-//    [txtvChat scrollRangeToVisible:range];
-//    if (keyboardSize.height == 0) {
-//        [self performSelector:@selector(hideChatView) withObject:self afterDelay:3];
-//    }
-//    
-//}
 
 #pragma mark - TextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
@@ -254,25 +249,5 @@
 - (void)keyboardWillChangeFrame:(NSNotification *)notification {
     
 }
-
-#pragma mark - keyboard event
-
-//- (void)keyboardWillShow:(NSNotification*)aNotification {
-//    NSDictionary* info = [aNotification userInfo];
-//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.tableView.contentInset.top, 0.0, kbSize.height, 0.0);
-//    self.tableView.contentInset = contentInsets;
-//    self.tableView.scrollIndicatorInsets = contentInsets;
-////    CGRect frame = defaultFrame;
-////    frame.origin.y -= kbSize.height;
-////    [self.view setFrame:frame];
-//}
-//
-//- (void)keyboardWillHide:(NSNotification*)aNotification {
-//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.tableView.contentInset.top, 0.0, 0.0, 0.0);
-//    self.tableView.contentInset = contentInsets;
-//    self.tableView.scrollIndicatorInsets = contentInsets;
-////    [_viewComment setFrame:defaultFrame];
-//}
 
 @end

@@ -12,12 +12,14 @@
 
 @interface PostCell : UICollectionViewCell
 
+@property (strong, nonatomic) PostModel *post;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imvPost;
 @property (weak, nonatomic) IBOutlet UIImageView *imvAvatar;
 @property (weak, nonatomic) IBOutlet UIImageView *imvFriendAva;
-@property (weak, nonatomic) IBOutlet UIImageView *imvView;
+@property (weak, nonatomic) IBOutlet UIButton *btnLike;
+@property (weak, nonatomic) IBOutlet UIButton *btnStar;
 @property (weak, nonatomic) IBOutlet UIImageView *imvComment;
-@property (weak, nonatomic) IBOutlet UIImageView *imvStar;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblTime;
@@ -28,5 +30,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 
 - (void)initWithPost:(PostModel *)post;
+- (IBAction)onButtonClicked:(id)sender;
 
 @end

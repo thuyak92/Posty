@@ -737,6 +737,7 @@
                         <outlet property="btnTakePhoto" destination="f09-P5-NLe" id="ttp-Ds-vEh"/>
                         <outlet property="tableView" destination="nas-TR-LoA" id="tSU-rP-jYg"/>
                         <segue destination="p4W-cq-ham" kind="modal" identifier="SeguePostToPostSetting" id="7VZ-W9-u2h"/>
+                        <segue destination="Qxq-O7-tx9" kind="modal" identifier="seguePostToMenuPost" id="tmW-t8-eST"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgg-VM-7a1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1635,7 +1636,7 @@ MyDearの利用を開始する</string>
                                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="onPrivacyButtonClicked:" destination="zfv-6t-KXC" eventType="touchUpInside" id="dHD-f8-OuG"/>
+                                                        <action selector="onChangeUserButtonClicked:" destination="zfv-6t-KXC" eventType="touchUpInside" id="1Xp-eB-PnG"/>
                                                     </connections>
                                                 </button>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NB9-fL-ipC">
@@ -2205,8 +2206,8 @@ MyDearの利用を開始する</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="ffJ-v6-ymk" userLabel="User">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ffJ-v6-ymk" userLabel="User">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IxQ-mJ-P41">
                                         <rect key="frame" x="14" y="9" width="16" height="22"/>
@@ -2230,8 +2231,8 @@ MyDearの利用を開始する</string>
                                     <constraint firstAttribute="height" constant="44" id="7dx-D2-9IK"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FyH-qt-qFd">
-                                <rect key="frame" x="0.0" y="64" width="320" height="464"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FyH-qt-qFd">
+                                <rect key="frame" x="0.0" y="44" width="320" height="484"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -2239,7 +2240,7 @@ MyDearの利用を開始する</string>
                                         <rect key="frame" x="0.0" y="28" width="320" height="321"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="319" tableViewCell="ATv-Fg-0cP" id="bQO-S0-sCJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="321"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" translatesAutoresizingMaskIntoConstraints="NO" id="pXj-eb-WqQ">
@@ -2266,7 +2267,7 @@ MyDearの利用を開始する</string>
                                         <rect key="frame" x="0.0" y="349" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gmh-ax-Ht4" id="MOy-Vj-eZr">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FT2-LY-uXH" userLabel="Label Time">
@@ -2370,6 +2371,22 @@ MyDearの利用を開始する</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZy-s3-g7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1786" y="0.0"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="f74-aS-2eW">
+            <objects>
+                <navigationController id="Qxq-O7-tx9" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FIs-ne-Rrc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="l3i-H9-4N1" kind="relationship" relationship="rootViewController" id="9TN-UL-2HY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hV5-bY-VWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2252" y="0.0"/>
         </scene>
         <!--Search spot-->
         <scene sceneID="aMS-u8-IMt">
@@ -2549,6 +2566,61 @@ MyDearの利用を開始する</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaV-AJ-Ygo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="883" y="-661"/>
+        </scene>
+        <!--Post Menu-->
+        <scene sceneID="0cp-VA-vLr">
+            <objects>
+                <viewController id="l3i-H9-4N1" userLabel="Post Menu" customClass="PostMenuVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zpA-mH-h1T"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Er-TW-BtS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j5U-gR-d2o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d7J-GO-XQB" userLabel="Collection">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gvY-8b-11l">
+                                    <size key="itemSize" width="160" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="l3i-H9-4N1" id="jK2-7p-v2i"/>
+                                    <outlet property="delegate" destination="l3i-H9-4N1" id="Fol-p7-K51"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="8Er-TW-BtS" firstAttribute="top" secondItem="d7J-GO-XQB" secondAttribute="bottom" id="8X4-Bd-DdA"/>
+                            <constraint firstItem="d7J-GO-XQB" firstAttribute="top" secondItem="zpA-mH-h1T" secondAttribute="bottom" id="Kpd-bh-JqY"/>
+                            <constraint firstItem="d7J-GO-XQB" firstAttribute="leading" secondItem="j5U-gR-d2o" secondAttribute="leading" id="Sue-m6-2sA"/>
+                            <constraint firstAttribute="trailing" secondItem="d7J-GO-XQB" secondAttribute="trailing" id="WD9-1Q-J7f"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="ホーム" image="iconHome.png" id="a3A-kA-7z5"/>
+                    <navigationItem key="navigationItem" id="PgA-pY-dDW">
+                        <barButtonItem key="leftBarButtonItem" image="btnBack.png" id="9OL-7P-Ikf">
+                            <connections>
+                                <action selector="onBackBtnClicked:" destination="l3i-H9-4N1" id="fB1-qe-afO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
+                    <connections>
+                        <outlet property="cvPost" destination="d7J-GO-XQB" id="hzl-Mj-bOC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O6h-yY-dVM" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2707" y="0.0"/>
         </scene>
     </scenes>
     <resources>

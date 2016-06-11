@@ -116,23 +116,6 @@ static LibRestKit *share = nil;
 }
 
 #pragma mark - service
-- (void)getObjectsAtPath:(NSString *)path forClass: (NSString *)className
-{
-    NSLog(@"path = %@, class = %@", path, className);
-    RKObjectManager *manager = [RKObjectManager sharedManager];
-    [manager addResponseDescriptor:[self rkDescResponseForClass:className]];
-    if (![className isEqualToString:CLASS_USER]) {
-        [manager addResponseDescriptor:[self rkDescResponseForClass:className relationshipClass:CLASS_USER fromKey:@"user" toKey:@"user"]];
-    }
-    [manager getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        if ([self.delegate respondsToSelector:@selector(onGetObjectsSuccess:data:)]) {
-            [self.delegate onGetObjectsSuccess:self data:[mappingResult array]];
-        }
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSString *err = [error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
-        [Lib handleError:err forController:self];
-    }];
-}
 
 - (void)getObjectsAtPath:(NSString *)path forClass:(NSString *)className success:(void (^)(id))success
 {
@@ -150,7 +133,7 @@ static LibRestKit *share = nil;
     }];
 }
 
-- (void)postObject:(id)object toPath:(NSString *)path forClass: (NSString *)className
+- (void)postObject:(id)object toPath:(NSString *)path forClass: (NSString *)className success:(void (^)(id))success
 {
     RKObjectManager *manager = [RKObjectManager sharedManager];
     [manager addResponseDescriptor:[self rkDescResponseForClass:className]];
@@ -158,16 +141,14 @@ static LibRestKit *share = nil;
         [manager addResponseDescriptor:[self rkDescResponseForClass:CLASS_POST relationshipClass:CLASS_USER fromKey:@"user" toKey:@"user"]];
     }
     [manager postObject:object path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        if ([self.delegate respondsToSelector:@selector(onPostObjectSuccess:data:)]) {
-            [self.delegate onPostObjectSuccess:self data:[mappingResult firstObject]];
-        }
+        success([mappingResult firstObject]);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSString *err = [error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
         [Lib handleError:err forController:self];
     }];
 }
 
-- (void)postObject:(id)object toPath:(NSString *)path method:(RKRequestMethod)method withData:(NSData *)data fileName:(NSString *)fileName forClass: (NSString *)className
+- (void)postObject:(id)object toPath:(NSString *)path method:(RKRequestMethod)method withData:(NSData *)data fileName:(NSString *)fileName forClass: (NSString *)className success:(void (^)(id))success
 {
     RKObjectManager *manager = [RKObjectManager sharedManager];
     [manager addResponseDescriptor:[self rkDescResponseForClass:className]];
@@ -181,9 +162,7 @@ static LibRestKit *share = nil;
                                 mimeType:@"image/png"];
     }];
     RKObjectRequestOperation *operation = [manager objectRequestOperationWithRequest:request success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        if ([self.delegate respondsToSelector:@selector(onPostObjectSuccess:data:)]) {
-            [self.delegate onPostObjectSuccess:self data:[mappingResult firstObject]];
-        }
+        success([mappingResult firstObject]);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSString *err = [error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
         [Lib handleError:err forController:self];

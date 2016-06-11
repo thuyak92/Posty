@@ -20,8 +20,9 @@
     UIView *view;
     CGFloat height;
     NSDate *date;
-    UserModel *user;
+    BOOL isSavePost;
 }
+@property (nonatomic, strong) UserModel *targetUser;
 @property (nonatomic, strong) NSData *imageData;
 
 @property (weak, nonatomic) IBOutlet UIImageView *image;
@@ -37,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnChangeUser;
 @property (weak, nonatomic) IBOutlet UIButton *btnLimitPost;
 - (IBAction)onPrivacyButtonClicked:(id)sender;
+- (IBAction)onChangeUserButtonClicked:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnCurLoc;
 @property (weak, nonatomic) IBOutlet UIButton *btnOtherLoc;

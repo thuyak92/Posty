@@ -21,10 +21,6 @@
 - (void)onLoginSuccess: (LibRestKit *)controller;
 - (void)onRegisterSuccess: (LibRestKit *)controller;
 
-//Service
-- (void)onGetObjectsSuccess: (LibRestKit *)controller data: (NSArray *)objects;
-- (void)onPostObjectSuccess: (LibRestKit *)controller data: (id)object;
-
 @required
 
 @end
@@ -52,10 +48,9 @@
 - (RKObjectRequestOperation *)rkObjRequestUrl: (NSString *)url forClass: (NSString *)className;
 
 #pragma mark - service
-- (void)getObjectsAtPath: (NSString *)path forClass: (NSString *)className;
-- (void)getObjectsAtPath: (NSString *)path forClass: (NSString *)className success:(void (^)(id obj))success;
-- (void)postObject: (id)object toPath: (NSString *)path forClass: (NSString *)className;
-- (void)postObject: (id)object toPath: (NSString *)path method: (RKRequestMethod)method withData: (NSData *)data fileName: (NSString *)fileName forClass: (NSString *)className;
+- (void)getObjectsAtPath: (NSString *)path forClass: (NSString *)className success:(void (^)(id objects))success;
+- (void)postObject: (id)object toPath: (NSString *)path forClass: (NSString *)className success:(void (^)(id objects))success;
+- (void)postObject: (id)object toPath: (NSString *)path method: (RKRequestMethod)method withData: (NSData *)data fileName: (NSString *)fileName forClass: (NSString *)className success:(void (^)(id objects))success;
 
 #pragma mark - login
 - (void)login:(UserModel *)object success:(void (^)(UserModel *user))success;

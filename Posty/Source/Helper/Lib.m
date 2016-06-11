@@ -32,6 +32,7 @@
 + (SearchModel *)setSearchDefault
 {
     SearchModel *search = [[SearchModel alloc] init];
+    search.status = -1;
     search.keyword = @"";
     search.name = @"";
     search.distance = 10;
@@ -315,6 +316,7 @@
         dict = @{
                  @"id"              : @"postId",
                  @"user_id"         : @"userId",
+                 @"status"          : @"status",
                  @"content"         : @"textContent",
                  @"image"           : @"imageUrl",
                  @"thumbnail"       : @"thumbnailUrl",
@@ -324,6 +326,8 @@
                  @"liked_count"     : @"likeNum",
                  @"commented_count" : @"commentNum",
                  @"favorited_count" : @"starNum",
+                 @"liked"           : @"isLiked",
+                 @"favorited"       : @"idFavorited",
                  @"deliver_time"    : @"deliverTime",
                  @"privacy_setup"   : @"privacySetup",
                  @"category_id"     : @"categoryId"
@@ -361,6 +365,7 @@
                  @"id"              : @"commentId",
                  @"post_id"         : @"postId",
                  @"user_id"         : @"userId",
+                 @"action"          : @"actionType",
                  @"content"         : @"comment",
                  @"updated_at"      : @"time"
                  };

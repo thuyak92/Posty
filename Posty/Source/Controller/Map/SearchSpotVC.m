@@ -118,7 +118,13 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-        [[LibRestKit share] getObjectsAtPath:[self createSearchRequest] forClass:CLASS_POST];
+        [[LibRestKit share] getObjectsAtPath:[self createSearchRequest] forClass:CLASS_POST success:^(id objects) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+            UINavigationController *nav = (UINavigationController *)self.parentViewController;
+            MapVC *vc = (MapVC *)nav.parentViewController;
+            vc.listPosts = [NSMutableArray arrayWithArray: objects];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
     }
 }
 
@@ -163,17 +169,6 @@
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     return YES;
-}
-
-#pragma mark - RestKit
-
-- (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
-{
-    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-    UINavigationController *nav = (UINavigationController *)self.parentViewController;
-    MapVC *vc = (MapVC *)nav.parentViewController;
-    vc.listPosts = [NSMutableArray arrayWithArray: objects];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

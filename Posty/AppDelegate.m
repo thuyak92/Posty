@@ -13,6 +13,7 @@
 #import <TwitterKit/TwitterKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "LoginTVC.h"
+#import "SearchModel.h"
 
 @import GoogleMaps;
 
@@ -74,6 +75,11 @@
 
 - (void)switchToTabWithIndex:(NSInteger)index
 {
+    if (index == TAB_HOME || index == TAB_MAP) {
+        SearchModel *search = [Lib loadDataWithKey:KEY_SEARCH];
+        search.status = -1;
+        [Lib saveData:search forKey:KEY_SEARCH];
+    }
     UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
     [tabController setSelectedIndex:index];
     //reload data with flag

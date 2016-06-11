@@ -19,6 +19,9 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YZ7-fZ-ewy">
                         <rect key="frame" x="0.0" y="70" width="30" height="30"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jun-JN-NEm">
+                        <rect key="frame" x="0.0" y="70" width="100" height="30"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqi-8a-906">
                         <rect key="frame" x="30" y="70" width="70" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -36,4 +39,7 @@
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="shadow.png" width="1080" height="192"/>
+    </resources>
 </document>

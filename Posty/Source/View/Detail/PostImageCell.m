@@ -7,6 +7,8 @@
 //
 
 #import "PostImageCell.h"
+#import "PostModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation PostImageCell
 
@@ -18,6 +20,12 @@
 //    [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)initWithPost:(PostModel *)post
+{
+    [_imvPost sd_setImageWithURL:[NSURL URLWithString:post.imageUrl]
+                    placeholderImage:[UIImage imageNamed:@"selectPhoto.png"]];
 }
 
 @end

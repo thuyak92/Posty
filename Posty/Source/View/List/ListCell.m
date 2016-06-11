@@ -7,6 +7,9 @@
 //
 
 #import "ListCell.h"
+#import "UserModel.h"
+#import "Lib.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation ListCell
 
@@ -27,5 +30,13 @@
     return [[[NSBundle mainBundle] loadNibNamed:@"ListCell" owner:self options:nil] objectAtIndex:0];
 }
 
+- (void)initWithUser:(UserModel *)user
+{
+    _title.text = user.nickname;
+//    _lblTime.text = [Lib stringFromDate:firstMess.time formatter:DATE_FORMAT];
+//    _subTitle.text = firstMess.message;
+    [_imv sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]
+                placeholderImage:[UIImage imageNamed:@"iconAvaDefault.png"]];
+}
 
 @end

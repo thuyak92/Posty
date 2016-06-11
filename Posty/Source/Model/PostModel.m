@@ -16,6 +16,7 @@
 {
     [aCoder encodeInteger:self.postId forKey:@"postId"];
     [aCoder encodeInteger:self.userId forKey:@"userId"];
+    [aCoder encodeInteger:self.status forKey:@"status"];
     [aCoder encodeObject:self.user forKey:@"user"];
     [aCoder encodeObject:self.textContent forKey:@"textContent"];
     [aCoder encodeObject:self.imageUrl forKey:@"imageUrl"];
@@ -26,6 +27,8 @@
     [aCoder encodeInteger:self.likeNum forKey:@"likeNum"];
     [aCoder encodeInteger:self.commentNum forKey:@"commentNum"];
     [aCoder encodeInteger:self.starNum forKey:@"starNum"];
+    [aCoder encodeInteger:self.isLiked forKey:@"isLiked"];
+    [aCoder encodeInteger:self.isFavorited forKey:@"isFavorited"];
     [aCoder encodeObject:self.deliverTime forKey:@"deliverTime"];
     [aCoder encodeInteger:self.privacySetup forKey:@"privacySetup"];
     [aCoder encodeInteger:self.categoryId forKey:@"categoryId"];
@@ -36,6 +39,7 @@
     if (self = [super init]) {
         self.postId = [aDecoder decodeIntegerForKey:@"postId"];
         self.userId = [aDecoder decodeIntegerForKey:@"userId"];
+        self.status = [aDecoder decodeIntegerForKey:@"status"];
         self.user = [aDecoder decodeObjectForKey:@"user"];
         self.textContent = [aDecoder decodeObjectForKey:@"textContent"];
         self.imageUrl = [aDecoder decodeObjectForKey:@"imageUrl"];
@@ -46,6 +50,8 @@
         self.likeNum = [aDecoder decodeIntegerForKey:@"likeNum"];
         self.commentNum = [aDecoder decodeIntegerForKey:@"commentNum"];
         self.starNum = [aDecoder decodeIntegerForKey:@"starNum"];
+        self.isLiked = [aDecoder decodeIntegerForKey:@"isLiked"];
+        self.isFavorited = [aDecoder decodeIntegerForKey:@"isFavorited"];
         self.deliverTime = [aDecoder decodeObjectForKey:@"deliverTime"];
         self.privacySetup = [aDecoder decodeIntegerForKey:@"privacySetup"];
         self.categoryId = [aDecoder decodeIntegerForKey:@"categoryId"];

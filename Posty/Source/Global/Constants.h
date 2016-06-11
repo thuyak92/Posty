@@ -26,6 +26,7 @@
 #define SEGUE_INFO_TO_LOGIN             @"SegueInfoToLogin"
 #define SEGUE_LOGIN_TO_USER_INFO        @"segueLoginToUserInfo"
 #define SEGUE_POST_SETTING_TO_CONFIRM   @"seguePostSettingToConfrim"
+#define SEGUE_POST_TO_MENU_POST         @"seguePostToMenuPost"
 
 //Storyboard Identifier
 #define STORY_BOARD_LOGIN               @"storyboardLogin"
@@ -51,14 +52,29 @@
 #define URL_REGISTER    @"api/v1/register"
 #define URL_UPDATE_USER @"api/v1/users/%ld"
 #define URL_GET_COMMENT @"api/v1/posts/%ld/comments"
+#define URL_ACTION      @"api/v1/posts/post_action"
 
 //Dictionary key
-#define KEY_STATUS          @"status"
 #define KEY_DATA            @"data"
 #define KEY_SEARCH          @"search"
 #define KEY_CURRENT_USER    @"currentUser"
 #define KEY_DISTANCE        @"distance"
 #define KEY_LOGIN_AS_GUEST  @"loginAsGuest"
+
+//Post menu
+#define MENU_RECEIVED   0
+#define MENU_DELAY      1
+#define MENU_SAVE       2
+#define MENU_SEND       3
+#define MENU_TRASH      4
+#define MENU_TITLE      @[@"受信ポスト", @"送信予定ポスト(日時設定あり)", @"下書きポスト", @"送信済みポスト", @"ゴミ箱"]
+
+//Action Type
+#define ACTION_LIKE         1
+#define ACTION_DISLIKE      2
+#define ACTION_FAVORITE     3
+#define ACTION_UNFAVORITE   4
+#define ACTION_COMMENT      5
 
 //Response status
 #define KEY_RESPONSE_STATUS_OK  1

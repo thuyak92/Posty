@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PostModel;
+@class UserModel;
 
 @interface PostMapCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imvPost;
 @property (weak, nonatomic) IBOutlet UIImageView *imvAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 
-+ (PostMapCell *)createView;
+- (void)initWithPost:(PostModel *)post;
 
 @end

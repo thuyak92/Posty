@@ -31,7 +31,12 @@
         [app showLogin];
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    [[LibRestKit share] getObjectsAtPath:URL_POST forClass:CLASS_POST];
+    [[LibRestKit share] getObjectsAtPath:URL_POST forClass:CLASS_POST success:^(id objects) {
+        _listPosts = [[NSMutableArray alloc] initWithArray:objects];
+        [_cvPost reloadData];
+        [self configGmap];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -134,29 +139,13 @@
 {
     PostMapCell *cell = (PostMapCell*)[_cvPost dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     PostModel *post = _listPosts[indexPath.row];
-    [cell.imvAvatar.layer setMasksToBounds:YES];
-    [cell.imvAvatar.layer setCornerRadius:15];
-    [cell.imvPost sd_setImageWithURL:[NSURL URLWithString:post.imageUrl]
-                    placeholderImage:[UIImage imageNamed:@"selectPhoto.png"]];
-    
-    [cell.imvAvatar sd_setImageWithURL:[NSURL URLWithString:post.user.avatarUrl]
-                      placeholderImage:[UIImage imageNamed:@"iconAvaDefault.png"]];
-    [cell.lblName setText:post.user.nickname];
+    [cell initWithPost:post];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:SEGUE_MAP_TO_DETAIL sender:_listPosts[indexPath.row]];
-}
-
-#pragma mark - RestKit Delegate
-- (void)onGetObjectsSuccess:(LibRestKit *)controller data:(NSArray *)objects
-{
-    _listPosts = [[NSMutableArray alloc] initWithArray:objects];
-    [_cvPost reloadData];
-    [self configGmap];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
 }
 
 @end

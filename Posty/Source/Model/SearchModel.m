@@ -12,7 +12,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeInteger:self.parentTab forKey:@"parentTab"];
+    [aCoder encodeInteger:self.status forKey:@"status"];
     [aCoder encodeInteger:self.privacySetup forKey:@"privacySetup"];
     [aCoder encodeInteger:self.spot forKey:@"spot"];
     [aCoder encodeFloat:self.distance forKey:@"distance"];
@@ -28,7 +28,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super init]) {
-        self.parentTab = [aDecoder decodeIntegerForKey:@"parentTab"];
+        self.status = [aDecoder decodeIntegerForKey:@"status"];
         self.privacySetup = [aDecoder decodeIntegerForKey:@"privacySetup"];
         self.spot = [aDecoder decodeIntegerForKey:@"spot"];
         self.distance = [aDecoder decodeFloatForKey:@"distance"];

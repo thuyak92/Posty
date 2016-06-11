@@ -11,6 +11,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AppDelegate.h"
 #import "PostConfirmVC.h"
+#import "ListPopup.h"
 
 @interface PostSettingVC ()
 
@@ -57,17 +58,23 @@
 {
     location = [[LibLocation shareLocation] locationName];
     [_txtfLocation setText:location];
+    if (!location) {
+        [self performSelector:@selector(setLocation) withObject:nil afterDelay:2];
+    }
 }
 
 - (void)setDefaultPost
 {
-    user = [Lib currentUser];
+    if (!_targetUser) {
+        _targetUser = [Lib currentUser];
+    }
     [_btnAllOfUsers setSelected:YES];
-    [_imvAvatar sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]
+    [_btnChangeUser setEnabled:NO];
+    [_imvAvatar sd_setImageWithURL:[NSURL URLWithString:_targetUser.avatarUrl]
                   placeholderImage:[UIImage imageNamed:@"iconAvaDefault.png"]];
     [_imvAvatar.layer setMasksToBounds:YES];
     [_imvAvatar.layer setCornerRadius:10];
-    [_lblName setText:user.nickname];
+    [_lblName setText:_targetUser.nickname];
     [_btnCurLoc setSelected:YES];
     [_txtfLocation setBackground:[UIImage imageNamed:@""]];
     [_btnSetDateNone setSelected:YES];
@@ -93,19 +100,23 @@
     [_btnLimitPost setSelected:NO];
     [_lblName setHidden:YES];
     [_imvAvatar setHidden:YES];
+    [_btnChangeUser setEnabled:NO];
     if (sender == _btnAllOfUsers) {
         [_btnAllOfUsers setSelected:YES];
     } else if (sender == _btnSelectFromPost) {
         [_btnSelectFromPost setSelected:YES];
-#warning show postmo list
         [_lblName setHidden:NO];
         [_imvAvatar setHidden:NO];
+        [_btnChangeUser setEnabled:YES];
     } else if (sender == _btnLimitPost) {
         [_btnLimitPost setSelected:YES];
-    } else if (sender == _btnChangeUser) {
-#warning show postmo list
     }
     userType = ((UIButton *)sender).tag;
+}
+
+- (IBAction)onChangeUserButtonClicked:(id)sender {
+    ListPopup *vc = [[ListPopup alloc] initWithNibName:@"ListPopup" bundle:nil];
+    [self.view addSubview:vc.view];
 }
 
 - (IBAction)onChangePostButtonClicked:(id)sender {
@@ -125,6 +136,7 @@
         [self setLocation];
     } else if (sender == _btnOtherLoc) {
         [_btnOtherLoc setSelected:YES];
+        [_txtfLocation setText:[[LibLocation shareLocation] locationName]];
         [_txtfLocation setUserInteractionEnabled:YES];
         [_txtfLocation setBackground:[UIImage imageNamed:@"btnGreyBorderSqr.png"]];
     } else if (sender == _btnNotPublic) {
@@ -257,7 +269,10 @@
     } else if (sender == _btnPost) {
         [self performSegueWithIdentifier:SEGUE_POST_SETTING_TO_CONFIRM sender:[self getPostData]];
     } else {
-#warning save settings
+        isSavePost = TRUE;
+        [[LibRestKit share] postObject:[self getPostData] toPath:URL_POST method:RKRequestMethodPOST withData:_imageData fileName:@"image_file" forClass:CLASS_POST success:^(id objects) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
     }
 }
 
@@ -266,8 +281,11 @@
 - (PostModel *)getPostData
 {
     PostModel *post = [[PostModel alloc] init];
-    post.user = user;
+    post.user = [Lib currentUser];
     post.userId = post.user.userId;
+    if (isSavePost) {
+        post.status = MENU_SAVE;
+    }
     post.textContent = _txtvStatus.text;
     post.longitude = [[LibLocation shareLocation] longitude];
     post.latitude = [[LibLocation shareLocation] latitude];

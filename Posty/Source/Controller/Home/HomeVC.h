@@ -19,7 +19,7 @@
     SearchModel *search;
 }
 
-@property (nonatomic, assign) BOOL reloadData;
+@property (nonatomic, assign) NSInteger status;
 @property (nonatomic, strong) NSMutableArray *listPosts;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchPost;

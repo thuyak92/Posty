@@ -73,17 +73,13 @@
 - (void)postData
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    [[LibRestKit share] postObject:_post toPath:URL_POST method:RKRequestMethodPOST withData:_post.image fileName:@"image_file" forClass:CLASS_POST];
+    [[LibRestKit share] postObject:_post toPath:URL_POST method:RKRequestMethodPOST withData:_post.image fileName:@"image_file" forClass:CLASS_POST success:^(id objects) {
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        [app switchToTabWithIndex:TAB_HOME];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
-
-- (void)onPostObjectSuccess:(LibRestKit *)controller data:(id)object
-{
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    [app switchToTabWithIndex:TAB_HOME];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 
 - (IBAction)onButtonClicked:(id)sender {
     if (sender == _btnBack) {

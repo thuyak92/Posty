@@ -10,7 +10,7 @@
 
 @interface SearchModel : NSObject
 
-@property (assign, nonatomic) NSInteger parentTab;
+@property (assign, nonatomic) NSInteger status;
 @property (assign, nonatomic) NSInteger privacySetup;
 @property (strong, nonatomic) NSMutableArray *category;
 @property (assign, nonatomic) NSInteger spot;

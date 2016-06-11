@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class UserModel;
 
 @interface ListCell : UITableViewCell
 
 + (ListCell *)createView;
+- (void)initWithUser:(UserModel *)user;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imv;
 @property (weak, nonatomic) IBOutlet UILabel *title;
