@@ -48,12 +48,12 @@
     } else {
         [_lblName setTextColor:[Lib colorFromHexString:COLOR_DEFAULT]];
     }
-    if (_post.isLiked == 1) {
+    if ([[_post.flag objectForKey:KEY_LIKED] boolValue]) {
         [_btnLike setSelected:YES];
     } else {
         [_btnLike setSelected:NO];
     }
-    if (_post.isFavorited == 1) {
+    if ([[_post.flag objectForKey:KEY_FAVORITED] boolValue]) {
         [_btnStar setSelected:YES];
     } else {
         [_btnStar setSelected:NO];
@@ -75,22 +75,23 @@
             action = ACTION_FAVORITE;
         }
     }
-    [[LibRestKit share] postObject:nil toPath:[self createActionRequest:action] forClass:CLASS_POST success:^(id objects) {
+    [[LibRestKit share] postObject:nil toPath:URL_ACTION params: [self createActionRequest:action] forClass:CLASS_POST success:^(id objects) {
         _post = (PostModel *)objects;
         [self refreshAction];
     }];
 }
 
-- (NSString *)createActionRequest: (NSInteger)action
+- (NSDictionary *)createActionRequest: (NSInteger)action
 {
+    UserModel *userInfo = [Lib currentUser];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             @(_post.postId), @"id",
-                            @(_post.userId), @"user_id",
+                            @(userInfo.userId), @"user_id",
                             @(action), @"action",
                             nil];
-    NSString *searchUrl = [Lib addQueryStringToUrlString: URL_ACTION withDictionary:params];
-    NSLog(@"search = %@", searchUrl);
-    return searchUrl;
+//    NSString *searchUrl = [Lib addQueryStringToUrlString: URL_ACTION withDictionary:params];
+//    NSLog(@"search = %@", searchUrl);
+    return params;
 }
 
 

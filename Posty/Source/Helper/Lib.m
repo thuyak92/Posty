@@ -330,7 +330,8 @@
                  @"favorited"       : @"idFavorited",
                  @"deliver_time"    : @"deliverTime",
                  @"privacy_setup"   : @"privacySetup",
-                 @"category_id"     : @"categoryId"
+                 @"category_id"     : @"categoryId",
+                 @"methods_json"    : @"flag"
                  };
         if (request) {
             NSArray *keys = [dict allKeys];

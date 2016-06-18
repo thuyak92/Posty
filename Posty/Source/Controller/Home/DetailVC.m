@@ -131,13 +131,18 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     } else if (sender == _btnSend) {
 #warning T send message
-        [[LibRestKit share] postObject:nil toPath:[self createActionRequest:ACTION_COMMENT content:self.txtvCmt.text] forClass:CLASS_POST success:^(id objects) {
-            PostModel *p = (PostModel *)objects;
-            [[LibRestKit share] getObjectsAtPath:[NSString stringWithFormat:URL_GET_COMMENT, p.postId] forClass:CLASS_COMMENT success:^(id objects) {
-                listComments = [NSMutableArray arrayWithArray:objects];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
-                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:listComments.count-1 inSection:2] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-            }];
+        [[LibRestKit share] postObject:nil toPath:URL_ACTION params:[self createActionRequest:ACTION_COMMENT content:_txtvCmt.text] forClass:CLASS_COMMENT success:^(id objects) {
+            [listComments addObject:(CommentModel *)objects];
+//            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:listComments.count-1 inSection:2]] withRowAnimation:UITableViewRowAnimationNone];
+//            listComments = [NSMutableArray arrayWithArray:objects];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:listComments.count-1 inSection:2] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//            PostModel *p = (PostModel *)objects;
+//            [[LibRestKit share] getObjectsAtPath:[NSString stringWithFormat:URL_GET_COMMENT, p.postId] forClass:CLASS_COMMENT success:^(id objects) {
+//                listComments = [NSMutableArray arrayWithArray:objects];
+//                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+//                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:listComments.count-1 inSection:2] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//            }];
         }];
         self.txtvCmt.text = @"";
         [self accessoryViewDidChange];
@@ -185,17 +190,28 @@
 
 #pragma mark - Comment
 
-- (NSString *)createActionRequest: (NSInteger)action content:(NSString *)content
+- (NSDictionary *)createActionRequest: (NSInteger)action content:(NSString *)content
 {
+    UserModel *userInfo = [Lib currentUser];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             @(_post.postId), @"id",
-                            @(_post.userId), @"user_id",
+                            @(userInfo.userId), @"user_id",
                             @(action), @"action",
                             content, @"content",
                             nil];
-    NSString *searchUrl = [Lib addQueryStringToUrlString: URL_ACTION withDictionary:params];
-    NSLog(@"search = %@", searchUrl);
-    return searchUrl;
+//    NSString *searchUrl = [Lib addQueryStringToUrlString: URL_ACTION withDictionary:params];
+//    NSLog(@"search = %@", searchUrl);
+    return params;
+}
+
+- (CommentModel *)aaa: (NSInteger)action content:(NSString*)content
+{
+    CommentModel *cmt = [[CommentModel alloc] init];
+    cmt.postId = _post.postId;
+    cmt.userId = _post.userId;
+    cmt.actionType = action;
+    cmt.comment = content;
+    return cmt;
 }
 
 #pragma mark - TextViewDelegate

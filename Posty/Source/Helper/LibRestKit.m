@@ -124,6 +124,7 @@ static LibRestKit *share = nil;
     [manager addResponseDescriptor:[self rkDescResponseForClass:className]];
     if (![className isEqualToString:CLASS_USER]) {
         [manager addResponseDescriptor:[self rkDescResponseForClass:className relationshipClass:CLASS_USER fromKey:@"user" toKey:@"user"]];
+//        [manager addResponseDescriptor:[self rkDescResponseForClass:className relationshipClass:CLASS_FLAG fromKey:@"methods_json" toKey:@"flag"]];
     }
     [manager getObjectsAtPath:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success([mappingResult array]);
@@ -133,14 +134,14 @@ static LibRestKit *share = nil;
     }];
 }
 
-- (void)postObject:(id)object toPath:(NSString *)path forClass: (NSString *)className success:(void (^)(id))success
+- (void)postObject:(id)object toPath:(NSString *)path params:(NSDictionary *)params forClass: (NSString *)className success:(void (^)(id))success
 {
     RKObjectManager *manager = [RKObjectManager sharedManager];
     [manager addResponseDescriptor:[self rkDescResponseForClass:className]];
     if ([className isEqualToString:CLASS_POST]) {
         [manager addResponseDescriptor:[self rkDescResponseForClass:CLASS_POST relationshipClass:CLASS_USER fromKey:@"user" toKey:@"user"]];
     }
-    [manager postObject:object path:path parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [manager postObject:object path:path parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         success([mappingResult firstObject]);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSString *err = [error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];

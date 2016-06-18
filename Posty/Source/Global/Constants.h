@@ -60,6 +60,8 @@
 #define KEY_CURRENT_USER    @"currentUser"
 #define KEY_DISTANCE        @"distance"
 #define KEY_LOGIN_AS_GUEST  @"loginAsGuest"
+#define KEY_LIKED           @"liked"
+#define KEY_FAVORITED       @"favorited"
 
 //Post menu
 #define MENU_RECEIVED   0

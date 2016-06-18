@@ -27,8 +27,7 @@
     [aCoder encodeInteger:self.likeNum forKey:@"likeNum"];
     [aCoder encodeInteger:self.commentNum forKey:@"commentNum"];
     [aCoder encodeInteger:self.starNum forKey:@"starNum"];
-    [aCoder encodeInteger:self.isLiked forKey:@"isLiked"];
-    [aCoder encodeInteger:self.isFavorited forKey:@"isFavorited"];
+    [aCoder encodeObject:self.flag forKey:@"flag"];
     [aCoder encodeObject:self.deliverTime forKey:@"deliverTime"];
     [aCoder encodeInteger:self.privacySetup forKey:@"privacySetup"];
     [aCoder encodeInteger:self.categoryId forKey:@"categoryId"];
@@ -50,8 +49,7 @@
         self.likeNum = [aDecoder decodeIntegerForKey:@"likeNum"];
         self.commentNum = [aDecoder decodeIntegerForKey:@"commentNum"];
         self.starNum = [aDecoder decodeIntegerForKey:@"starNum"];
-        self.isLiked = [aDecoder decodeIntegerForKey:@"isLiked"];
-        self.isFavorited = [aDecoder decodeIntegerForKey:@"isFavorited"];
+        self.flag = [aDecoder decodeObjectForKey:@"flag"];
         self.deliverTime = [aDecoder decodeObjectForKey:@"deliverTime"];
         self.privacySetup = [aDecoder decodeIntegerForKey:@"privacySetup"];
         self.categoryId = [aDecoder decodeIntegerForKey:@"categoryId"];

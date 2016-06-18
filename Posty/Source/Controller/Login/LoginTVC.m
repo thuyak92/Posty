@@ -60,7 +60,11 @@
     [_btnLoginTwt setLogInCompletion:^(TWTRSession *session, NSError *error) {
         if (session) {
             [[Twitter sharedInstance].APIClient loadUserWithID:session.userID completion:^(TWTRUser * _Nullable user, NSError * _Nullable error) {
-                UserModel *userInfo = [[UserModel alloc] init];
+                UserModel *userInfo = [Lib currentUser];
+                if (userInfo != nil) {
+                    [Lib logout];
+                }
+                userInfo = [[UserModel alloc] init];
                 userInfo.twiterId = user.userID;
                 userInfo.nickname = user.name;
                 userInfo.avatarUrl = user.profileImageURL;
@@ -92,7 +96,11 @@
         FBSDKAccessToken *token = result.token;
         [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{ @"fields" : @"id,name,picture.width(100).height(100)"}]startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
             if (!error) {
-                UserModel *user = [[UserModel alloc] init];
+                UserModel *user = [Lib currentUser];
+                if (user != nil) {
+                    [Lib logout];
+                }
+                user =  [[UserModel alloc] init];
                 user.facebookId = token.userID;
                 user.nickname = [result valueForKey:@"name"];
                 user.avatarUrl = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
@@ -114,7 +122,11 @@
 
 - (UserModel *)getInfo
 {
-    UserModel *user = [[UserModel alloc] init];
+    UserModel *user = [Lib currentUser];
+    if (user != nil) {
+        [Lib logout];
+    }
+    user =  [[UserModel alloc] init];
     user.email = _txtfUsername.text;
     user.password = _txtfPassword.text;
     return user;

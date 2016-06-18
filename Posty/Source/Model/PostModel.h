@@ -31,10 +31,9 @@
 @property (nonatomic, assign) NSInteger likeNum;
 @property (nonatomic, assign) NSInteger commentNum;
 @property (nonatomic, assign) NSInteger starNum;
-@property (nonatomic, assign) NSInteger isLiked;
-@property (nonatomic, assign) NSInteger isFavorited;
 @property (nonatomic, strong) NSDate *deliverTime;
 @property (nonatomic, assign) NSInteger privacySetup;
 @property (nonatomic, assign) NSInteger categoryId;
+@property (nonatomic, strong) NSDictionary *flag;
 
 @end

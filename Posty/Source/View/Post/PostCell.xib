@@ -65,7 +65,7 @@
                             <action selector="onButtonClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="auH-Te-wQL"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="iconComment.png" highlightedImage="iconCommentRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kwe-OZ-Xa4">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="iconComment.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kwe-OZ-Xa4">
                         <rect key="frame" x="82" y="181" width="18" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="i6D-Po-3kf"/>
@@ -185,7 +185,6 @@
         <image name="btnLocationGrey.png" width="20" height="20"/>
         <image name="iconAvaDefault.png" width="30" height="30"/>
         <image name="iconComment.png" width="41" height="41"/>
-        <image name="iconCommentRed.png" width="41" height="40"/>
         <image name="iconStar.png" width="43" height="43"/>
         <image name="iconStarRed.png" width="43" height="40"/>
         <image name="iconView.png" width="41" height="41"/>

@@ -86,13 +86,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" image="iconView.png" highlightedImage="iconViewRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="csb-qd-gSL">
-                                                    <rect key="frame" x="10" y="10" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="ldX-0E-KZV"/>
-                                                        <constraint firstAttribute="width" constant="20" id="xTC-TX-7A8"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0T-pB-R3X" userLabel="Label View">
                                                     <rect key="frame" x="35" y="10" width="30" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -112,13 +105,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" image="iconStar.png" highlightedImage="iconStarRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="SNX-Kk-oIo">
-                                                    <rect key="frame" x="130" y="10" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="hOH-ih-fEb"/>
-                                                        <constraint firstAttribute="height" constant="20" id="q2o-5d-iOr"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edq-vc-jlc" userLabel="Label Star">
                                                     <rect key="frame" x="155" y="10" width="30" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -138,33 +124,57 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                                 </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJf-A2-Of4">
+                                                    <rect key="frame" x="10" y="10" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="3KV-px-05V"/>
+                                                        <constraint firstAttribute="width" constant="20" id="Bee-Nd-hyM"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" backgroundImage="iconView.png"/>
+                                                    <state key="selected" backgroundImage="iconViewRed.png"/>
+                                                    <connections>
+                                                        <action selector="onButtonClicked:" destination="aZY-vv-NR2" eventType="touchUpInside" id="1Rk-tS-yFb"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9te-4g-2Ul">
+                                                    <rect key="frame" x="130" y="10" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="FNH-eV-e1q"/>
+                                                        <constraint firstAttribute="width" constant="20" id="nKI-6h-j65"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" backgroundImage="iconStar.png"/>
+                                                    <state key="selected" backgroundImage="iconStarRed.png"/>
+                                                    <connections>
+                                                        <action selector="onButtonClicked:" destination="aZY-vv-NR2" eventType="touchUpInside" id="kcX-jU-a1o"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="F1w-yJ-DQa" firstAttribute="leading" secondItem="I90-NC-Yfz" secondAttribute="leading" constant="22" id="94s-aT-hoX"/>
-                                                <constraint firstItem="w0T-pB-R3X" firstAttribute="leading" secondItem="csb-qd-gSL" secondAttribute="trailing" constant="2" id="Css-F8-PcF"/>
+                                                <constraint firstItem="9te-4g-2Ul" firstAttribute="leading" secondItem="NaH-aE-n9B" secondAttribute="trailing" constant="2" id="Cn5-O1-YPC"/>
                                                 <constraint firstItem="NaH-aE-n9B" firstAttribute="top" secondItem="I90-NC-Yfz" secondAttribute="top" constant="10" id="EUi-9b-nyI"/>
-                                                <constraint firstItem="csb-qd-gSL" firstAttribute="leading" secondItem="I90-NC-Yfz" secondAttribute="leading" constant="5" id="IQe-nQ-c0e"/>
+                                                <constraint firstItem="w0T-pB-R3X" firstAttribute="leading" secondItem="fJf-A2-Of4" secondAttribute="trailing" constant="2" id="Ejy-Wa-fi1"/>
+                                                <constraint firstItem="edq-vc-jlc" firstAttribute="leading" secondItem="9te-4g-2Ul" secondAttribute="trailing" constant="2" id="KDY-Qh-D8z"/>
                                                 <constraint firstItem="NaH-aE-n9B" firstAttribute="leading" secondItem="OMh-fV-Fv2" secondAttribute="trailing" constant="2" id="MHF-Qc-P0S"/>
                                                 <constraint firstItem="OMh-fV-Fv2" firstAttribute="top" secondItem="I90-NC-Yfz" secondAttribute="top" constant="10" id="Mzr-vO-Pnn"/>
                                                 <constraint firstItem="OMh-fV-Fv2" firstAttribute="leading" secondItem="w0T-pB-R3X" secondAttribute="trailing" constant="2" id="OKi-VR-8Vo"/>
-                                                <constraint firstItem="csb-qd-gSL" firstAttribute="top" secondItem="I90-NC-Yfz" secondAttribute="top" constant="10" id="RI6-Ue-tkU"/>
                                                 <constraint firstAttribute="bottom" secondItem="F1w-yJ-DQa" secondAttribute="bottom" priority="999" constant="10" id="RUa-Ob-lcI"/>
                                                 <constraint firstItem="F1w-yJ-DQa" firstAttribute="top" secondItem="zSt-tk-D3c" secondAttribute="bottom" constant="10" id="TVa-ES-2w8"/>
                                                 <constraint firstItem="zSt-tk-D3c" firstAttribute="top" secondItem="I90-NC-Yfz" secondAttribute="top" constant="10" id="VC3-WH-I9c"/>
                                                 <constraint firstItem="w0T-pB-R3X" firstAttribute="top" secondItem="I90-NC-Yfz" secondAttribute="top" constant="10" id="Waa-Dh-xL0"/>
-                                                <constraint firstItem="SNX-Kk-oIo" firstAttribute="leading" secondItem="NaH-aE-n9B" secondAttribute="trailing" constant="2" id="Wzm-Uj-lbs"/>
                                                 <constraint firstItem="edq-vc-jlc" firstAttribute="top" secondItem="I90-NC-Yfz" secondAttribute="top" constant="10" id="YHt-Uf-Flj"/>
                                                 <constraint firstAttribute="trailing" secondItem="F1w-yJ-DQa" secondAttribute="trailing" constant="8" id="ZSY-Dt-eSF"/>
+                                                <constraint firstItem="fJf-A2-Of4" firstAttribute="top" secondItem="I90-NC-Yfz" secondAttribute="topMargin" constant="2" id="fjW-sY-l0H"/>
+                                                <constraint firstItem="fJf-A2-Of4" firstAttribute="leading" secondItem="I90-NC-Yfz" secondAttribute="leadingMargin" constant="5" id="kyI-OK-fbD"/>
                                                 <constraint firstItem="zSt-tk-D3c" firstAttribute="trailing" secondItem="I90-NC-Yfz" secondAttribute="trailingMargin" constant="5" id="mSf-ke-Eqm"/>
-                                                <constraint firstItem="edq-vc-jlc" firstAttribute="leading" secondItem="SNX-Kk-oIo" secondAttribute="trailing" constant="2" id="uGJ-TX-aKi"/>
-                                                <constraint firstItem="SNX-Kk-oIo" firstAttribute="top" secondItem="I90-NC-Yfz" secondAttribute="top" constant="10" id="yKV-CR-Zzp"/>
+                                                <constraint firstItem="9te-4g-2Ul" firstAttribute="top" secondItem="I90-NC-Yfz" secondAttribute="topMargin" constant="2" id="rVf-mQ-T86"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="btnLike" destination="fJf-A2-Of4" id="FF0-pe-C4h"/>
+                                            <outlet property="btnStar" destination="9te-4g-2Ul" id="sIR-ad-A2Q"/>
                                             <outlet property="imvComment" destination="OMh-fV-Fv2" id="bet-Rh-Hur"/>
-                                            <outlet property="imvStar" destination="SNX-Kk-oIo" id="819-9z-BVt"/>
-                                            <outlet property="imvView" destination="csb-qd-gSL" id="qDj-Wa-78z"/>
                                             <outlet property="lblCommentNum" destination="NaH-aE-n9B" id="POn-l0-2nb"/>
                                             <outlet property="lblStarNum" destination="edq-vc-jlc" id="0v5-du-cas"/>
                                             <outlet property="lblTime" destination="zSt-tk-D3c" id="xPG-hc-vtM"/>

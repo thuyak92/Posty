@@ -49,7 +49,7 @@
 
 #pragma mark - service
 - (void)getObjectsAtPath: (NSString *)path forClass: (NSString *)className success:(void (^)(id objects))success;
-- (void)postObject: (id)object toPath: (NSString *)path forClass: (NSString *)className success:(void (^)(id objects))success;
+- (void)postObject: (id)object toPath: (NSString *)path params:(NSDictionary *)params forClass: (NSString *)className success:(void (^)(id objects))success;
 - (void)postObject: (id)object toPath: (NSString *)path method: (RKRequestMethod)method withData: (NSData *)data fileName: (NSString *)fileName forClass: (NSString *)className success:(void (^)(id objects))success;
 
 #pragma mark - login

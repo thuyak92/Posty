@@ -12,14 +12,17 @@
 
 @interface PostInfoCell : UITableViewCell
 
+@property (strong, nonatomic) PostModel *post;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblViewNum;
 @property (weak, nonatomic) IBOutlet UILabel *lblCommentNum;
 @property (weak, nonatomic) IBOutlet UILabel *lblStarNum;
 @property (weak, nonatomic) IBOutlet UILabel *lblTime;
 @property (weak, nonatomic) IBOutlet UITextView *txtvStatus;
-@property (weak, nonatomic) IBOutlet UIImageView *imvView;
+@property (weak, nonatomic) IBOutlet UIButton *btnLike;
 @property (weak, nonatomic) IBOutlet UIImageView *imvComment;
-@property (weak, nonatomic) IBOutlet UIImageView *imvStar;
+@property (weak, nonatomic) IBOutlet UIButton *btnStar;
+- (IBAction)onButtonClicked:(id)sender;
 
 - (void)initWithPost:(PostModel *)post;
 
