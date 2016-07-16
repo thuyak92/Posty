@@ -61,6 +61,11 @@
 }
 
 - (IBAction)onButtonClicked:(id)sender {
+    UserModel *userInfo = [Lib currentUser];
+    if (userInfo == nil) {
+        [Lib showAlertTitle:nil message:@"Please login to like, comment or rate"];
+        return;
+    }
     NSInteger action;
     if (sender == _btnLike) {
         if (_btnLike.isSelected) {

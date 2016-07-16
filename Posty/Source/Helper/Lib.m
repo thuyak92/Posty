@@ -189,6 +189,9 @@
 {
     NSString *err = @"";
     NSData* data = [error dataUsingEncoding:NSUTF8StringEncoding];
+    if (!data) {
+        return;
+    }
     NSArray *values = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     
     if ([values isKindOfClass:[NSArray class]]) {

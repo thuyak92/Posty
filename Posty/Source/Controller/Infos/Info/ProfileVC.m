@@ -1,24 +1,25 @@
 //
-//  SettingsVC.m
+//  ProfileVC.m
 //  Posty
 //
-//  Created by phuongthuy on 2/18/16.
+//  Created by phuongthuy on 1/9/16.
 //  Copyright © 2016 PhuongThuy. All rights reserved.
 //
 
-#import "SettingsVC.h"
+#import "ProfileVC.h"
 #import "Lib.h"
 #import "AppDelegate.h"
 
-@interface SettingsVC ()
+@interface ProfileVC ()
 
 @end
 
-@implementation SettingsVC
+@implementation ProfileVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,13 +27,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    if (![Lib checkLogin]) {
-        AppDelegate *app = [UIApplication sharedApplication].delegate;
-        [app showLogin];
-    }
-}
+
 
 /*
 #pragma mark - Navigation
@@ -44,9 +39,16 @@
 }
 */
 
-- (IBAction)btnLogout:(id)sender {
-    [Lib logout];
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    [app showLogin];
+- (void)loadData
+{
+//    RKObjectRequestOperation *operation = [ServiceRestKit rkObjRequestUrl:URL_USER forClass:CLASS_USER];
+//    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+//        UserModel *user = [result firstObject];
+//        NSLog(@"Mapped the article: %@\n%@", user.nickname, user.avatarUrl);
+//    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+//        NSLog(@"Failed with error: %@", [error localizedDescription]);
+//    }];
+//    [operation start];
 }
+
 @end

@@ -23,13 +23,18 @@
 #define SEGUE_MAP_TO_SEARCH             @"segueMapToSearch"
 #define SEGUE_MAP_TO_DETAIL             @"segueMapToDetail"
 #define SEGUE_POST_TO_POST_SETTING      @"SeguePostToPostSetting"
-#define SEGUE_INFO_TO_LOGIN             @"SegueInfoToLogin"
 #define SEGUE_LOGIN_TO_USER_INFO        @"segueLoginToUserInfo"
 #define SEGUE_POST_SETTING_TO_CONFIRM   @"seguePostSettingToConfrim"
 #define SEGUE_POST_TO_MENU_POST         @"seguePostToMenuPost"
+#define SEGUE_INFO_TO_NOTICE            @"segueInfoToNotice"
+#define SEGUE_INFO_TO_PROFILE           @"segueInfoToProfile"
 
 //Storyboard Identifier
-#define STORY_BOARD_LOGIN               @"storyboardLogin"
+#define SB_LOGIN            @"storyboardLogin"
+#define SB_NOTICE           @"storyboardNotice"
+#define SB_PROFILE          @"storyboardProfile"
+#define SB_FRIEND           @"storyboardFriend"
+#define SB_SETTING          @"storyboardSetting"
 
 //Tab bar
 #define TAB_HOME        0
@@ -70,6 +75,7 @@
 #define MENU_SEND       3
 #define MENU_TRASH      4
 #define MENU_TITLE      @[@"受信ポスト", @"送信予定ポスト(日時設定あり)", @"下書きポスト", @"送信済みポスト", @"ゴミ箱"]
+#define MENU_ICON       @[@"menuReceived.png", @"menuDelay.png", @"menuSave.png", @"menuSend.png", @"menuTrash.png"]
 
 //Action Type
 #define ACTION_LIKE         1

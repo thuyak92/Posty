@@ -1,6 +1,6 @@
 //
-//  MyPageVC.h
-//  MyDear
+//  ProfileVC.h
+//  Posty
 //
 //  Created by phuongthuy on 1/9/16.
 //  Copyright © 2016 PhuongThuy. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyPageVC : UIViewController
+@interface ProfileVC : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imvAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblSpot;

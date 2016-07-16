@@ -90,7 +90,7 @@
     UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
     UIViewController *vc = [tabController selectedViewController];
     if (![Lib currentUser]) {
-        LoginTVC * loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:STORY_BOARD_LOGIN];
+        LoginTVC * loginVC = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:SB_LOGIN];
         [vc presentViewController:loginVC animated:YES completion:nil];
     }
 }

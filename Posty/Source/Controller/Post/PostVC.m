@@ -100,32 +100,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = MENU_TITLE[indexPath.row];
-    switch (indexPath.row) {
-        case MENU_RECEIVED:
-            [cell.imageView setImage:[UIImage imageNamed:@"menuReceived.png"]];
-//            cell.textLabel.text = @"受信ポスト";
-            break;
-        case MENU_DELAY:
-            [cell.imageView setImage:[UIImage imageNamed:@"menuDelay.png"]];
-//            cell.textLabel.text = @"送信予定ポスト（日時設定あり）";
-            break;
-        case MENU_SAVE:
-            [cell.imageView setImage:[UIImage imageNamed:@"menuSave.png"]];
-//            cell.textLabel.text = @"下書きポスト";
-            break;
-        case MENU_SEND:
-            [cell.imageView setImage:[UIImage imageNamed:@"menuSend.png"]];
-//            cell.textLabel.text = @"送信済みポスト";
-            break;
-        case MENU_TRASH:
-            [cell.imageView setImage:[UIImage imageNamed:@"menuTrash.png"]];
-//            cell.textLabel.text = @"ゴミ箱";
-            break;
-            
-        default:
-            break;
-    }
-    
+    [cell.imageView setImage:[UIImage imageNamed:MENU_ICON[indexPath.row]]];
     return cell;
 }
 
