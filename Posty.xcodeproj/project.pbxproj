@@ -16,7 +16,7 @@
 		475D4A621C963605006F3DE7 /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 475D4A601C963605006F3DE7 /* ListCell.xib */; };
 		475D4A661C963657006F3DE7 /* ListPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 475D4A641C963657006F3DE7 /* ListPopup.m */; };
 		475D4A671C963657006F3DE7 /* ListPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 475D4A651C963657006F3DE7 /* ListPopup.xib */; };
-		477D1CB21C930AED00D2114A /* LoginTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 477D1CB11C930AED00D2114A /* LoginTVC.m */; };
+		477D1CB21C930AED00D2114A /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 477D1CB11C930AED00D2114A /* LoginVC.m */; };
 		478033681D3A459100FB29B7 /* FriendsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4780335F1D3A459100FB29B7 /* FriendsVC.m */; };
 		478033691D3A459100FB29B7 /* NotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 478033611D3A459100FB29B7 /* NotifyVC.m */; };
 		4780336A1D3A459100FB29B7 /* ProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 478033631D3A459100FB29B7 /* ProfileVC.m */; };
@@ -201,8 +201,8 @@
 		475D4A631C963657006F3DE7 /* ListPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPopup.h; sourceTree = "<group>"; };
 		475D4A641C963657006F3DE7 /* ListPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPopup.m; sourceTree = "<group>"; };
 		475D4A651C963657006F3DE7 /* ListPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListPopup.xib; sourceTree = "<group>"; };
-		477D1CB01C930AED00D2114A /* LoginTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTVC.h; sourceTree = "<group>"; };
-		477D1CB11C930AED00D2114A /* LoginTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTVC.m; sourceTree = "<group>"; };
+		477D1CB01C930AED00D2114A /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		477D1CB11C930AED00D2114A /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		4780335E1D3A459100FB29B7 /* FriendsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsVC.h; sourceTree = "<group>"; };
 		4780335F1D3A459100FB29B7 /* FriendsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsVC.m; sourceTree = "<group>"; };
 		478033601D3A459100FB29B7 /* NotifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyVC.h; sourceTree = "<group>"; };
@@ -791,8 +791,8 @@
 			children = (
 				4786F8B01C70638000CABA8B /* AccountInfoVC.h */,
 				4786F8B11C70638000CABA8B /* AccountInfoVC.m */,
-				477D1CB01C930AED00D2114A /* LoginTVC.h */,
-				477D1CB11C930AED00D2114A /* LoginTVC.m */,
+				477D1CB01C930AED00D2114A /* LoginVC.h */,
+				477D1CB11C930AED00D2114A /* LoginVC.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1261,7 +1261,7 @@
 				478033681D3A459100FB29B7 /* FriendsVC.m in Sources */,
 				47B283C41C78ADDF00B5FE90 /* CommentModel.m in Sources */,
 				4786F95B1C70638100CABA8B /* LibRestKit.m in Sources */,
-				477D1CB21C930AED00D2114A /* LoginTVC.m in Sources */,
+				477D1CB21C930AED00D2114A /* LoginVC.m in Sources */,
 				4786F94F1C70638100CABA8B /* DetailVC.m in Sources */,
 				4780336C1D3A459100FB29B7 /* InfosVC.m in Sources */,
 				4786F9721C70638100CABA8B /* PostCell.m in Sources */,

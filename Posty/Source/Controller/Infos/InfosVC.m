@@ -79,6 +79,8 @@
             break;
         case 3:
             [self.viewContent addSubview:vcSetting.view];
+            [self addChildViewController:vcSetting];
+            [vcSetting didMoveToParentViewController:self];
             break;
             
         default:

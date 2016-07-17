@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class AccountInfoVC;
+
 #define SETTING_ACCOUNT     0
 #define SETTING_PRIVACY     1
 #define SETTING_NOTICE      2
@@ -16,5 +18,8 @@
 #define SETTING_LOGOUT      5
 
 @interface SettingVC : UITableViewController
+{
+    AccountInfoVC *vcAccount;
+}
 
 @end

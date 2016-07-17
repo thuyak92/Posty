@@ -23,7 +23,7 @@
 #define SEGUE_MAP_TO_SEARCH             @"segueMapToSearch"
 #define SEGUE_MAP_TO_DETAIL             @"segueMapToDetail"
 #define SEGUE_POST_TO_POST_SETTING      @"SeguePostToPostSetting"
-#define SEGUE_LOGIN_TO_USER_INFO        @"segueLoginToUserInfo"
+#define SEGUE_LOGIN_TO_ACCOUNT          @"segueLoginToAccount"
 #define SEGUE_POST_SETTING_TO_CONFIRM   @"seguePostSettingToConfrim"
 #define SEGUE_POST_TO_MENU_POST         @"seguePostToMenuPost"
 #define SEGUE_INFO_TO_NOTICE            @"segueInfoToNotice"

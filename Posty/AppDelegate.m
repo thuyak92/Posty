@@ -12,7 +12,7 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "LoginTVC.h"
+#import "LoginVC.h"
 #import "SearchModel.h"
 
 @import GoogleMaps;
@@ -90,7 +90,7 @@
     UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
     UIViewController *vc = [tabController selectedViewController];
     if (![Lib currentUser]) {
-        LoginTVC * loginVC = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:SB_LOGIN];
+        LoginVC * loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:SB_LOGIN];
         [vc presentViewController:loginVC animated:YES completion:nil];
     }
 }

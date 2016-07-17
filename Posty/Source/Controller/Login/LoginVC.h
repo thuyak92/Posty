@@ -1,5 +1,5 @@
 //
-//  LoginTVC.h
+//  LoginVC.h
 //  Posty
 //
 //  Created by phuongthuy on 3/11/16.
@@ -13,7 +13,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "LibRestKit.h"
 
-@interface LoginTVC : UITableViewController<UITextFieldDelegate, RestKitLibDelegate, FBSDKLoginButtonDelegate>
+@interface LoginVC : UITableViewController<UITextFieldDelegate, RestKitLibDelegate, FBSDKLoginButtonDelegate>
 {
     NSString *url;
 }

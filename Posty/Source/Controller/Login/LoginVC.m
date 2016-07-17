@@ -1,19 +1,19 @@
 //
-//  LoginTVC.m
+//  LoginVC.m
 //  Posty
 //
 //  Created by phuongthuy on 3/11/16.
 //  Copyright © 2016 PhuongThuy. All rights reserved.
 //
 
-#import "LoginTVC.h"
+#import "LoginVC.h"
 #import "AppDelegate.h"
 
-@interface LoginTVC ()
+@interface LoginVC ()
 
 @end
 
-@implementation LoginTVC
+@implementation LoginVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -251,7 +251,7 @@
             [self goToHome];
         }];
     } else {
-        [self performSegueWithIdentifier:SEGUE_LOGIN_TO_USER_INFO sender:nil];
+        [self performSegueWithIdentifier:SEGUE_LOGIN_TO_ACCOUNT sender:nil];
     }
 }
 

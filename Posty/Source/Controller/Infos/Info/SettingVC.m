@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "Lib.h"
 #import "AppDelegate.h"
+#import "AccountInfoVC.h"
 
 @interface SettingVC ()
 
@@ -46,7 +47,7 @@
 {
     switch (indexPath.row) {
         case SETTING_ACCOUNT:
-            [self performSegueWithIdentifier:SEGUE_SETTING_TO_ACCOUNT sender:nil];
+            [self.parentViewController performSegueWithIdentifier:SEGUE_SETTING_TO_ACCOUNT sender:nil];
             break;
         case SETTING_LOGOUT:
             [Lib logout];
