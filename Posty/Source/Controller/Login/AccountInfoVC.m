@@ -7,7 +7,6 @@
 //
 
 #import "AccountInfoVC.h"
-#import "AppDelegate.h"
 
 @interface AccountInfoVC ()
 
@@ -31,6 +30,9 @@
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(onSaveButtonClicked)];
     self.navigationItem.rightBarButtonItem = saveButton;
     
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onCancelButtonClicked)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+    
     [_imvAvatar.layer setMasksToBounds:YES];
     [_imvAvatar.layer setCornerRadius:20];
 }
@@ -53,6 +55,11 @@
 - (void)onSaveButtonClicked
 {
     [self postData];
+}
+
+- (void)onCancelButtonClicked
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onSegmentChangeValue:(id)sender {
@@ -111,8 +118,6 @@
 {
     [[LibRestKit share] updateUser:[self getUserData] success:^(UserModel *user) {
         [Lib setCurrentUser:user];
-        AppDelegate *app = [UIApplication sharedApplication].delegate;
-        [app switchToTabWithIndex:TAB_HOME];
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }

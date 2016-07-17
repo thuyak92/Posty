@@ -25,7 +25,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     if ([Lib checkLogin]) {
         [self dismissViewControllerAnimated:YES completion:^{

@@ -61,12 +61,6 @@
 }
 */
 
-- (IBAction)btnLogout:(id)sender {
-    [Lib logout];
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    [app showLogin];
-}
-
 #pragma mark - TabBarDelegate
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {

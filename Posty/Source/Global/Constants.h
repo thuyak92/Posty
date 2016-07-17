@@ -28,6 +28,7 @@
 #define SEGUE_POST_TO_MENU_POST         @"seguePostToMenuPost"
 #define SEGUE_INFO_TO_NOTICE            @"segueInfoToNotice"
 #define SEGUE_INFO_TO_PROFILE           @"segueInfoToProfile"
+#define SEGUE_SETTING_TO_ACCOUNT        @"segueSettingToAccount"
 
 //Storyboard Identifier
 #define SB_LOGIN            @"storyboardLogin"

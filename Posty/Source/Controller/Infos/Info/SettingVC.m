@@ -8,6 +8,8 @@
 
 #import "SettingVC.h"
 #import "Constants.h"
+#import "Lib.h"
+#import "AppDelegate.h"
 
 @interface SettingVC ()
 
@@ -37,7 +39,21 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case SETTING_ACCOUNT:
+            [self performSegueWithIdentifier:SEGUE_SETTING_TO_ACCOUNT sender:nil];
+            break;
+        case SETTING_LOGOUT:
+            [Lib logout];
+            AppDelegate *app = [UIApplication sharedApplication].delegate;
+            [app showLogin];
+            break;
+    }
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

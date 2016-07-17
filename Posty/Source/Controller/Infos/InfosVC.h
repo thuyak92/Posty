@@ -20,7 +20,6 @@
     FriendsVC *vcFriend;
     SettingVC *vcSetting;
 }
-- (IBAction)btnLogout:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *viewContent;
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 

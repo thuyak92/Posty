@@ -954,13 +954,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUi-gb-zck">
-                                <rect key="frame" x="115" y="260" width="91" height="48"/>
-                                <state key="normal" title="ログアウト"/>
-                                <connections>
-                                    <action selector="btnLogout:" destination="KWY-Uu-reS" eventType="touchUpInside" id="ddm-qf-KgB"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xc8-qs-vTi" userLabel="ContentView">
                                 <rect key="frame" x="0.0" y="49" width="320" height="470"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -985,7 +978,7 @@
                             <constraint firstItem="xc8-qs-vTi" firstAttribute="leading" secondItem="nxZ-Tn-7qO" secondAttribute="leading" id="KoH-4D-orf"/>
                             <constraint firstItem="nxZ-Tn-7qO" firstAttribute="top" secondItem="VwG-Wr-47F" secondAttribute="bottom" id="Mf6-LX-cvW"/>
                             <constraint firstItem="xc8-qs-vTi" firstAttribute="trailing" secondItem="nxZ-Tn-7qO" secondAttribute="trailing" id="b5a-Kt-ycs"/>
-                            <constraint firstItem="xc8-qs-vTi" firstAttribute="top" secondItem="nxZ-Tn-7qO" secondAttribute="top" id="dgS-LW-AXA"/>
+                            <constraint firstItem="xc8-qs-vTi" firstAttribute="top" secondItem="nxZ-Tn-7qO" secondAttribute="bottom" id="dgS-LW-AXA"/>
                             <constraint firstItem="xc8-qs-vTi" firstAttribute="bottom" secondItem="kW2-dh-cAx" secondAttribute="top" id="oB0-YL-JBJ"/>
                             <constraint firstItem="nxZ-Tn-7qO" firstAttribute="leading" secondItem="wuM-xB-ZqL" secondAttribute="leading" id="pUM-Xc-ySD"/>
                             <constraint firstAttribute="trailing" secondItem="nxZ-Tn-7qO" secondAttribute="trailing" id="wd3-9v-jgA"/>
