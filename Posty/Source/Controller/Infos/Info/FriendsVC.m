@@ -7,6 +7,9 @@
 //
 
 #import "FriendsVC.h"
+#import "UserModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "ListCell.h"
 
 @interface FriendsVC ()
 
@@ -22,6 +25,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    listFriends = [[NSMutableArray alloc] init];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+    [[LibRestKit share] getObjectsAtPath:URL_USER forClass:CLASS_USER success:^(id objects) {
+        listFriends = [NSMutableArray arrayWithArray:objects];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,24 +44,51 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    if (section == 4) {
+        return listFriends.count;
+    }
+    return 1;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        searchBar = [[UISearchBar alloc] init];
+        searchBar.delegate = self;
+        searchBar.placeholder = @"ポストモを検索";
+        [searchBar setFrame:cell.frame];
+        [cell addSubview:searchBar];
+        return cell;
+    } else if (indexPath.section == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+#warning T create invitePostyBtn and createGroupBtn
+        return cell;
+    } else {
+        ListCell *cell = [ListCell createView];
+        if (indexPath.section == 2) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            [cell.imv setImage:[UIImage imageNamed:@"iconPrivacy1.png"]];
+            cell.title.text = [NSString stringWithFormat:@"公式アカウント(%ld)", countPublic];
+            cell.subTitle.text = @"ポストモ登録してる公式アカウントはこちら";
+        } else if (indexPath.section == 3) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            [cell.imv setImage:[UIImage imageNamed:@"iconPrivacy0.png"]];
+            cell.title.text = [NSString stringWithFormat:@"グループ(%ld)", countGroup];
+            cell.subTitle.text = @"参加しているグループはこちら";
+        } else if (indexPath.section == 4) {
+            UserModel *user = listFriends[indexPath.row];
+            [cell initWithUser:user];
+            cell.subTitle.text = user.comment;
+        }
+        return cell;
+    }
     
-    // Configure the cell...
-    
-    return cell;
+    return [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -94,5 +133,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"nickname like '%@'", searchText];
+    [listFriends filterUsingPredicate:pred];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+}
 
 @end

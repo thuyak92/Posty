@@ -202,6 +202,7 @@
         err = error;
     }
     [Lib showAlertTitle:@"エラー" message:err];
+    [MBProgressHUD hideAllHUDsForView:ctrl.view animated:NO];
 }
 
 + (NSString *)sha256:(NSString *)input

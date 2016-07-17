@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LibRestKit.h"
 
-@interface FriendsVC : UITableViewController
+@interface FriendsVC : UITableViewController<UISearchBarDelegate, RestKitLibDelegate>
+{
+    NSMutableArray *listFriends;
+    UISearchBar *searchBar;
+    NSInteger countPublic, countGroup;
+}
 
 @end
